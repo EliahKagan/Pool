@@ -10,8 +10,7 @@ public:
     template<typename... Args>
     T* operator()(Args&&... args)
     {
-        objects_.emplace_back(std::forward<Args>(args)...);
-        return &objects_.back();
+        return &objects_.emplace_back(std::forward<Args>(args)...);
     }
 
 private:
