@@ -1,5 +1,7 @@
 #include <iostream>
+#include "Pool.h"
 
-int main(int, char**) {
-    std::cout << "Hello, world!\n";
+int main()
+{
+    Pool<int> pool;
 }
