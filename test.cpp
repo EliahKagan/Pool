@@ -17,4 +17,5 @@ int main()
     Pool<ListNode<int>> pl;
 
     auto head = make_list(pl, {10, 20, 30, 40, 50});
+    auto head2 = make_list(pl, 1, 2, 3, 4, 5);
 }
