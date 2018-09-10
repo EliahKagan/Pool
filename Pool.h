@@ -1,5 +1,5 @@
-#ifndef POOL_POOL_H_
-#define POOL_POOL_H_
+#ifndef HAVE_POOL_POOL_H_
+#define HAVE_POOL_POOL_H_
 
 #include <deque>
 #include <utility>
@@ -17,4 +17,4 @@ private:
     std::deque<T> objects_;
 };
 
-#endif // ! POOL_POOL_H_
+#endif // ! HAVE_POOL_POOL_H_

@@ -1,0 +1,6 @@
+#ifndef HAVE_POOL_LISTNODE_H_
+#define HAVE_POOL_LISTNODE_H_
+
+
+
+#endif // ! HAVE_POOL_LISTNODE_H_
