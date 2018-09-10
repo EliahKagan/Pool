@@ -3,7 +3,7 @@
 
 #include <initializer_list>
 #include <utility>
-#include "Identity.h"
+#include "Identity.h" // FIXME: remove this if I won't be using it
 #include "Pool.h"
 
 template<typename T>
@@ -47,7 +47,7 @@ ListNode<T>* make_list(Pool<ListNode<T>>& pool, const T& x, Ts&&... xs)
 }
 
 template<typename T, typename... Ts>
-ListNode<T>* make_list(Pool<ListNode<T>>& pool, Identity<T>&& x, Ts&&... xs)
+ListNode<T>* make_list(Pool<ListNode<T>>& pool, T&& x, Ts&&... xs)
 {
     return pool(std::move(x), make_list(pool, std::forward<Ts>(xs)...));
 }

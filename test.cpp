@@ -21,4 +21,5 @@ int main()
 
     auto k = 76;
     auto head3 = make_list(pl, k);
+    auto head4 = make_list(pl, 4444);
 }
