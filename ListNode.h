@@ -3,7 +3,6 @@
 
 #include <initializer_list>
 #include <utility>
-#include "Identity.h" // FIXME: remove this if I won't be using it
 #include "Pool.h"
 
 template<typename T>
