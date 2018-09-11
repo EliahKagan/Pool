@@ -40,6 +40,10 @@ namespace {
     void test_int_uniqueptr_listnode_pool()
     {
         Pool<ListNode<std::unique_ptr<int>>> pool;
+
+        constexpr auto m = [](const int i) { return std::make_unique<int>(i); };
+
+        auto head = make_list(pool, m(10), m(20), m(30), m(40), m(50));
     }
 }
 
