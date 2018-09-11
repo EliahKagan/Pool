@@ -13,7 +13,7 @@ struct ListNode {
 
     ListNode(const T& _key, ListNode* const _next) : key{_key}, next{_next} { }
 
-    ListNode(T&& _key, ListNode* const _next) : key{std::forward<T>(_key)},
+    ListNode(T&& _key, ListNode* const _next) : key{std::move(_key)},
                                                 next{_next} { }
 
     T key;
