@@ -63,13 +63,13 @@ struct ListNode {
 };
 
 template<typename T>
-typename ListNode<T>::iterator begin(ListNode<T>* const p) noexcept
+constexpr typename ListNode<T>::iterator begin(ListNode<T>* const p) noexcept
 {
     return std::begin(*p);
 }
 
 template<typename T>
-typename ListNode<T>::iterator end(ListNode<T>* const p) noexcept
+constexpr typename ListNode<T>::iterator end(ListNode<T>* const p) noexcept
 {
     return std::end(*p);
 }
