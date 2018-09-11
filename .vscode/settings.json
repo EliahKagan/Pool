@@ -4,6 +4,9 @@
         "deque": "cpp",
         "list": "cpp",
         "vector": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "initializer_list": "cpp",
+        "array": "cpp",
+        "xtr1common": "cpp"
     }
 }

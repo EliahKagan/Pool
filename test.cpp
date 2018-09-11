@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <iterator>
 #include <memory>
 #include <utility>
 #include "Pool.h"
@@ -48,9 +49,9 @@ namespace {
 
         auto head3 = make_list(pool, 1, 2, 3, 4, 5);
 
-        auto k = 76;
-        auto head4 = make_list(pool, k);
-        auto head5 = make_list(pool, 4444);
+        auto h = 11, k = 76;
+        auto head4 = make_list(pool, h, k);
+        auto head5 = make_list(pool, 3333, 4444);
     }
 
     void test_int_uniqueptr_listnode()
@@ -70,7 +71,10 @@ namespace {
 
         auto head1 = make_list(pool, h, i, j, k);
 
-        auto head2 = make_list(pool, {h, i, j, k});
+        //auto head2 = make_list(pool, {h, i, j, k});
+
+        std::vector a {h, i, j, k};
+        //auto head3 = make_list(pool, 10, 20);
     }
 }
 

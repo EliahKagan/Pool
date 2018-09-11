@@ -2,6 +2,8 @@
 #define HAVE_POOL_LISTNODE_H_
 
 #include <initializer_list>
+#include <iterator>
+#include <type_traits>
 #include <utility>
 #include "Pool.h"
 
@@ -17,6 +19,15 @@ struct ListNode {
     T key;
     ListNode* next;
 };
+
+template<typename T, typename I>
+std::enable_if_t<
+    std::is_same_v<typename std::iterator_traits<I>::value_type, T>,
+    ListNode<T>*>
+make_list(Pool<ListNode<T>>& pool, I first, const I last)
+{
+    return nullptr; // FIXME: actually implement this
+}
 
 template<typename T>
 ListNode<T>* make_list(Pool<ListNode<T>>& pool,
