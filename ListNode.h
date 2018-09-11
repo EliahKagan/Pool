@@ -6,6 +6,7 @@
 #include <iterator>
 #include <type_traits>
 #include <utility>
+#include <vector>
 #include "Pool.h"
 
 namespace ek {
@@ -245,6 +246,12 @@ namespace ek {
     ListNode<T>* make_list(Pool<ListNode<T>>& pool, T&& x, Ts&&... xs)
     {
         return pool(std::move(x), make_list(pool, std::forward<Ts>(xs)...));
+    }
+
+    template<typename T>
+    std::vector<T> vec(const ListNode<T>* head)
+    {
+        return std::vector<T>(cbegin(head), cend(head));
     }
 }
 
