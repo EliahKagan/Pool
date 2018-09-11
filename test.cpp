@@ -22,7 +22,7 @@ int main()
     auto head0 = make_list(pl, ineg1, i0, 1, i2, 3, i4, 5, i6, 7, i8, 9, i10,
                                11, i12);
 
-    auto head1= make_list(pl, {10, 20, 30, 40, 50});
+    auto head1 = make_list(pl, {10, 20, 30, 40, 50});
     auto head2 = make_list(pl, 1, 2, 3, 4, 5);
 
     auto k = 76;
