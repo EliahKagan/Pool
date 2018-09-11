@@ -1,6 +1,7 @@
 #ifndef HAVE_POOL_LISTNODE_H_
 #define HAVE_POOL_LISTNODE_H_
 
+#include <algorithm>
 #include <cstddef>
 #include <initializer_list>
 #include <iterator>
@@ -299,7 +300,47 @@ namespace ek {
         return std::vector<T>(cbegin(head), cend(head));
     }
 
+    template<typename T>
+    inline typename ListNode<T>::const_iterator
+    find(const ListNode<T>* const head, const T& key)
+    {
+        return std::find(cbegin(head), cend(head), key);
+    }
 
+    template<typename T>
+    inline typename ListNode<T>::iterator
+    find(ListNode<T>* const head, const T& key)
+    {
+        return std::find(begin(head), end(head), key);
+    }
+
+    template<typename T, typename F>
+    inline typename ListNode<T>::const_iterator
+    find_if(const ListNode<T>* const head, const F f)
+    {
+        return std::find_if(cbegin(head), cend(head), f);
+    }
+
+    template<typename T, typename F>
+    inline typename ListNode<T>::iterator
+    find_if(ListNode<T>* const head, const F f)
+    {
+        return std::find_if(begin(head), end(head), f);
+    }
+
+    template<typename T, typename F>
+    inline typename ListNode<T>::const_iterator
+    find_if_not(const ListNode<T>* const head, const F f)
+    {
+        return std::find_if_not(cbegin(head), cend(head), f);
+    }
+
+    template<typename T, typename F>
+    inline typename ListNode<T>::iterator
+    find_if_not(ListNode<T>* const head, const F f)
+    {
+        return std::find_if_not(begin(head), end(head), f);
+    }
 }
 
 #endif // ! HAVE_POOL_LISTNODE_H_
