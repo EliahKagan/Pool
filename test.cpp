@@ -64,10 +64,13 @@ namespace {
 
     void test_int_nodefault_listnode_pool()
     {
-        NoDefault x {3};
-        int i = x;
-        int j = NoDefault{4};
+        Pool<ListNode<NoDefault<int>>> pool;
 
+        NoDefault h {3}, i {6}, j {9}, k {12};
+
+        auto head1 = make_list(pool, h, i, j, k);
+
+        auto head2 = make_list(pool, {h, i, j, k});
     }
 }
 
