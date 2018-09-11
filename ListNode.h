@@ -58,7 +58,6 @@ namespace detail { // TODO: maybe put this in a different header
 
 template<typename T, typename C>
 std::enable_if_t<detail::collects<C, T>, ListNode<T>*>
-//ListNode<T>*
 make_list(Pool<ListNode<T>>& pool, C&& c)
 {
     using std::begin, std::end;
