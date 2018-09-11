@@ -141,18 +141,23 @@ namespace {
         for (auto p = cbegin(head1), q = cbegin(head2); p != pp; ++p, ++q)
             std::cout << '|' << *p << ' ' << *q << '\n';
     }
+
+    void run_all_tests()
+    {
+        test_int();
+        test_int_listnode();
+        test_int_uniqueptr_listnode();
+        test_int_nodefault_listnode();
+        test_bitset_listnode();
+        test_string_pair_listnode();
+
+        test_copy();
+    }
 }
 
 int main()
 {
     std::ios_base::sync_with_stdio(false);
-
-    test_int();
-    test_int_listnode();
-    test_int_uniqueptr_listnode();
-    test_int_nodefault_listnode();
-    test_bitset_listnode();
-    test_string_pair_listnode();
-
-    test_copy();
+    run_all_tests();
+    std::cout << std::flush; // for convenience when debugging
 }
