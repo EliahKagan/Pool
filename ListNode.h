@@ -33,9 +33,18 @@ struct ListNode {
         explicit constexpr iterator(ListNode* const pos = nullptr) noexcept
             : pos_{pos} { }
 
-        constexpr iterator& operator++() noexcept { ++pos_; return *this; }
+        constexpr iterator& operator++() noexcept
+        {
+            pos_ = pos_->next;
+            return *this;
+        }
 
-        constexpr iterator operator++(int) noexcept { return iterator{pos_++}; }
+        constexpr iterator operator++(int) noexcept
+        {
+            const auto ret = *this;
+            ++(*this);
+            return ret;
+        }
 
         constexpr reference operator*() const noexcept { return pos_->key; }
 
