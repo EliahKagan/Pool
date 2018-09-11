@@ -13,8 +13,9 @@ struct ListNode {
 
     ListNode(const T& _key, ListNode* const _next) : key{_key}, next{_next} { }
 
-    ListNode(T&& _key, ListNode* const _next) : key{std::move(_key)},
-                                                next{_next} { }
+    ListNode(T&& _key, ListNode* const _next)
+            noexcept(std::is_nothrow_move_constructible_v<T>)
+        : key{std::move(_key)}, next{_next} { }
 
     T key;
     ListNode* next;
