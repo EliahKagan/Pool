@@ -61,6 +61,19 @@ struct ListNode {
     ListNode* next;
 };
 
+template<typename T>
+typename ListNode<T>::iterator begin(ListNode<T>* const p) noexcept
+{
+    return std::begin(*p);
+}
+
+template<typename T>
+typename ListNode<T>::iterator end(ListNode<T>* const p) noexcept
+{
+    return std::end(*p);
+}
+
+
 template<typename T, typename I>
 std::enable_if_t<
     std::is_same_v<typename std::iterator_traits<I>::value_type, T>,
