@@ -40,15 +40,7 @@ template<typename T>
 ListNode<T>* make_list(Pool<ListNode<T>>& pool,
                        const std::initializer_list<T> ilist)
 {
-    ListNode<T> sentinel {};
-
-    auto cur = &sentinel;
-    for (const auto& x : ilist) {
-        cur->next = pool(x, nullptr);
-        cur = cur->next;
-    }
-
-    return sentinel.next;
+    return make_list(pool, cbegin(ilist), cend(ilist));
 }
 
 template<typename T>
