@@ -4,17 +4,19 @@
 #include <deque>
 #include <utility>
 
-template<typename T>
-class Pool {
-public:
-    template<typename... Args>
-    T* operator()(Args&&... args)
-    {
-        return &objects_.emplace_back(std::forward<Args>(args)...);
-    }
+namespace ek {
+    template<typename T>
+    class Pool {
+    public:
+        template<typename... Args>
+        T* operator()(Args&&... args)
+        {
+            return &objects_.emplace_back(std::forward<Args>(args)...);
+        }
 
-private:
-    std::deque<T> objects_;
-};
+    private:
+        std::deque<T> objects_;
+    };
+}
 
 #endif // ! HAVE_POOL_POOL_H_

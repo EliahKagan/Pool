@@ -9,6 +9,8 @@
 #include "ListNode.h"
 
 namespace {
+    using ek::Pool, ek::ListNode;
+
     template<typename T>
     class NoDefault {
     public:
