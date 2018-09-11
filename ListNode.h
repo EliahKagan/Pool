@@ -36,32 +36,21 @@ make_list(Pool<ListNode<T>>& pool, I first, const I last)
     return head;
 }
 
-namespace detail {
-    template<typename C>
-    auto _begin(C&& c) noexcept
-    {
-        using std::begin;
-        return begin(c);
-    }
-
-    template<typename C>
-    auto _end(C&& c) noexcept
-    {
-        using std::end;
-        return end(c);
-    }
-}
-
+#if false
 template<typename T, typename C>
-std::enable_if_v<
-    std::is_same_v<typename std::iterator_traits
+ListNode<T>* make_list(Pool<ListNode<T>>& pool, C&& c)
+{
+    using std::begin, std::end;
+    return make_list(pool, begin(c), end(c));
+}
+#endif
 
-//template<typename T>
-//ListNode<T>* make_list(Pool<ListNode<T>>& pool,
-//                       const std::initializer_list<T> ilist)
-//{
-//    return make_list(pool, cbegin(ilist), cend(ilist));
-//}
+template<typename T>
+ListNode<T>* make_list(Pool<ListNode<T>>& pool,
+                       const std::initializer_list<T> ilist)
+{
+    return make_list(pool, cbegin(ilist), cend(ilist));
+}
 
 template<typename T>
 constexpr ListNode<T>* make_list(Pool<ListNode<T>>&) noexcept
