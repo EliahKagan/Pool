@@ -37,7 +37,7 @@ make_list(Pool<ListNode<T>>& pool, I first, const I last)
     return head;
 }
 
-namespace detail { // TODO: maybe put this in a different header
+namespace detail {
     using std::begin, std::end;
 
     template<typename C, typename T>
