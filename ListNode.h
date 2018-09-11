@@ -111,7 +111,7 @@ namespace ek {
                         decltype(end(std::declval<C>()))>
              && std::is_same_v<typename std::iterator_traits<
                                 decltype(begin(std::declval<C>()))>::value_type,
-                                T>,
+                               T>,
             std::true_type>
         collects_helper(int) noexcept { return {}; }
 
