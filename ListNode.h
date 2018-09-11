@@ -30,32 +30,33 @@ struct ListNode {
             return lhs.pos_ != rhs.pos_;
         }
 
-        explicit iterator(ListNode* const pos = nullptr) noexcept
+        explicit constexpr iterator(ListNode* const pos = nullptr) noexcept
             : pos_{pos} { }
 
-        iterator& operator++() noexcept { ++pos_; return *this; }
+        constexpr iterator& operator++() noexcept { ++pos_; return *this; }
 
-        iterator operator++(int) noexcept { return iterator{pos_++}; }
+        constexpr iterator operator++(int) noexcept { return iterator{pos_++}; }
 
-        reference operator*() const noexcept { return pos_->key; }
+        constexpr reference operator*() const noexcept { return pos_->key; }
 
-        pointer operator->() const noexcept { return &pos_->key; }
+        constexpr pointer operator->() const noexcept { return &pos_->key; }
 
     private:
         ListNode* pos_;
     };
 
-    ListNode() : key{}, next{} { }
+    constexpr ListNode() : key{}, next{} { }
 
-    ListNode(const T& _key, ListNode* const _next) : key{_key}, next{_next} { }
+    constexpr ListNode(const T& _key, ListNode* const _next)
+        : key{_key}, next{_next} { }
 
-    ListNode(T&& _key, ListNode* const _next)
+    constexpr ListNode(T&& _key, ListNode* const _next)
             noexcept(std::is_nothrow_move_constructible_v<T>)
         : key{std::move(_key)}, next{_next} { }
 
-    iterator begin() noexcept { return iterator{this}; }
+    constexpr iterator begin() noexcept { return iterator{this}; }
 
-    iterator end() noexcept { return iterator{}; }
+    constexpr iterator end() noexcept { return iterator{}; }
 
     T key;
     ListNode* next;
