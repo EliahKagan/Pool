@@ -26,7 +26,14 @@ std::enable_if_t<
     ListNode<T>*>
 make_list(Pool<ListNode<T>>& pool, I first, const I last)
 {
-    return nullptr; // FIXME: actually implement this
+    if (first == last) return nullptr;
+
+    const auto head = pool(*first, nullptr);
+
+    for (auto cur = head; ++first != last; cur = cur->next)
+        cur->next = pool(*first, nullptr);
+
+    return head;
 }
 
 template<typename T>

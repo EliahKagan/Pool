@@ -71,10 +71,10 @@ namespace {
 
         auto head1 = make_list(pool, h, i, j, k);
 
-        //auto head2 = make_list(pool, {h, i, j, k});
+        auto head2 = make_list(pool, {h, i, j, k});
 
         std::vector a {h, i, j, k};
-        //auto head3 = make_list(pool, 10, 20);
+        //auto head3 = make_list(pool, 10, 20); // should not work, doesn't
     }
 }
 
