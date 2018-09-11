@@ -78,6 +78,7 @@
         "xmemory0": "cpp",
         "xstddef": "cpp",
         "xtree": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "xxatomic": "cpp"
     }
 }

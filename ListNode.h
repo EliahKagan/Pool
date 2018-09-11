@@ -11,7 +11,37 @@
 namespace ek {
     template<typename T>
     struct ListNode {
-        class iterator {
+        class const_iterator {
+        public:
+            using difference_type = std::ptrdiff_t;
+            using value_type = T;
+            using pointer = const T*;
+            using reference = const T&;
+            using iterator_category = std::forward_iterator_tag;
+
+            friend constexpr bool operator==(const const_iterator& lhs,
+                                             const const_iterator& rhs) noexcept
+            {
+                return lhs.pos_ == rhs.pos_;
+            }
+
+            friend constexpr bool operator!=(const const_iterator& lhs,
+                                             const const_iterator& rhs) noexcept
+            {
+                return lhs.pos_ != rhs.pos_;
+            }
+
+            explicit constexpr
+            const_iterator(const ListNode* const pos = nullptr) noexcept
+                : pos_{pos} { }
+
+
+
+        private:
+            const ListNode* pos_;
+        };
+
+        class iterator { // FIXME: make convertible to const_iterator
         public:
             using difference_type = std::ptrdiff_t;
             using value_type = T;
