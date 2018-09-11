@@ -7,8 +7,6 @@
 #include "ListNode.h"
 
 namespace {
-    using std::begin, std::end;
-
     template<typename T>
     class NoDefault {
     public:
