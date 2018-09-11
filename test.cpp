@@ -23,9 +23,11 @@ int main()
                                11, i12);
 
     auto head1 = make_list(pl, {10, 20, 30, 40, 50});
-    auto head2 = make_list(pl, 1, 2, 3, 4, 5);
+    auto head2 = make_list(pl, {});
+
+    auto head3 = make_list(pl, 1, 2, 3, 4, 5);
 
     auto k = 76;
-    auto head3 = make_list(pl, k);
-    auto head4 = make_list(pl, 4444);
+    auto head4 = make_list(pl, k);
+    auto head5 = make_list(pl, 4444);
 }
