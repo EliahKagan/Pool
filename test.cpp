@@ -50,8 +50,10 @@ namespace {
         auto head3 = make_list(pool, 1, 2, 3, 4, 5);
 
         auto h = 11, k = 76;
-        auto head4 = make_list(pool, h, k);
-        auto head5 = make_list(pool, 3333, 4444);
+        auto head4 = make_list(pool, k);
+        auto head5 = make_list(pool, 4444);
+        auto head6 = make_list(pool, h, k);
+        auto head7 = make_list(pool, 3333, 4444);
     }
 
     void test_int_uniqueptr_listnode()
