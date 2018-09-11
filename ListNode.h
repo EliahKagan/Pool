@@ -41,8 +41,8 @@ namespace detail { // TODO: maybe put this in a different header
 
     template<typename C, typename T>
     constexpr std::enable_if_t<
-        std::is_same_v<std::decay_t<decltype(begin(std::declval<C>()))>,
-                       std::decay_t<decltype(end(std::declval<C>()))>>
+        std::is_same_v<decltype(begin(std::declval<C>())),
+                       decltype(end(std::declval<C>()))>
             && std::is_same_v<typename std::iterator_traits<
                                 decltype(begin(std::declval<C>()))>::value_type,
                               T>,
@@ -56,14 +56,14 @@ namespace detail { // TODO: maybe put this in a different header
     inline constexpr bool collects = collects_helper<C, T>(0).value;
 }
 
-#if false
+/*
 template<typename T, typename C>
 ListNode<T>* make_list(Pool<ListNode<T>>& pool, C&& c)
 {
     using std::begin, std::end;
     return make_list(pool, begin(c), end(c));
 }
-#endif
+*/
 
 template<typename T>
 ListNode<T>* make_list(Pool<ListNode<T>>& pool,
