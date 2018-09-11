@@ -111,7 +111,7 @@ namespace detail {
 }
 
 template<typename T, typename C>
-std::enable_if_t<detail::collects<C, T>, ListNode<T>*>
+inline std::enable_if_t<detail::collects<C, T>, ListNode<T>*>
 make_list(Pool<ListNode<T>>& pool, C&& c)
 {
     using std::begin, std::end;
@@ -119,8 +119,8 @@ make_list(Pool<ListNode<T>>& pool, C&& c)
 }
 
 template<typename T>
-ListNode<T>* make_list(Pool<ListNode<T>>& pool,
-                       const std::initializer_list<T> ilist)
+inline ListNode<T>* make_list(Pool<ListNode<T>>& pool,
+                              const std::initializer_list<T> ilist)
 {
     return make_list(pool, cbegin(ilist), cend(ilist));
 }
