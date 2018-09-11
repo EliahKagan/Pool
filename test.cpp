@@ -54,6 +54,9 @@ namespace {
         auto head5 = make_list(pool, 4444);
         auto head6 = make_list(pool, h, k);
         auto head7 = make_list(pool, 3333, 4444);
+
+        std::vector a {2, 3, 5, 7, 11, 13, 17, 19, 23};
+        auto head8 = make_list(pool, a);
     }
 
     void test_int_uniqueptr_listnode()
@@ -74,9 +77,11 @@ namespace {
         auto head1 = make_list(pool, h, i, j, k);
 
         std::vector a {h, i, j, k};
-        auto head2 = make_list(pool, begin(a), end(a));
+        auto head2 = make_list(pool, a);
 
         auto head3 = make_list(pool, {h, i, j, k});
+
+        auto head4 = make_list(pool, std::vector{k, j, i, h});
     }
 }
 
