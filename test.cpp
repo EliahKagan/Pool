@@ -1,7 +1,9 @@
+#include <bitset>
 #include <vector>
 #include <iostream>
 #include <iterator>
 #include <memory>
+#include <string>
 #include <utility>
 #include "Pool.h"
 #include "ListNode.h"
@@ -84,12 +86,51 @@ namespace {
 
         auto head4 = make_list(pool, std::vector{k, j, i, h});
     }
+
+    void test_bitset_listnode()
+    {
+        using Bits = std::bitset<10'000'000>;
+        Pool<ListNode<Bits>> pool;
+
+        ListNode<Bits>* head1 {};
+        for (auto i = 10; i != 0; --i) {
+            const auto pre = pool();
+            pre->next = head1;
+            head1 = pre;
+        }
+
+        for (auto p = begin(head1); p != end(head1); ++p) {
+            p->flip();
+            std::cout << p->count() << '\n';
+        }
+    }
+
+    void test_string_pair_listnode()
+    {
+        using namespace std::string_literals;
+        using std::pair;
+
+        Pool<ListNode<std::pair<std::string, std::string>>> pool;
+
+        auto head1 = make_list(pool, pair{"foo"s, "bar"s},
+                                     pair{"baz"s, "quux"s},
+                                     pair{"foobar"s, "ab"s});
+
+        std::vector a (begin(head1), end(head1));
+
+        for (auto p = begin(head1); p != end(head1); ++p)
+            std::cout << p->first << ' ' << p->second << '\n';
+    }
 }
 
 int main()
 {
+    std::ios_base::sync_with_stdio(false);
+
     test_int();
     test_int_listnode();
     test_int_uniqueptr_listnode();
     test_int_nodefault_listnode();
+    test_bitset_listnode();
+    test_string_pair_listnode();
 }
