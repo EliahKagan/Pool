@@ -43,9 +43,9 @@ namespace detail { // TODO: maybe put this in a different header
     constexpr std::enable_if_t<
         std::is_same_v<decltype(begin(std::declval<C>())),
                        decltype(end(std::declval<C>()))>
-            && std::is_same_v<typename std::iterator_traits<
-                                decltype(begin(std::declval<C>()))>::value_type,
-                              T>,
+     && std::is_same_v<typename std::iterator_traits<
+                            decltype(begin(std::declval<C>()))>::value_type,
+                       T>,
         std::true_type>
     collects_helper(int) { return {}; }
 
