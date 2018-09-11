@@ -36,6 +36,25 @@ make_list(Pool<ListNode<T>>& pool, I first, const I last)
     return head;
 }
 
+namespace detail { // TODO: maybe put this in a different header
+    using std::begin, std::end;
+
+    template<typename C, typename T>
+    constexpr std::enable_if_t<
+        std::is_same_v<std::decay_t<decltype(begin(std::declval<C>()))>,
+                       std::decay_t<decltype(end(std::declval<C>()))>>
+            && std::is_same_v<typename std::iterator_traits<
+                                decltype(begin(std::declval<C>()))>::value_type,
+                              T>,
+        std::true_type>
+    collects_helper(int) { return {}; }
+
+    template<typename C, typename T>
+    constexpr std::false_type collects_helper(...) { return {}; }
+
+
+}
+
 #if false
 template<typename T, typename C>
 ListNode<T>* make_list(Pool<ListNode<T>>& pool, C&& c)
