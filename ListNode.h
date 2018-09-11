@@ -48,10 +48,10 @@ namespace detail { // TODO: maybe put this in a different header
                                 decltype(begin(std::declval<C>()))>::value_type,
                               T>,
         std::true_type>
-    collects_helper(int) { return {}; }
+    collects_helper(int) noexcept { return {}; }
 
     template<typename C, typename T>
-    constexpr std::false_type collects_helper(...) { return {}; }
+    constexpr std::false_type collects_helper(...) noexcept { return {}; }
 
     template<typename C, typename T>
     inline constexpr bool collects = collects_helper<C, T>(0).value;
