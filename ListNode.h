@@ -12,99 +12,8 @@
 namespace ek {
     template<typename T>
     struct ListNode {
-        class const_iterator {
-        public:
-            using difference_type = std::ptrdiff_t;
-            using value_type = T;
-            using pointer = const T*;
-            using reference = const T&;
-            using iterator_category = std::forward_iterator_tag;
-
-            friend constexpr bool operator==(const const_iterator& lhs,
-                                             const const_iterator& rhs) noexcept
-            {
-                return lhs.pos_ == rhs.pos_;
-            }
-
-            friend constexpr bool operator!=(const const_iterator& lhs,
-                                             const const_iterator& rhs) noexcept
-            {
-                return lhs.pos_ != rhs.pos_;
-            }
-
-            explicit constexpr
-            const_iterator(const ListNode* const pos = nullptr) noexcept
-                : pos_{pos} { }
-
-            constexpr const_iterator& operator++() noexcept
-            {
-                pos_ = pos_->next;
-                return *this;
-            }
-
-            constexpr const_iterator operator++(int) noexcept
-            {
-                const auto ret = *this;
-                ++*this;
-                return ret;
-            }
-
-            constexpr reference operator*() const noexcept { return pos_->key; }
-
-            constexpr pointer operator->() const noexcept { return &pos_->key; }
-
-        private:
-            const ListNode* pos_;
-        };
-
-        class iterator {
-        public:
-            using difference_type = std::ptrdiff_t;
-            using value_type = T;
-            using pointer = T*;
-            using reference = T&;
-            using iterator_category = std::forward_iterator_tag;
-
-            friend constexpr bool
-            operator==(const iterator& lhs, const iterator& rhs) noexcept
-            {
-                return lhs.pos_ == rhs.pos_;
-            }
-
-            friend constexpr bool
-            operator!=(const iterator& lhs, const iterator& rhs) noexcept
-            {
-                return lhs.pos_ != rhs.pos_;
-            }
-
-            explicit constexpr iterator(ListNode* const pos = nullptr) noexcept
-                : pos_{pos} { }
-
-            constexpr iterator& operator++() noexcept
-            {
-                pos_ = pos_->next;
-                return *this;
-            }
-
-            constexpr iterator operator++(int) noexcept
-            {
-                const auto ret = *this;
-                ++*this;
-                return ret;
-            }
-
-            constexpr reference operator*() const noexcept { return pos_->key; }
-
-            constexpr pointer operator->() const noexcept { return &pos_->key; }
-
-            constexpr operator const_iterator() const noexcept
-            {
-                return const_iterator{pos_};
-            }
-
-        private:
-            ListNode* pos_;
-        };
+        class const_iterator;
+        class iterator;
 
         constexpr ListNode() : key{}, next{} { }
 
@@ -115,27 +24,148 @@ namespace ek {
                 noexcept(std::is_nothrow_move_constructible_v<T>)
             : key{std::move(_key)}, next{_next} { }
 
-        constexpr iterator begin() noexcept { return iterator{this}; }
-
-        constexpr iterator end() noexcept { return iterator{}; }
-
-        constexpr const_iterator begin() const noexcept
-        {
-            return const_iterator{this};
-        }
-
-        constexpr const_iterator end() const noexcept
-        {
-            return const_iterator{};
-        }
-
-        constexpr const_iterator cbegin() const noexcept { return begin(); }
-
-        constexpr const_iterator cend() const noexcept { return end(); }
+        constexpr iterator begin() noexcept;
+        constexpr iterator end() noexcept;
+        constexpr const_iterator begin() const noexcept;
+        constexpr const_iterator end() const noexcept;
+        constexpr const_iterator cbegin() const noexcept;
+        constexpr const_iterator cend() const noexcept;
 
         T key;
         ListNode* next;
     };
+
+    template<typename T>
+    class ListNode<T>::const_iterator {
+    public:
+        using difference_type = std::ptrdiff_t;
+        using value_type = T;
+        using pointer = const T*;
+        using reference = const T&;
+        using iterator_category = std::forward_iterator_tag;
+
+        friend constexpr bool operator==(const const_iterator& lhs,
+                                         const const_iterator& rhs) noexcept
+        {
+            return lhs.pos_ == rhs.pos_;
+        }
+
+        friend constexpr bool operator!=(const const_iterator& lhs,
+                                         const const_iterator& rhs) noexcept
+        {
+            return lhs.pos_ != rhs.pos_;
+        }
+
+        explicit constexpr
+        const_iterator(const ListNode<T>* const pos = nullptr) noexcept
+            : pos_{pos} { }
+
+        constexpr const_iterator& operator++() noexcept
+        {
+            pos_ = pos_->next;
+            return *this;
+        }
+
+        constexpr const_iterator operator++(int) noexcept
+        {
+            const auto ret = *this;
+            ++*this;
+            return ret;
+        }
+
+        constexpr reference operator*() const noexcept { return pos_->key; }
+
+        constexpr pointer operator->() const noexcept { return &pos_->key; }
+
+    private:
+        const ListNode<T>* pos_;
+    };
+
+    template<typename T>
+    class ListNode<T>::iterator {
+    public:
+        using difference_type = std::ptrdiff_t;
+        using value_type = T;
+        using pointer = T*;
+        using reference = T&;
+        using iterator_category = std::forward_iterator_tag;
+
+        friend constexpr bool
+        operator==(const iterator& lhs, const iterator& rhs) noexcept
+        {
+            return lhs.pos_ == rhs.pos_;
+        }
+
+        friend constexpr bool
+        operator!=(const iterator& lhs, const iterator& rhs) noexcept
+        {
+            return lhs.pos_ != rhs.pos_;
+        }
+
+        explicit constexpr iterator(ListNode<T>* const pos = nullptr) noexcept
+            : pos_{pos} { }
+
+        constexpr iterator& operator++() noexcept
+        {
+            pos_ = pos_->next;
+            return *this;
+        }
+
+        constexpr iterator operator++(int) noexcept
+        {
+            const auto ret = *this;
+            ++*this;
+            return ret;
+        }
+
+        constexpr reference operator*() const noexcept { return pos_->key; }
+
+        constexpr pointer operator->() const noexcept { return &pos_->key; }
+
+        constexpr operator const_iterator() const noexcept
+        {
+            return const_iterator{pos_};
+        }
+
+    private:
+        ListNode<T>* pos_;
+    };
+
+    template<typename T>
+    constexpr auto ListNode<T>::begin() noexcept -> iterator
+    {
+        return iterator{this};
+    }
+
+    template<typename T>
+    constexpr auto ListNode<T>::end() noexcept -> iterator
+    {
+        return iterator{};
+    }
+
+    template<typename T>
+    constexpr auto ListNode<T>::begin() const noexcept -> const_iterator
+    {
+        return const_iterator{this};
+    }
+
+    template<typename T>
+    constexpr auto ListNode<T>::end() const noexcept -> const_iterator
+    {
+        return const_iterator{};
+    }
+
+    template<typename T>
+    constexpr auto ListNode<T>::cbegin() const noexcept -> const_iterator
+    {
+        return begin();
+    }
+
+    template<typename T>
+    constexpr auto ListNode<T>::cend() const noexcept -> const_iterator
+    {
+        return end();
+    }
 
     template<typename T>
     constexpr typename ListNode<T>::iterator
