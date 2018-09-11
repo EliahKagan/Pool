@@ -7,6 +7,8 @@
 #include "ListNode.h"
 
 namespace {
+    using std::begin, std::end;
+
     template<typename T>
     class NoDefault {
     public:
@@ -43,6 +45,7 @@ namespace {
 
         auto head0 = make_list(pool, ineg1, i0, 1, i2, 3, i4, 5, i6, 7, i8, 9,
                                      i10, 11, i12);
+        std::vector a (begin(head0), end(head0));
 
         auto head1 = make_list(pool, {10, 20, 30, 40, 50});
         auto head2 = make_list(pool, {});
@@ -55,7 +58,7 @@ namespace {
         auto head6 = make_list(pool, h, k);
         auto head7 = make_list(pool, 3333, 4444);
 
-        std::vector a {2, 3, 5, 7, 11, 13, 17, 19, 23};
+        std::vector b {2, 3, 5, 7, 11, 13, 17, 19, 23};
         auto head8 = make_list(pool, a);
     }
 
