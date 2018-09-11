@@ -19,13 +19,13 @@ struct ListNode {
         using iterator_category = std::forward_iterator_tag;
 
         friend constexpr bool
-        operator==(const iterator lhs, const iterator rhs) noexcept
+        operator==(const iterator& lhs, const iterator& rhs) noexcept
         {
             return lhs.pos_ == rhs.pos_;
         }
 
         friend constexpr bool
-        operator!=(const iterator lhs, const iterator rhs) noexcept
+        operator!=(const iterator& lhs, const iterator& rhs) noexcept
         {
             return lhs.pos_ != rhs.pos_;
         }
