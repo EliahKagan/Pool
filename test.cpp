@@ -112,7 +112,7 @@ namespace {
         using namespace std::string_literals;
         using std::pair;
 
-        Pool<ListNode<std::pair<std::string, std::string>>> pool;
+        Pool<ListNode<pair<std::string, std::string>>> pool;
 
         auto head1 = make_list(pool, pair{"foo"s, "bar"s},
                                      pair{"baz"s, "quux"s},
@@ -122,6 +122,24 @@ namespace {
 
         for (auto p = begin(head1); p != end(head1); ++p)
             std::cout << p->first << ' ' << p->second << '\n';
+    }
+
+    void test_copy()
+    {
+        using namespace std::string_literals;
+
+        Pool<ListNode<std::string>> pool;
+
+        auto head1 = make_list(pool,
+                               {"foo"s, "bar"s, "baz"s, "foobar"s, "quux"s});
+
+        auto head2 = make_list(pool, head1);
+
+        for (auto& s : head1) s.append("zor");
+
+        const auto pp = cend(head1);
+        for (auto p = cbegin(head1), q = cbegin(head2); p != pp; ++p, ++q)
+            std::cout << '|' << *p << ' ' << *q << '\n';
     }
 }
 
@@ -135,4 +153,6 @@ int main()
     test_int_nodefault_listnode();
     test_bitset_listnode();
     test_string_pair_listnode();
+
+    test_copy();
 }
