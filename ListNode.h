@@ -81,6 +81,11 @@ namespace ek {
         const ListNode<T>* pos_;
     };
 
+    namespace detail {
+        template<typename T>
+        constexpr ListNode<T>* node(const typename ListNode<T>::iterator&);
+    }
+
     template<typename T>
     class ListNode<T>::iterator {
     public:
@@ -128,8 +133,18 @@ namespace ek {
         }
 
     private:
+        friend constexpr ListNode<T>* detail::node<T>(const iterator&);
+
         ListNode<T>* pos_;
     };
+
+    namespace detail {
+        template<typename T>
+        constexpr ListNode<T>* node(const typename ListNode<T>::iterator& p)
+        {
+            return p.pos_;
+        }
+    }
 
     template<typename T>
     constexpr auto ListNode<T>::begin() noexcept -> iterator
@@ -283,6 +298,8 @@ namespace ek {
     {
         return std::vector<T>(cbegin(head), cend(head));
     }
+
+
 }
 
 #endif // ! HAVE_POOL_LISTNODE_H_
