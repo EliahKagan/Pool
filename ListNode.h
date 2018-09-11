@@ -56,14 +56,14 @@ namespace detail { // TODO: maybe put this in a different header
     inline constexpr bool collects = collects_helper<C, T>(0).value;
 }
 
-/*
 template<typename T, typename C>
-ListNode<T>* make_list(Pool<ListNode<T>>& pool, C&& c)
+std::enable_if_t<detail::collects<C, T>, ListNode<T>*>
+//ListNode<T>*
+make_list(Pool<ListNode<T>>& pool, C&& c)
 {
     using std::begin, std::end;
     return make_list(pool, begin(c), end(c));
 }
-*/
 
 template<typename T>
 ListNode<T>* make_list(Pool<ListNode<T>>& pool,
