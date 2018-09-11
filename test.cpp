@@ -4,6 +4,7 @@
 #include <iterator>
 #include <memory>
 #include <string>
+#include <string_view>
 #include <utility>
 #include "Pool.h"
 #include "ListNode.h"
@@ -142,6 +143,20 @@ namespace {
             std::cout << '|' << *p << ' ' << *q << '\n';
     }
 
+    void test_find()
+    {
+        using namespace std::string_view_literals;
+
+        Pool<ListNode<std::string_view>> pool;
+
+        auto head1 = make_list(pool, "foo"sv, "bar"sv, "baz"sv,
+                                     "foobar"sv, "quux"sv);
+
+        auto head2 = find_node_if_not(head1, [](const std::string_view text) {
+            return size(text) == 3u;
+        });
+    }
+
     void run_all_tests()
     {
         test_int();
@@ -152,6 +167,7 @@ namespace {
         test_string_pair_listnode();
 
         test_copy();
+        test_find();
     }
 }
 
