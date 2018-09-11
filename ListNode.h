@@ -249,7 +249,7 @@ namespace ek {
     }
 
     template<typename T>
-    std::vector<T> vec(const ListNode<T>* head)
+    std::vector<T> vec(const ListNode<T>* const head)
     {
         return std::vector<T>(cbegin(head), cend(head));
     }
