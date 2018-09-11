@@ -35,13 +35,28 @@ namespace ek {
             const_iterator(const ListNode* const pos = nullptr) noexcept
                 : pos_{pos} { }
 
+            constexpr const_iterator& operator++() noexcept
+            {
+                pos_ = pos_->next;
+                return *this;
+            }
 
+            constexpr const_iterator operator++(int) noexcept
+            {
+                const auto ret = *this;
+                ++*this;
+                return ret;
+            }
+
+            constexpr reference operator*() const noexcept { return pos_->key; }
+
+            constexpr pointer operator->() const noexcept { return &pos_->key; }
 
         private:
             const ListNode* pos_;
         };
 
-        class iterator { // FIXME: make convertible to const_iterator
+        class iterator {
         public:
             using difference_type = std::ptrdiff_t;
             using value_type = T;
@@ -73,13 +88,18 @@ namespace ek {
             constexpr iterator operator++(int) noexcept
             {
                 const auto ret = *this;
-                ++(*this);
+                ++*this;
                 return ret;
             }
 
             constexpr reference operator*() const noexcept { return pos_->key; }
 
             constexpr pointer operator->() const noexcept { return &pos_->key; }
+
+            constexpr operator const_iterator() const noexcept
+            {
+                return const_iterator{pos_};
+            }
 
         private:
             ListNode* pos_;
@@ -98,6 +118,20 @@ namespace ek {
 
         constexpr iterator end() noexcept { return iterator{}; }
 
+        constexpr const_iterator begin() const noexcept
+        {
+            return const_iterator{this};
+        }
+
+        constexpr const_iterator end() const noexcept
+        {
+            return const_iterator{};
+        }
+
+        constexpr const_iterator cbegin() const noexcept { return begin(); }
+
+        constexpr const_iterator cend() const noexcept { return end(); }
+
         T key;
         ListNode* next;
     };
@@ -114,6 +148,34 @@ namespace ek {
     end(ListNode<T>* const p) noexcept
     {
         return std::end(*p);
+    }
+
+    template<typename T>
+    constexpr typename ListNode<T>::const_iterator
+    begin(const ListNode<T>* const p) noexcept
+    {
+        return std::begin(*p);
+    }
+
+    template<typename T>
+    constexpr typename ListNode<T>::const_iterator
+    end(const ListNode<T>* const p) noexcept
+    {
+        return std::end(*p);
+    }
+
+    template<typename T>
+    constexpr typename ListNode<T>::const_iterator
+    cbegin(const ListNode<T>* const p) noexcept
+    {
+        return std::cbegin(*p);
+    }
+
+    template<typename T>
+    constexpr typename ListNode<T>::const_iterator
+    cend(const ListNode<T>* const p) noexcept
+    {
+        return std::cend(*p);
     }
 
     template<typename T, typename I>
