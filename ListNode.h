@@ -52,7 +52,8 @@ namespace detail { // TODO: maybe put this in a different header
     template<typename C, typename T>
     constexpr std::false_type collects_helper(...) { return {}; }
 
-
+    template<typename C, typename T>
+    inline constexpr bool collects = collects_helper<C, T>(0).value;
 }
 
 #if false
