@@ -16,8 +16,15 @@ int main()
 
     Pool<ListNode<int>> pl;
 
-    auto head = make_list(pl, {10, 20, 30, 40, 50});
-    //auto head2 = make_list(pl, 1, 2, 3, 4, 5);
+    enum SomeInts { i1 = 1, i3 = 3, i5 = 5, i7 = 7, i9 = 9, i11 = 11 };
+    auto i0 = 0, i2 = 2, i4 = 4, i6 = 6, i8 = 8, i10 = 10;
+    const auto ineg1 = -1, i12 = 12;
+
+    auto head0 = make_list(pl, ineg1, i0, i1, 12, i3, i4, i5,
+                               i6, i7, i8, i9, i10, i11, i12);
+
+    auto head1= make_list(pl, {10, 20, 30, 40, 50});
+    auto head2 = make_list(pl, 1, 2, 3, 4, 5);
 
     auto k = 76;
     auto head3 = make_list(pl, k);
