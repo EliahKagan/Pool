@@ -1,6 +1,7 @@
 #ifndef HAVE_POOL_LISTNODE_H_
 #define HAVE_POOL_LISTNODE_H_
 
+#include <cstddef>
 #include <initializer_list>
 #include <iterator>
 #include <type_traits>
@@ -9,6 +10,41 @@
 
 template<typename T>
 struct ListNode {
+    class iterator {
+    public:
+        using difference_type = std::ptrdiff_t;
+        using value_type = T;
+        using pointer = T*;
+        using reference = T&;
+        using iterator_category = std::forward_iterator_tag;
+
+        friend constexpr bool
+        operator==(const iterator lhs, const iterator rhs) noexcept
+        {
+            return lhs.pos_ == rhs.pos_;
+        }
+
+        friend constexpr bool
+        operator!=(const iterator lhs, const iterator rhs) noexcept
+        {
+            return lhs.pos_ != rhs.pos_;
+        }
+
+        explicit iterator(ListNode* const pos = nullptr) noexcept
+            : pos_{pos} { }
+
+        iterator& operator++() noexcept { ++pos_; return *this; }
+
+        iterator operator++(int) noexcept { return iterator{pos_++}; }
+
+        reference operator*() const noexcept { return pos_->key; }
+
+        pointer operator->() const noexcept { return &pos_->key; }
+
+    private:
+        ListNode* pos_;
+    };
+
     ListNode() : key{}, next{} { }
 
     ListNode(const T& _key, ListNode* const _next) : key{_key}, next{_next} { }
@@ -16,6 +52,10 @@ struct ListNode {
     ListNode(T&& _key, ListNode* const _next)
             noexcept(std::is_nothrow_move_constructible_v<T>)
         : key{std::move(_key)}, next{_next} { }
+
+    iterator begin() noexcept { return iterator{this}; }
+
+    iterator end() noexcept { return iterator{}; }
 
     T key;
     ListNode* next;
