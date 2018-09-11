@@ -84,7 +84,8 @@ namespace ek {
 
     namespace detail {
         template<typename T>
-        constexpr ListNode<T>* node(const typename ListNode<T>::iterator&);
+        constexpr ListNode<T>*
+        node(const typename ListNode<T>::iterator&) noexcept;
     }
 
     template<typename T>
@@ -134,14 +135,15 @@ namespace ek {
         }
 
     private:
-        friend constexpr ListNode<T>* detail::node<T>(const iterator&);
+        friend constexpr ListNode<T>* detail::node<T>(const iterator&) noexcept;
 
         ListNode<T>* pos_;
     };
 
     namespace detail {
         template<typename T>
-        constexpr ListNode<T>* node(const typename ListNode<T>::iterator& p)
+        constexpr ListNode<T>*
+        node(const typename ListNode<T>::iterator& p) noexcept
         {
             return p.pos_;
         }
@@ -340,6 +342,24 @@ namespace ek {
     find_if_not(ListNode<T>* const head, const F f)
     {
         return std::find_if_not(begin(head), end(head), f);
+    }
+
+    template<typename T>
+    inline ListNode<T>* find_node(ListNode<T>* const head, const T& key)
+    {
+        return detail::node(find(head, key));
+    }
+
+    template<typename T, typename F>
+    inline ListNode<T>* find_node_if(ListNode<T>* const head, const F f)
+    {
+        return detail::node(find_if(head, f));
+    }
+
+    template<typename T, typename F>
+    inline ListNode<T>* find_node_if_not(ListNode<T>* const head, const F f)
+    {
+        return detail::node(find_if_not(head, f));
     }
 }
 
