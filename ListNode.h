@@ -139,44 +139,44 @@ namespace ek {
 
     template<typename T>
     constexpr typename ListNode<T>::iterator
-    begin(ListNode<T>* const p) noexcept
+    begin(ListNode<T>* const head) noexcept
     {
-        return std::begin(*p);
+        return std::begin(*head);
     }
 
     template<typename T>
     constexpr typename ListNode<T>::iterator
-    end(ListNode<T>* const p) noexcept
+    end(ListNode<T>* const head) noexcept
     {
-        return std::end(*p);
+        return std::end(*head);
     }
 
     template<typename T>
     constexpr typename ListNode<T>::const_iterator
-    begin(const ListNode<T>* const p) noexcept
+    begin(const ListNode<T>* const head) noexcept
     {
-        return std::begin(*p);
+        return std::begin(*head);
     }
 
     template<typename T>
     constexpr typename ListNode<T>::const_iterator
-    end(const ListNode<T>* const p) noexcept
+    end(const ListNode<T>* const head) noexcept
     {
-        return std::end(*p);
+        return std::end(*head);
     }
 
     template<typename T>
     constexpr typename ListNode<T>::const_iterator
-    cbegin(const ListNode<T>* const p) noexcept
+    cbegin(const ListNode<T>* const head) noexcept
     {
-        return std::cbegin(*p);
+        return std::cbegin(*head);
     }
 
     template<typename T>
     constexpr typename ListNode<T>::const_iterator
-    cend(const ListNode<T>* const p) noexcept
+    cend(const ListNode<T>* const head) noexcept
     {
-        return std::cend(*p);
+        return std::cend(*head);
     }
 
     template<typename T, typename I>
