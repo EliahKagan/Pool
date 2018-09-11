@@ -1,10 +1,26 @@
 #include <vector>
 #include <iostream>
 #include <memory>
+#include <utility>
 #include "Pool.h"
 #include "ListNode.h"
 
 namespace {
+    template<typename T>
+    class NoDefault {
+    public:
+        explicit NoDefault(const T& item) : item_{item} { }
+        explicit NoDefault(T&& item) noexcept : item_{std::move(item)} { }
+
+        operator const T&() const & noexcept { return item_; }
+        operator T&() & noexcept { return item_; }
+        operator const T&&() const && noexcept { return std::move(item_); }
+        operator T&&() && noexcept { return std::move(item_); }
+
+    private:
+        T item_;
+    };
+
     void test_int_pool()
     {
         Pool<int> pool;
@@ -45,6 +61,14 @@ namespace {
 
         auto head = make_list(pool, m(10), m(20), m(30), m(40), m(50));
     }
+
+    void test_int_nodefault_listnode_pool()
+    {
+        NoDefault x {3};
+        int i = x;
+        int j = NoDefault{4};
+
+    }
 }
 
 int main()
@@ -52,4 +76,5 @@ int main()
     test_int_pool();
     test_int_listnode_pool();
     test_int_uniqueptr_listnode_pool();
+    test_int_nodefault_listnode_pool();
 }
