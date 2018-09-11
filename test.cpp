@@ -21,7 +21,7 @@ namespace {
         T item_;
     };
 
-    void test_int_pool()
+    void test_int()
     {
         Pool<int> pool;
 
@@ -33,7 +33,7 @@ namespace {
             std::cout << static_cast<const void*>(x) << ": " << *x << '\n';
     }
 
-    void test_int_listnode_pool()
+    void test_int_listnode()
     {
         Pool<ListNode<int>> pool;
 
@@ -53,7 +53,7 @@ namespace {
         auto head5 = make_list(pool, 4444);
     }
 
-    void test_int_uniqueptr_listnode_pool()
+    void test_int_uniqueptr_listnode()
     {
         Pool<ListNode<std::unique_ptr<int>>> pool;
 
@@ -62,7 +62,7 @@ namespace {
         auto head = make_list(pool, m(10), m(20), m(30), m(40), m(50));
     }
 
-    void test_int_nodefault_listnode_pool()
+    void test_int_nodefault_listnode()
     {
         Pool<ListNode<NoDefault<int>>> pool;
 
@@ -76,8 +76,8 @@ namespace {
 
 int main()
 {
-    test_int_pool();
-    test_int_listnode_pool();
-    test_int_uniqueptr_listnode_pool();
-    test_int_nodefault_listnode_pool();
+    test_int();
+    test_int_listnode();
+    test_int_uniqueptr_listnode();
+    test_int_nodefault_listnode();
 }
