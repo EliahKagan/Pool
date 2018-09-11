@@ -47,7 +47,7 @@ namespace {
 
         auto head0 = make_list(pool, ineg1, i0, 1, i2, 3, i4, 5, i6, 7, i8, 9,
                                      i10, 11, i12);
-        std::vector a (begin(head0), end(head0));
+        std::vector a (cbegin(head0), cend(head0));
 
         auto head1 = make_list(pool, {10, 20, 30, 40, 50});
         auto head2 = make_list(pool, {});
