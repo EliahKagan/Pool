@@ -273,7 +273,7 @@ namespace ek {
 
     template<typename T>
     inline ListNode<T>* make_list(Pool<ListNode<T>>& pool,
-                                const std::initializer_list<T> ilist)
+                                  const std::initializer_list<T> ilist)
     {
         return make_list(pool, cbegin(ilist), cend(ilist));
     }
