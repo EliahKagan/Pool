@@ -249,7 +249,7 @@ namespace ek {
         template<typename C, typename T>
         constexpr std::enable_if_t<
             std::is_same_v<decltype(begin(std::declval<C>())),
-                        decltype(end(std::declval<C>()))>
+                           decltype(end(std::declval<C>()))>
              && std::is_same_v<typename std::iterator_traits<
                                 decltype(begin(std::declval<C>()))>::value_type,
                                T>,
