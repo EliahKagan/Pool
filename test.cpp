@@ -156,11 +156,21 @@ namespace {
             return size(text) == 3u;
         });
 
-        auto head3 = find_node_if(head1, [](const std::string_view text) {
+        auto head3 = find_node_if_not(head1, [](const std::string_view text) {
+            return size(text) < 1000u;
+        });
+
+        auto head4 = find_node_if(head1, [](const std::string_view text) {
             return text.find("ba") != text.npos;
         });
 
-        auto head4 = find_node(head1, "baz");
+        auto head5 = find_node_if(head1, [](const std::string_view text) {
+            return empty(text);
+        });
+
+        auto head6 = find_node(head1, "baz");
+
+        auto head7 = find_node(head1, "quuz");
 
         const auto* head1c = head1;
 
