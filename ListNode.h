@@ -302,16 +302,16 @@ namespace ek {
         return std::vector<T>(cbegin(head), cend(head));
     }
 
-    template<typename T>
+    template<typename T, typename U>
     inline typename ListNode<T>::const_iterator
-    find(const ListNode<T>* const head, const T& key)
+    find(const ListNode<T>* const head, const U& key)
     {
         return std::find(cbegin(head), cend(head), key);
     }
 
-    template<typename T>
+    template<typename T, typename U>
     inline typename ListNode<T>::iterator
-    find(ListNode<T>* const head, const T& key)
+    find(ListNode<T>* const head, const U& key)
     {
         return std::find(begin(head), end(head), key);
     }
@@ -344,8 +344,8 @@ namespace ek {
         return std::find_if_not(begin(head), end(head), f);
     }
 
-    template<typename T>
-    inline ListNode<T>* find_node(ListNode<T>* const head, const T& key)
+    template<typename T, typename U>
+    inline ListNode<T>* find_node(ListNode<T>* const head, const U& key)
     {
         return detail::node<T>(find(head, key));
     }

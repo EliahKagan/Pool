@@ -160,8 +160,7 @@ namespace {
             return text.find("ba") != text.npos;
         });
 
-        // Make it work other comparable types, e.g., "baz" instead of "baz"sv.
-        auto head4 = find_node(head1, "baz"sv);
+        auto head4 = find_node(head1, "baz");
     }
 
     void run_all_tests()
