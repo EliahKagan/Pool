@@ -155,6 +155,12 @@ namespace {
         auto head2 = find_node_if_not(head1, [](const std::string_view text) {
             return size(text) == 3u;
         });
+
+        auto head3 = find_node_if(head1, [](const std::string_view text) {
+            return text.find("ba") != text.npos;
+        });
+
+        auto head4 = find_node(head1, "baz"sv); // FIXME: make it work with "baz"
     }
 
     void run_all_tests()
