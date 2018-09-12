@@ -161,6 +161,14 @@ namespace {
         });
 
         auto head4 = find_node(head1, "baz");
+
+        const auto* head1c = head1;
+
+        // This doesn't (and shouldn't) compile. There are no find_node-family
+        // overloads for pointers to const-qualified node types, because users
+        // might wrongly expect to get back a pointer that couldn't modify the
+        // list. (I'm unsure if this is the right design decision, though.)
+        //const auto head4c = find_node(head1c, "baz");
     }
 
     void run_all_tests()
