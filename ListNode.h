@@ -347,19 +347,19 @@ namespace ek {
     template<typename T>
     inline ListNode<T>* find_node(ListNode<T>* const head, const T& key)
     {
-        return detail::node(find(head, key));
+        return detail::node<T>(find(head, key));
     }
 
     template<typename T, typename F>
     inline ListNode<T>* find_node_if(ListNode<T>* const head, const F f)
     {
-        return detail::node(find_if(head, f));
+        return detail::node<T>(find_if(head, f));
     }
 
     template<typename T, typename F>
     inline ListNode<T>* find_node_if_not(ListNode<T>* const head, const F f)
     {
-        return detail::node(find_if_not(head, f));
+        return detail::node<T>(find_if_not(head, f));
     }
 }
 
