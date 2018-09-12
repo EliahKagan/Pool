@@ -83,12 +83,9 @@ namespace ek {
     };
 
     namespace detail {
-        //template<typename T>
-        //constexpr ListNode<T>*
-        //node(const typename ListNode<T>::iterator&) noexcept;
-
-        template<typename I>
-        constexpr auto node(const I& p) noexcept -> decltype(p.pos_);
+        template<typename T>
+        constexpr ListNode<T>*
+        node(const typename ListNode<T>::iterator&) noexcept;
     }
 
     template<typename T>
@@ -138,24 +135,15 @@ namespace ek {
         }
 
     private:
-        //friend constexpr ListNode<T>* detail::node<T>(const iterator&) noexcept;
-
-        friend constexpr ListNode<T>*
-        detail::node<iterator>(const iterator&) noexcept;
+        friend constexpr ListNode<T>* detail::node<T>(const iterator&) noexcept;
 
         ListNode<T>* pos_;
     };
 
     namespace detail {
-        //template<typename T>
-        //constexpr ListNode<T>*
-        //node(const typename ListNode<T>::iterator& p) noexcept
-        //{
-        //    return p.pos_;
-        //}
-
-        template<typename I>
-        constexpr auto node(const I& p) noexcept -> decltype(p.pos_)
+        template<typename T>
+        constexpr ListNode<T>*
+        node(const typename ListNode<T>::iterator& p) noexcept
         {
             return p.pos_;
         }
