@@ -1,4 +1,5 @@
 #include <bitset>
+#include <cassert>
 #include <vector>
 #include <iostream>
 #include <iterator>
@@ -155,22 +156,42 @@ namespace {
         auto head2 = find_node_if_not(head1, [](const std::string_view text) {
             return size(text) == 3u;
         });
+        auto head2it = find_if_not(head1, [](const std::string_view text) {
+            return size(text) == 3u;
+        });
+        assert(begin(head2) == head2it);
 
         auto head3 = find_node_if_not(head1, [](const std::string_view text) {
             return size(text) < 1000u;
         });
+        auto head3it = find_if_not(head1, [](const std::string_view text) {
+            return size(text) < 1000u;
+        });
+        assert(begin(head3) == head3it);
 
         auto head4 = find_node_if(head1, [](const std::string_view text) {
             return text.find("ba") != text.npos;
         });
+        auto head4it = find_if(head1, [](const std::string_view text) {
+            return text.find("ba") != text.npos;
+        });
+        assert(begin(head4) == head4it);
 
         auto head5 = find_node_if(head1, [](const std::string_view text) {
             return empty(text);
         });
+        auto head5it = find_if(head1, [](const std::string_view text) {
+            return empty(text);
+        });
+        assert(begin(head5) == head5it);
 
         auto head6 = find_node(head1, "baz");
+        auto head6it = find(head1, "baz");
+        assert(begin(head6) == head6it);
 
         auto head7 = find_node(head1, "quuz");
+        auto head7it = find(head1, "quuz");
+        assert(begin(head7) == head7it);
 
         const auto* head1c = head1;
 
