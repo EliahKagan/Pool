@@ -296,6 +296,28 @@ namespace ek {
         return pool(std::move(x), make_list(pool, std::forward<Ts>(xs)...));
     }
 
+    namespace detail {
+        template<typename I>
+        bool has_cycle_helper(I first, const I last,
+                              std::bidirectional_iterator_tag)
+        {
+            //
+        }
+    }
+
+    template<typename I>
+    inline bool has_cycle(I first, const I last)
+    {
+        return detail::has_cycle_helper(first, last,
+                typename std::iterator_traits<I>::iterator_category{});
+    }
+
+    template<typename T>
+    inline bool has_cycle(const ListNode<T>* head)
+    {
+        return has_cycle(cbegin(head), cend(head));
+    }
+
     template<typename T>
     std::vector<T> vec(const ListNode<T>* const head)
     {
