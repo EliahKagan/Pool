@@ -152,6 +152,7 @@ namespace {
 
         auto head1 = make_list(pool, "foo"sv, "bar"sv, "baz"sv,
                                      "foobar"sv, "quux"sv);
+        const auto* head1c = head1;
 
         auto head2 = find_node_if_not(head1, [](const std::string_view text) {
             return size(text) == 3u;
@@ -159,7 +160,10 @@ namespace {
         auto head2it = find_if_not(head1, [](const std::string_view text) {
             return size(text) == 3u;
         });
-        assert(begin(head2) == head2it);
+        auto head2cit = find_if_not(head1c, [](const std::string_view text) {
+            return size(text) == 3u;
+        });
+        assert(begin(head2) == head2it && head2it == head2cit);
 
         auto head3 = find_node_if_not(head1, [](const std::string_view text) {
             return size(text) < 1000u;
@@ -167,7 +171,10 @@ namespace {
         auto head3it = find_if_not(head1, [](const std::string_view text) {
             return size(text) < 1000u;
         });
-        assert(begin(head3) == head3it);
+        auto head3cit = find_if_not(head1c, [](const std::string_view text) {
+            return size(text) < 1000u;
+        });
+        assert(begin(head3) == head3it && head3it == head3cit);
 
         auto head4 = find_node_if(head1, [](const std::string_view text) {
             return text.find("ba") != text.npos;
@@ -175,7 +182,10 @@ namespace {
         auto head4it = find_if(head1, [](const std::string_view text) {
             return text.find("ba") != text.npos;
         });
-        assert(begin(head4) == head4it);
+        auto head4cit = find_if(head1c, [](const std::string_view text) {
+            return text.find("ba") != text.npos;
+        });
+        assert(begin(head4) == head4it && head4it == head4cit);
 
         auto head5 = find_node_if(head1, [](const std::string_view text) {
             return empty(text);
@@ -183,17 +193,20 @@ namespace {
         auto head5it = find_if(head1, [](const std::string_view text) {
             return empty(text);
         });
-        assert(begin(head5) == head5it);
+        auto head5cit = find_if(head1c, [](const std::string_view text) {
+            return empty(text);
+        });
+        assert(begin(head5) == head5it && head5it == head5cit);
 
         auto head6 = find_node(head1, "baz");
         auto head6it = find(head1, "baz");
-        assert(begin(head6) == head6it);
+        auto head6cit = find(head1c, "baz");
+        assert(begin(head6) == head6it && head6it == head6cit);
 
         auto head7 = find_node(head1, "quuz");
         auto head7it = find(head1, "quuz");
-        assert(begin(head7) == head7it);
-
-        const auto* head1c = head1;
+        auto head7cit = find(head1c, "quuz");
+        assert(begin(head7) == head7it && head7it == head7cit);
 
         // This doesn't (and shouldn't) compile. There are no find_node-family
         // overloads for pointers to const-qualified node types, because users
