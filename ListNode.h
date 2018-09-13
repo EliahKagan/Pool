@@ -301,19 +301,27 @@ namespace ek {
         bool has_cycle_helper(I first, const I last,
                               std::bidirectional_iterator_tag)
         {
-            //
+            auto fast = first;
+
+            while (fast != last && ++fast != last) {
+                if (first == fast) return true;
+                ++first;
+                ++fast;
+            }
+
+            return false;
         }
     }
 
     template<typename I>
-    inline bool has_cycle(I first, const I last)
+    bool has_cycle(I first, const I last)
     {
         return detail::has_cycle_helper(first, last,
                 typename std::iterator_traits<I>::iterator_category{});
     }
 
     template<typename T>
-    inline bool has_cycle(const ListNode<T>* head)
+    bool has_cycle(const ListNode<T>* head)
     {
         return has_cycle(cbegin(head), cend(head));
     }
