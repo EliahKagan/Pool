@@ -12,6 +12,7 @@
 #include "ListNode.h"
 
 namespace {
+    using namespace std::literals;
     using ek::Pool, ek::ListNode;
 
     template<typename T>
@@ -112,7 +113,6 @@ namespace {
 
     void test_string_pair_listnode()
     {
-        using namespace std::string_literals;
         using std::pair;
 
         Pool<ListNode<pair<std::string, std::string>>> pool;
@@ -129,8 +129,6 @@ namespace {
 
     void test_copy()
     {
-        using namespace std::string_literals;
-
         Pool<ListNode<std::string>> pool;
 
         auto head1 = make_list(pool,
@@ -147,8 +145,6 @@ namespace {
 
     void test_find()
     {
-        using namespace std::string_view_literals;
-
         Pool<ListNode<std::string_view>> pool;
 
         auto head1 = make_list(pool, "foo"sv, "bar"sv, "baz"sv,
@@ -216,6 +212,16 @@ namespace {
         //const auto head4c = find_node(head1c, "baz");
     }
 
+    void test_splice()
+    {
+        Pool<ListNode<std::string_view>> pool;
+
+        auto head1 = make_list(pool, "foo"sv, "bar"sv, "baz"sv);
+        auto head2 = make_list(pool, "quux"sv, "foobar"sv);
+        concat(head1, head2);
+        for (const auto text : head1) std::cout << text << '\n';
+    }
+
     void test_cycle()
     {
         Pool<ListNode<int>> pool;
@@ -251,6 +257,7 @@ namespace {
 
         test_copy();
         test_find();
+        test_splice();
         test_cycle();
     }
 }
