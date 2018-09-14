@@ -228,12 +228,8 @@ namespace {
 
         auto head = make_list(pool, a);
         auto p = begin(head);
-        auto q = p;
-        std::advance(q, 5);
-        auto r = q;
-        std::advance(r, 4);
-
-        // TODO: splice the list and test
+        std::advance(p, 5);
+        concat(head, p);
     }
 
     void run_all_tests()
