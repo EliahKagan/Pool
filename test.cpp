@@ -227,11 +227,17 @@ namespace {
         }();
 
         auto head = make_list(pool, a);
+
+        const auto cyc = [&head]() {
+            std::cout << "Cycle? " << has_cycle(head) << '\n';
+        };
+
+        cyc();
+
         auto p = begin(head);
         std::advance(p, 5);
         concat(head, p);
-
-        std::cout << "Cycle? " << has_cycle(head) << '\n';
+        cyc();
     }
 
     void run_all_tests()
