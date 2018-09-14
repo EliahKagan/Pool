@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iterator>
 #include <memory>
+#include <numeric>
 #include <string>
 #include <string_view>
 #include <utility>
@@ -215,6 +216,26 @@ namespace {
         //const auto head4c = find_node(head1c, "baz");
     }
 
+    void test_cycle()
+    {
+        Pool<ListNode<int>> pool;
+
+        const auto a = []() {
+            std::vector<int> v (10);
+            std::iota(begin(v), end(v), 0);
+            return v;
+        }();
+
+        auto head = make_list(pool, a);
+        auto p = begin(head);
+        auto q = p;
+        std::advance(q, 5);
+        auto r = q;
+        std::advance(r, 4);
+
+        // TODO: splice the list and test
+    }
+
     void run_all_tests()
     {
         test_int();
@@ -226,6 +247,7 @@ namespace {
 
         test_copy();
         test_find();
+        test_cycle();
     }
 }
 
