@@ -2,6 +2,7 @@
 #define HAVE_POOL_LISTNODE_H_
 
 #include <algorithm>
+#include <cassert>
 #include <cstddef>
 #include <initializer_list>
 #include <iterator>
@@ -296,10 +297,26 @@ namespace ek {
         return pool(std::move(x), make_list(pool, std::forward<Ts>(xs)...));
     }
 
+    template<typename T>
+    void concat(ListNode<T>* head1, ListNode<T>* const head2) noexcept
+    {
+        assert(head1); // TODO: use gsl::not_null
+
+        while (head1->next) head1 = head1->next;
+        head1->next = head2;
+    }
+
+    template<typename T>
+    inline void concat(ListNode<T>* const head,
+                       const typename ListNode<T>::iterator p) noexcept
+    {
+        concat(head, detail::node<T>(p));
+    }
+
     namespace detail {
         template<typename I>
         bool has_cycle_helper(I first, const I last,
-                              std::bidirectional_iterator_tag)
+                              std::bidirectional_iterator_tag) noexcept
         {
             auto leader = first;
 
@@ -314,14 +331,14 @@ namespace ek {
     }
 
     template<typename I>
-    bool has_cycle(I first, const I last)
+    bool has_cycle(I first, const I last) noexcept
     {
         return detail::has_cycle_helper(first, last,
                 typename std::iterator_traits<I>::iterator_category{});
     }
 
     template<typename T>
-    bool has_cycle(const ListNode<T>* head)
+    bool has_cycle(const ListNode<T>* head) noexcept
     {
         return has_cycle(cbegin(head), cend(head));
     }
