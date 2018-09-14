@@ -301,12 +301,12 @@ namespace ek {
         bool has_cycle_helper(I first, const I last,
                               std::bidirectional_iterator_tag)
         {
-            auto fast = first;
+            auto leader = first;
 
-            while (fast != last && ++fast != last) {
-                if (first == fast) return true;
+            while (leader != last && ++leader != last) {
+                if (first == leader) return true;
                 ++first;
-                ++fast;
+                ++leader;
             }
 
             return false;
