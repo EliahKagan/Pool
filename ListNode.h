@@ -316,7 +316,7 @@ namespace ek {
     namespace detail {
         template<typename I>
         bool has_cycle_helper(I first, const I last,
-                              std::bidirectional_iterator_tag) noexcept
+                              std::forward_iterator_tag) noexcept
         {
             auto leader = first;
 

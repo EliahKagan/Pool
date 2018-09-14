@@ -230,6 +230,8 @@ namespace {
         auto p = begin(head);
         std::advance(p, 5);
         concat(head, p);
+
+        std::cout << "Cycle? " << has_cycle(head) << '\n';
     }
 
     void run_all_tests()
@@ -250,6 +252,9 @@ namespace {
 int main()
 {
     std::ios_base::sync_with_stdio(false);
+    std::cout << std::boolalpha;
+
     run_all_tests();
+
     std::cout << std::flush; // for convenience when debugging
 }
