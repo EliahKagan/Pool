@@ -298,19 +298,19 @@ namespace ek {
     }
 
     template<typename T>
-    void concat(ListNode<T>* head1, ListNode<T>* const head2) noexcept
+    void concat(ListNode<T>* src_head, ListNode<T>* const dest_node) noexcept
     {
-        assert(head1); // TODO: use gsl::not_null
+        assert(src_head); // TODO: use gsl::not_null
 
-        while (head1->next) head1 = head1->next;
-        head1->next = head2;
+        while (src_head->next) src_head = src_head->next;
+        src_head->next = dest_node;
     }
 
     template<typename T>
-    inline void concat(ListNode<T>* const head,
-                       const typename ListNode<T>::iterator p) noexcept
+    inline void concat(ListNode<T>* const src_head,
+                       const typename ListNode<T>::iterator dest_iter) noexcept
     {
-        concat(head, detail::node<T>(p));
+        concat(src_head, detail::node<T>(dest_iter));
     }
 
     namespace detail {
