@@ -300,7 +300,7 @@ namespace ek {
     template<typename T>
     void concat(ListNode<T>* src_head, ListNode<T>* const dest_node) noexcept
     {
-        assert(src_head); // TODO: use gsl::not_null
+        assert(src_head); // TODO: consider using gsl::not_null
 
         while (src_head->next) src_head = src_head->next;
         src_head->next = dest_node;
