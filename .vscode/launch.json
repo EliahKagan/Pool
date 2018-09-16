@@ -59,7 +59,7 @@
             "name": "(lldb) Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Draw",
+            "program": "${workspaceFolder}/build/pooltest",
             "args": [],
             "cwd": "${workspaceFolder}",
             "terminal": "external"
