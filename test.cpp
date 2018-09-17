@@ -296,12 +296,6 @@ namespace {
                 if (lw != rw) return false;
             }
 
-            //for (std::string lw, rw; !((li >> lw).fail() | (ri >> rw).fail()); )
-            //    if (lw != rw) return false;
-
-            //for (std::string lw, rw; li >> lw, ri >> rw, li && ri; )
-            //    if (lw != rw) return false;
-
             assert(!li || !ri);
             return !li && !ri;
         };
