@@ -410,7 +410,7 @@ namespace ek {
     }
 
     template<typename T, typename U>
-    bool equal(const ListNode<T>* const head1,
+    inline bool equal(const ListNode<T>* const head1,
                const ListNode<U>* const head2) noexcept
     {
         return std::equal(cbegin(head1), cend(head1),
@@ -420,8 +420,29 @@ namespace ek {
     template<typename T>
     bool equal(const ListNode<T>* head1, const ListNode<T>* head2) noexcept
     {
+        // When the key types are the same, the lists could share nodes. In such
+        // cases, this algorithm is likely faster than the one using std::equal.
         for (; head1 != head2; head1 = head1->next, head2 = head2->next)
-            if (!head1 || !head2 || head1->key != head2->key) return false;
+            if (!(head1 && head2 && head1->key == head2->key)) return false;
+
+        return true;
+    }
+
+    template<typename T, typename U, typename F>
+    inline bool equal(const ListNode<T>* const head1,
+               const ListNode<U>* const head2, const F f)
+    {
+        return std::equal(cbegin(head1), cend(head1),
+                          cbegin(head2), cend(head2), f);
+    }
+
+    template<typename T, typename F>
+    bool equal(const ListNode<T>* head1, const ListNode<T>* head2, F f)
+    {
+        // When the key types are the same, the lists could share nodes. In such
+        // cases, this algorithm is likely faster than the one using std::equal.
+        for (; head1 != head2; head1 = head1->next, head2 = head2->next)
+            if (!(head1 && head2 && f(head1->key, head2->key))) return false;
 
         return true;
     }
