@@ -258,6 +258,7 @@ namespace {
                   << equal(hi1->next, hi1) << '\n';
         std::cout << equal(hi1, hi1->next->next) << ' '
                   << equal(hi1->next->next, hi1) << '\n';
+        std::cout << ek::equal(nullptr, nullptr) << '\n'; // no UDT arg, no ADL
     }
 
     void run_all_tests()
