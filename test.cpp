@@ -248,6 +248,14 @@ namespace {
 
     void test_equal()
     {
+        Pool<ListNode<int>> pi;
+        Pool<ListNode<long>> pl;
+
+        auto hi1 = make_list(pi, 5, 10, 15, 20, 25, 30, 35, 40);
+        std::cout << equal(hi1, hi1) << '\n';
+        std::cout << equal(hi1, nullptr) << '\n';
+        std::cout << equal(hi1, hi1->next) << '\n';
+        std::cout << equal(hi1, hi1->next->next) << '\n';
 
     }
 

@@ -409,6 +409,23 @@ namespace ek {
         return detail::node<T>(find_if_not(head, f));
     }
 
+    constexpr bool equal(std::nullptr_t, std::nullptr_t) noexcept
+    {
+        return true;
+    }
+
+    template<typename T>
+    constexpr bool equal(const ListNode<T>* const head, std::nullptr_t) noexcept
+    {
+        return head;
+    }
+
+    template<typename U>
+    constexpr bool equal(std::nullptr_t, const ListNode<U>* const head) noexcept
+    {
+        return head;
+    }
+
     template<typename T, typename U>
     inline bool equal(const ListNode<T>* const head1,
                       const ListNode<U>* const head2) noexcept
@@ -426,6 +443,26 @@ namespace ek {
             if (!(head1 && head2 && head1->key == head2->key)) return false;
 
         return true;
+    }
+
+    template<typename F>
+    constexpr bool equal(std:nullptr_t, std::nullptr_t, F) noexcept
+    {
+        return true;
+    }
+
+    template<typename T, typename F>
+    constexpr bool
+    equal(const ListNode<T>* const head, std::nullptr_t, F) noexcept
+    {
+        return head;
+    }
+
+    template<typename U, typename F>
+    constexpr bool
+    equal(std::nullptr_t, const ListNode<U>* const head, F) noexcept
+    {
+        return head;
     }
 
     template<typename T, typename U, typename F>
