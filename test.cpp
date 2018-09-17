@@ -329,10 +329,6 @@ namespace {
         auto hs3 = make_list(ps, {"foo ham"s, "bar spam"s});
         auto hv3 = make_list(pv, {"foo ham"sv, "bar speggs"sv});
 
-        //std::cout << equal(hs1, hv1) << ' ' << equal(hv1, hs1) << '\n';
-        //std::cout << equal(hs1, hv1, same_words) << ' '
-        //          << equal(hv1, hs1, same_words) << '\n';
-
         std::cout << '\n';
         test(hs1, hv1);
         test(hs1, hs2);
