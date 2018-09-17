@@ -308,13 +308,13 @@ namespace {
             return !li && !ri;
         };
 
-        constexpr auto test = [same_words](const auto& lhs, const auto& rhs) {
+        constexpr auto test = [same_words](const auto* const lhs, const auto* const rhs) {
             std::cout << "Comparing " << lhs << " to " << rhs << ".\n";
             std::cout << "  default: " << equal(lhs, rhs)
                                 << ' ' << equal(rhs, lhs) << '\n';
             // FIXME: Check if there's a better way than prepending ek:: here.
-            std::cout << "  custom:  " << ek::equal(lhs, rhs, same_words)
-                                << ' ' << ek::equal(rhs, lhs, same_words) << '\n';
+            std::cout << "  custom:  " << equal(lhs, rhs, same_words)
+                                << ' ' << equal(rhs, lhs, same_words) << '\n';
         };
 
         Pool<ListNode<std::string>> ps;
