@@ -333,24 +333,29 @@ namespace {
         //std::cout << equal(hs1, hv1, same_words) << ' '
         //          << equal(hv1, hs1, same_words) << '\n';
 
+        std::cout << '\n';
         test(hs1, hv1);
         test(hs1, hs2);
         test(hs1, hv2);
         test(hs1, hs3);
         test(hs1, hv3);
 
+        std::cout << '\n';
         test(hv1, hs2);
         test(hv1, hv2);
         test(hv1, hs3);
         test(hv1, hv3);
 
+        std::cout << '\n';
         test(hs2, hv2);
         test(hs2, hs3);
         test(hs2, hv3);
 
+        std::cout << '\n';
         test(hv2, hs3);
         test(hv2, hv3);
 
+        std::cout << '\n';
         test(hs3, hv3);
 
     }
