@@ -229,6 +229,20 @@ namespace ek {
         return std::cend(*head);
     }
 
+    template<typename T>
+    std::ostream& operator<<(std::ostream& out, const ListNode<T>* const head)
+    {
+        out << '[';
+
+        auto sep = "";
+        for (const auto& x : head) {
+            out << sep << x;
+            sep = ", ";
+        }
+
+        return out << ']';
+    }
+
     template<typename T, typename I>
     std::enable_if_t<
         std::is_same_v<typename std::iterator_traits<I>::value_type, T>,
