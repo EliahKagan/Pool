@@ -312,8 +312,8 @@ namespace {
             std::cout << "Comparing " << lhs << " to " << rhs << ".\n";
             std::cout << "  default: " << equal(lhs, rhs)
                                 << ' ' << equal(rhs, lhs) << '\n';
-            std::cout << "  custom:  " << equal(lhs, rhs, same_words)
-                                << ' ' << equal(rhs, lhs, same_words) << '\n';
+            std::cout << "  custom:  " << ek::equal(lhs, rhs, same_words)
+                                << ' ' << ek::equal(rhs, lhs, same_words) << '\n';
         };
 
         Pool<ListNode<std::string>> ps;
