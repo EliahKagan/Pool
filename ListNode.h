@@ -417,13 +417,13 @@ namespace ek {
     template<typename T>
     constexpr bool equal(const ListNode<T>* const head, std::nullptr_t) noexcept
     {
-        return head;
+        return !head;
     }
 
     template<typename U>
     constexpr bool equal(std::nullptr_t, const ListNode<U>* const head) noexcept
     {
-        return head;
+        return !head;
     }
 
     template<typename T, typename U>
@@ -455,14 +455,14 @@ namespace ek {
     constexpr bool
     equal(const ListNode<T>* const head, std::nullptr_t, F) noexcept
     {
-        return head;
+        return !head;
     }
 
     template<typename U, typename F>
     constexpr bool
     equal(std::nullptr_t, const ListNode<U>* const head, F) noexcept
     {
-        return head;
+        return !head;
     }
 
     template<typename T, typename U, typename F>
