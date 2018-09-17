@@ -127,6 +127,40 @@ namespace {
             std::cout << p->first << ' ' << p->second << '\n';
     }
 
+    void test_splice()
+    {
+        Pool<ListNode<std::string_view>> pool;
+
+        auto head1 = make_list(pool, "foo"sv, "bar"sv, "baz"sv);
+        auto head2 = make_list(pool, "quux"sv, "foobar"sv);
+        concat(head1, head2);
+        for (const auto text : head1) std::cout << text << '\n';
+    }
+
+    void test_cycle()
+    {
+        Pool<ListNode<int>> pool;
+
+        const auto a = []() {
+            std::vector<int> v (10);
+            std::iota(begin(v), end(v), 0);
+            return v;
+        }();
+
+        auto head = make_list(pool, a);
+
+        const auto cyc = [&head]() {
+            std::cout << "Cycle? " << has_cycle(head) << '\n';
+        };
+
+        cyc();
+
+        auto p = begin(head);
+        std::advance(p, 5);
+        concat(head, p);
+        cyc();
+    }
+
     void test_copy()
     {
         Pool<ListNode<std::string>> pool;
@@ -212,40 +246,6 @@ namespace {
         //const auto head4c = find_node(head1c, "baz");
     }
 
-    void test_splice()
-    {
-        Pool<ListNode<std::string_view>> pool;
-
-        auto head1 = make_list(pool, "foo"sv, "bar"sv, "baz"sv);
-        auto head2 = make_list(pool, "quux"sv, "foobar"sv);
-        concat(head1, head2);
-        for (const auto text : head1) std::cout << text << '\n';
-    }
-
-    void test_cycle()
-    {
-        Pool<ListNode<int>> pool;
-
-        const auto a = []() {
-            std::vector<int> v (10);
-            std::iota(begin(v), end(v), 0);
-            return v;
-        }();
-
-        auto head = make_list(pool, a);
-
-        const auto cyc = [&head]() {
-            std::cout << "Cycle? " << has_cycle(head) << '\n';
-        };
-
-        cyc();
-
-        auto p = begin(head);
-        std::advance(p, 5);
-        concat(head, p);
-        cyc();
-    }
-
     void run_all_tests()
     {
         test_int();
@@ -255,10 +255,10 @@ namespace {
         test_bitset_listnode();
         test_string_pair_listnode();
 
-        test_copy();
-        test_find();
         test_splice();
         test_cycle();
+        test_copy();
+        test_find();
     }
 }
 
