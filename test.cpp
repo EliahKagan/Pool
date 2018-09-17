@@ -85,6 +85,8 @@ namespace {
         constexpr auto m = [](const int i) { return std::make_unique<int>(i); };
 
         auto head = make_list(pool, m(10), m(20), m(30), m(40), m(50));
+        assert(acyclic()); // acyclic() meta-test (resembles the other use here)
+        assert(acyclic(head));
     }
 
     void test_int_nodefault_listnode()
