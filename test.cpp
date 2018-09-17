@@ -299,7 +299,16 @@ namespace {
         Pool<ListNode<std::string>> ps;
         Pool<ListNode<std::string_view>> pv;
 
+        auto hs1 = make_list(ps, {"foo ham"s, "bar spam"s, "baz eggs"s});
+        auto hv1 = make_list(pv, {"foo ham"sv, "bar spam"sv, "baz eggs"sv});
+        auto hs2 = make_list(ps, {" foo\t ham "s, "  bar spam"s,
+                                  "\t\tbaz  eggs\t"s});
+        auto hv2 = make_list(pv, {" foo\t ham "sv, "  bar spam"sv,
+                                  "\t\tbaz  eggs\t"sv});
 
+        std::cout << equal(hs1, hv1) << ' ' << equal(hv1, hs1) << '\n';
+        std::cout << equal(hs1, hv1, same_words) << ' '
+                  << equal(hv1, hs1, same_words) << '\n';
     }
 
     void run_all_tests()
