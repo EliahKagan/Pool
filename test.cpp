@@ -170,7 +170,9 @@ namespace {
         auto head = make_list(pool, a);
 
         const auto cyc = [&head]() {
-            std::cout << "Cycle? " << has_cycle(head) << '\n';
+            const auto got_cycle = has_cycle(head);
+            assert(got_cycle == !acyclic(head));
+            std::cout << "Cycle? " << got_cycle << '\n';
         };
 
         cyc();
