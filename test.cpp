@@ -259,6 +259,9 @@ namespace {
         std::cout << equal(hi1, hi1->next->next) << ' '
                   << equal(hi1->next->next, hi1) << '\n';
         std::cout << ek::equal(nullptr, nullptr) << '\n'; // no UDT arg, no ADL
+
+        auto hi2 = make_list(pi, hi1);
+        std::cout << equal(hi1, hi2) << ' ' << equal(hi2, hi1) << '\n';
     }
 
     void run_all_tests()
