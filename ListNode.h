@@ -460,6 +460,14 @@ namespace ek {
         return true;
     }
 
+    namespace detail {
+        template<typename X>
+        constexpr auto be_const(const X* const p) noexcept
+        {
+            return p;
+        }
+    }
+
     template<typename F>
     constexpr bool equal(std::nullptr_t, std::nullptr_t, F) noexcept
     {
@@ -492,8 +500,7 @@ namespace ek {
     inline bool equal(ListNode<T>* const head1,
                       ListNode<U>* const head2, const F f)
     {
-        return equal(static_cast<const ListNode<T>*>(head1),
-                     static_cast<const ListNode<U>*>(head2), f);
+        return equal(detail::be_const(head1), detail::be_const(head2), f);
     }
 
     template<typename T, typename F>
@@ -511,8 +518,7 @@ namespace ek {
     inline bool equal(ListNode<T>* const head1,
                       ListNode<T>* const head2, const F f)
     {
-        return equal(static_cast<const ListNode<T>*>(head1),
-                     static_cast<const ListNode<T>*>(head2), f);
+        return equal(detail::be_const(head1), detail::be_const(head2), f);
     }
 }
 
