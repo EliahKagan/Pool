@@ -275,6 +275,8 @@ namespace {
 
         auto hl1 = make_list(pl, 5L, 10L, 15L, 20L, 25L, 30L, 35L, 40L);
         std::cout << equal(hi1, hl1) << ' ' << equal(hl1, hi1) << '\n';
+        ++find_node(hl1, 40L)->key;
+        std::cout << equal(hi1, hl1) << ' ' << equal(hl1, hi1) << '\n';
     }
 
     void run_all_tests()
