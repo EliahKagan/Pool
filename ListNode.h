@@ -462,10 +462,7 @@ namespace ek {
 
     namespace detail {
         template<typename X>
-        constexpr auto be_const(const X* const p) noexcept
-        {
-            return p;
-        }
+        constexpr auto be_const(const X* const p) noexcept { return p; }
     }
 
     template<typename F>
