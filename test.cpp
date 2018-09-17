@@ -352,7 +352,6 @@ namespace {
 
         std::cout << '\n';
         test(hs3, hv3);
-
     }
 
     void run_all_tests()
