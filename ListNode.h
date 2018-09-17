@@ -492,8 +492,10 @@ namespace ek {
     inline bool equal(ListNode<T>* const head1,
                       ListNode<U>* const head2, const F f)
     {
-        return equal(static_cast<const ListNode<T>*>(head1),
-                     static_cast<const ListNode<U>*>(head2), f);
+        return equal(&std::as_const(*head1), &std::as_const(*head2), f);
+
+        //return equal(static_cast<const ListNode<T>*>(head1),
+        //             static_cast<const ListNode<U>*>(head2), f);
     }
 
     template<typename T, typename F>
