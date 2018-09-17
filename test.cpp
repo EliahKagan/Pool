@@ -246,6 +246,11 @@ namespace {
         //const auto head4c = find_node(head1c, "baz");
     }
 
+    void test_equal()
+    {
+
+    }
+
     void run_all_tests()
     {
         test_int();
@@ -259,6 +264,7 @@ namespace {
         test_cycle();
         test_copy();
         test_find();
+        test_equal();
     }
 }
 
