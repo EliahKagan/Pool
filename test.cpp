@@ -103,6 +103,8 @@ namespace {
         auto head3 = make_list(pool, {h, i, j, k});
 
         auto head4 = make_list(pool, std::vector{k, j, i, h});
+
+        assert(acyclic(head1, head2, head3, head4));
     }
 
     void test_bitset_listnode()
