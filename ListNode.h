@@ -408,6 +408,23 @@ namespace ek {
     {
         return detail::node<T>(find_if_not(head, f));
     }
+
+    template<typename T, typename U>
+    bool equal(const ListNode<T>* const head1,
+               const ListNode<U>* const head2) noexcept
+    {
+        return std::equal(cbegin(head1), cend(head1),
+                          cbegin(head2), cend(head2));
+    }
+
+    template<typename T>
+    bool equal(const ListNode<T>* head1, const ListNode<T>* head2) noexcept
+    {
+        for (; head1 != head2; head1 = head1->next, head2 = head2->next)
+            if (!head1 || !head2 || head1->key != head2->key) return false;
+
+        return true;
+    }
 }
 
 #endif // ! HAVE_POOL_LISTNODE_H_
