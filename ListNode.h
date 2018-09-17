@@ -411,7 +411,7 @@ namespace ek {
 
     template<typename T, typename U>
     inline bool equal(const ListNode<T>* const head1,
-               const ListNode<U>* const head2) noexcept
+                      const ListNode<U>* const head2) noexcept
     {
         return std::equal(cbegin(head1), cend(head1),
                           cbegin(head2), cend(head2));
@@ -430,7 +430,7 @@ namespace ek {
 
     template<typename T, typename U, typename F>
     inline bool equal(const ListNode<T>* const head1,
-               const ListNode<U>* const head2, const F f)
+                      const ListNode<U>* const head2, const F f)
     {
         return std::equal(cbegin(head1), cend(head1),
                           cbegin(head2), cend(head2), f);
