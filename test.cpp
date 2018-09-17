@@ -326,6 +326,8 @@ namespace {
                                   "\t\tbaz  eggs\t"s});
         auto hv2 = make_list(pv, {" foo\t ham "sv, "  bar spam"sv,
                                   "\t\tbaz  eggs\t"sv});
+        auto hs3 = make_list(ps, {"foo ham"s, "bar spam"s});
+        auto hv3 = make_list(pv, {"foo ham"sv, "bar speggs"sv});
 
         //std::cout << equal(hs1, hv1) << ' ' << equal(hv1, hs1) << '\n';
         //std::cout << equal(hs1, hv1, same_words) << ' '
@@ -334,11 +336,23 @@ namespace {
         test(hs1, hv1);
         test(hs1, hs2);
         test(hs1, hv2);
+        test(hs1, hs3);
+        test(hs1, hv3);
 
         test(hv1, hs2);
         test(hv1, hv2);
+        test(hv1, hs3);
+        test(hv1, hv3);
 
         test(hs2, hv2);
+        test(hs2, hs3);
+        test(hs2, hv3);
+
+        test(hv2, hs3);
+        test(hv2, hv3);
+
+        test(hs3, hv3);
+
     }
 
     void run_all_tests()
