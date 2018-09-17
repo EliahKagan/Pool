@@ -308,7 +308,7 @@ namespace {
             return !li && !ri;
         };
 
-        constexpr auto test = [same_words](const auto* const lhs, const auto* const rhs) {
+        constexpr auto test = [same_words](const auto& lhs, const auto& rhs) {
             std::cout << "Comparing " << lhs << " to " << rhs << ".\n";
             std::cout << "  default: " << equal(lhs, rhs)
                                 << ' ' << equal(rhs, lhs) << '\n';
