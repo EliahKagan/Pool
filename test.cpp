@@ -312,7 +312,7 @@ namespace {
             std::cout << "Comparing " << lhs << " to " << rhs << ".\n";
             std::cout << "  default: " << equal(lhs, rhs)
                                 << ' ' << equal(rhs, lhs) << '\n';
-            // FIXME: Check if there's a better way than prepending ek:: here.s
+            // FIXME: Check if there's a better way than prepending ek:: here.
             std::cout << "  custom:  " << ek::equal(lhs, rhs, same_words)
                                 << ' ' << ek::equal(rhs, lhs, same_words) << '\n';
         };
