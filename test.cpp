@@ -277,6 +277,9 @@ namespace {
         std::cout << equal(hi1, hl1) << ' ' << equal(hl1, hi1) << '\n';
         ++find_node(hl1, 40L)->key;
         std::cout << equal(hi1, hl1) << ' ' << equal(hl1, hi1) << '\n';
+
+        std::cout << equal(static_cast<ListNode<int>*>(nullptr),
+                           static_cast<ListNode<long>*>(nullptr)) << '\n';
     }
 
     void run_all_tests()
