@@ -289,7 +289,7 @@ namespace {
             std::istringstream li {static_cast<std::string>(ls)};
             std::istringstream ri {static_cast<std::string>(rs)};
 
-            for (std::string lw, rw; (li >> lw) & (ri >> rw); )
+            for (std::string lw, rw; li >> lw, ri >> rw, li && ri; )
                 if (lw != rw) return false;
 
             assert(!li || !ri);
