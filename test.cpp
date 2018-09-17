@@ -249,7 +249,6 @@ namespace {
     void test_equal()
     {
         Pool<ListNode<int>> pi;
-        Pool<ListNode<long>> pl;
 
         auto hi1 = make_list(pi, 5, 10, 15, 20, 25, 30, 35, 40);
         std::cout << equal(hi1, hi1) << '\n';
@@ -271,6 +270,11 @@ namespace {
         concat(hi5, hi1);
         concat(hi6, hi1);
         std::cout << equal(hi5, hi6) << ' ' << equal(hi6, hi5) << '\n';
+
+        Pool<ListNode<long>> pl;
+
+        auto hl1 = make_list(pl, 5L, 10L, 15L, 20L, 25L, 30L, 35L, 40L);
+        std::cout << equal(hi1, hl1) << ' ' << equal(hl1, hi1) << '\n';
     }
 
     void run_all_tests()
