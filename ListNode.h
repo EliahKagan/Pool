@@ -446,7 +446,7 @@ namespace ek {
     }
 
     template<typename F>
-    constexpr bool equal(std:nullptr_t, std::nullptr_t, F) noexcept
+    constexpr bool equal(std::nullptr_t, std::nullptr_t, F) noexcept
     {
         return true;
     }
