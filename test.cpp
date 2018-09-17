@@ -171,7 +171,7 @@ namespace {
 
         const auto cyc = [&head]() {
             const auto got_cycle = has_cycle(head);
-            assert(got_cycle == !acyclic(head));
+            assert(got_cycle == acyclic(head));
             std::cout << "Cycle? " << got_cycle << '\n';
         };
 
