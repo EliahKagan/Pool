@@ -320,14 +320,14 @@ namespace {
         Pool<ListNode<std::string>> ps;
         Pool<ListNode<std::string_view>> pv;
 
-        auto hs1 = make_list(ps, {"foo ham"s, "bar spam"s, "baz eggs"s});
+        const auto* hs1 = make_list(ps, {"foo ham"s, "bar spam"s, "baz eggs"s});
         auto hv1 = make_list(pv, {"foo ham"sv, "bar spam"sv, "baz eggs"sv});
-        auto hs2 = make_list(ps, {" foo\t ham "s, "  bar spam"s,
+        const auto* hs2 = make_list(ps, {" foo\t ham "s, "  bar spam"s,
                                   "\t\tbaz  eggs\t"s});
         auto hv2 = make_list(pv, {" foo\t ham "sv, "  bar spam"sv,
                                   "\t\tbaz  eggs\t"sv});
         auto hs3 = make_list(ps, {"foo ham"s, "bar spam"s});
-        auto hv3 = make_list(pv, {"foo ham"sv, "bar speggs"sv});
+        const auto* hv3 = make_list(pv, {"foo ham"sv, "bar speggs"sv});
 
         std::cout << '\n';
         test(hs1, hv1);
