@@ -31,6 +31,12 @@ namespace {
         T item_;
     };
 
+    template<typename... Ts>
+    bool acyclic(const ListNode<Ts>* const... heads)
+    {
+        return (... && !has_cycle(heads));
+    }
+
     void test_int()
     {
         Pool<int> pool;
@@ -67,6 +73,9 @@ namespace {
 
         std::vector b {2, 3, 5, 7, 11, 13, 17, 19, 23};
         auto head8 = make_list(pool, a);
+
+        assert(acyclic(head0, head1, head2, head3, head4, head5, head6, head7,
+                       head8));
     }
 
     void test_int_uniqueptr_listnode()
