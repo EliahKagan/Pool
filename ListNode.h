@@ -488,6 +488,14 @@ namespace ek {
                           cbegin(head2), cend(head2), f);
     }
 
+    template<typename T, typename U, typename F>
+    inline bool equal(ListNode<T>* const head1,
+                      ListNode<U>* const head2, const F f)
+    {
+        return equal(static_cast<const ListNode<T>*>(head1),
+                     static_cast<const ListNode<U>*>(head2), f);
+    }
+
     template<typename T, typename F>
     bool equal(const ListNode<T>* head1, const ListNode<T>* head2, F f)
     {
@@ -497,6 +505,14 @@ namespace ek {
             if (!(head1 && head2 && f(head1->key, head2->key))) return false;
 
         return true;
+    }
+
+    template<typename T, typename F>
+    inline bool equal(ListNode<T>* const head1,
+                      ListNode<T>* const head2, const F f)
+    {
+        return equal(static_cast<const ListNode<T>*>(head1),
+                     static_cast<const ListNode<T>*>(head2), f);
     }
 }
 
