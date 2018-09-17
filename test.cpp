@@ -5,6 +5,7 @@
 #include <iterator>
 #include <memory>
 #include <numeric>
+#include <sstream>
 #include <string>
 #include <string_view>
 #include <utility>
@@ -282,6 +283,25 @@ namespace {
                            static_cast<ListNode<long>*>(nullptr)) << '\n';
     }
 
+    void test_equal_custom()
+    {
+        constexpr auto same_words = [](const auto& ls, const auto& rs) {
+            std::istringstream li {static_cast<std::string>(ls)};
+            std::istringstream ri {static_cast<std::string>(rs)};
+
+            for (std::string lw, rw; (li >> lw) & (ri >> rw); )
+                if (lw != rw) return false;
+
+            assert(!li || !ri);
+            return !li && !ri;
+        };
+
+        Pool<ListNode<std::string>> ps;
+        Pool<ListNode<std::string_view>> pv;
+
+
+    }
+
     void run_all_tests()
     {
         test_int();
@@ -296,6 +316,7 @@ namespace {
         test_copy();
         test_find();
         test_equal();
+        test_equal_custom();
     }
 }
 
