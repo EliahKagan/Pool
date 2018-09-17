@@ -356,7 +356,7 @@ namespace {
         test_copy();
         test_find();
         test_equal();
-        //test_equal_custom(); // FIXME: re-enable this!
+        test_equal_custom();
     }
 }
 
