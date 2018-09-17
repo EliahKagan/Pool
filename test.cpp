@@ -253,10 +253,11 @@ namespace {
 
         auto hi1 = make_list(pi, 5, 10, 15, 20, 25, 30, 35, 40);
         std::cout << equal(hi1, hi1) << '\n';
-        std::cout << equal(hi1, nullptr) << '\n';
-        std::cout << equal(hi1, hi1->next) << '\n';
-        std::cout << equal(hi1, hi1->next->next) << '\n';
-
+        std::cout << equal(hi1, nullptr) << ' ' << equal(nullptr, hi1) << '\n';
+        std::cout << equal(hi1, hi1->next) << ' '
+                  << equal(hi1->next, hi1) << '\n';
+        std::cout << equal(hi1, hi1->next->next) << ' '
+                  << equal(hi1->next->next, hi1) << '\n';
     }
 
     void run_all_tests()
