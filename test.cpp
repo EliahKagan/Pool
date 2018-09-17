@@ -262,6 +262,15 @@ namespace {
 
         auto hi2 = make_list(pi, hi1);
         std::cout << equal(hi1, hi2) << ' ' << equal(hi2, hi1) << '\n';
+
+        auto hi3 = make_list(pi, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        auto hi4 = make_list(pi, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11);
+        std::cout << equal(hi3, hi4) << ' ' << equal(hi4, hi3) << '\n';
+
+        auto hi5 = make_list(pi, -10, -9, -8, -7, -6), hi6 = make_list(pi, hi5);
+        concat(hi5, hi1);
+        concat(hi6, hi1);
+        std::cout << equal(hi5, hi6) << ' ' << equal(hi6, hi5) << '\n';
     }
 
     void run_all_tests()
