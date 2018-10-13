@@ -362,6 +362,7 @@ namespace {
     void test_split_merge()
     {
         constexpr auto by3 = [](const auto x) { return x % 3 == 0; };
+
         Pool<ListNode<int>> pi;
 
         auto h0 = make_list(pi, {});
@@ -393,7 +394,10 @@ namespace {
         h1 = merge(h1t, h1f);
         std::cout << h1 << '\n';
 
-        constexpr auto sizenot3 = [](const auto& s) { return size(s) != 3u; };
+        constexpr auto sizenot3 = [](const std::string_view s) {
+            return size(s) != 3u;
+        };
+
         Pool<ListNode<NoDefault<std::string_view>>> psv;
 
         auto h2 = make_list(psv, "aardvark"_nsv, "bat"_nsv, "boa"_nsv,

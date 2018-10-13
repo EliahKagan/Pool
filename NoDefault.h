@@ -31,13 +31,6 @@ namespace ek {
     {
         return out << static_cast<const T&>(nod);
     }
-
-    template<typename T>
-    auto size(const NoDefault<T>& nod)
-    {
-        using std::size;
-        return size(static_cast<const T&>(nod));
-    }
 }
 
 namespace ek::literals {
