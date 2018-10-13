@@ -344,7 +344,22 @@ namespace ek {
 
             return false;
         }
+    }
 
+    template<typename I>
+    bool has_cycle(const I first, const I last) noexcept
+    {
+        return detail::has_cycle_helper(first, last,
+                typename std::iterator_traits<I>::iterator_category{});
+    }
+
+    template<typename T>
+    bool has_cycle(const ListNode<T>* head) noexcept
+    {
+        return has_cycle(cbegin(head), cend(head));
+    }
+
+    namespace detail {
         template<typename I1, typename I2>
         void crop_front(I1& first1, const I1 last1,
                         I2& first2, const I2 last2) noexcept
@@ -384,19 +399,6 @@ namespace ek {
         }
     }
 
-    template<typename I>
-    bool has_cycle(const I first, const I last) noexcept
-    {
-        return detail::has_cycle_helper(first, last,
-                typename std::iterator_traits<I>::iterator_category{});
-    }
-
-    template<typename T>
-    bool has_cycle(const ListNode<T>* head) noexcept
-    {
-        return has_cycle(cbegin(head), cend(head));
-    }
-
     template<typename I1, typename I2>
     I1 meet(const I1 first1, const I1 last1,
             const I2 first2, const I2 last2) noexcept
@@ -406,6 +408,14 @@ namespace ek {
             detail::meet_helper(first2, last2, first1, last1);
         } else {
             detail::meet_helper(first1, last1, first2, last2);
+        }
+    }
+
+    namespace detail {
+        template<typename N1, typename N2>
+        auto call_meet(N1* head1, N2* head2) noexcept
+        {
+            return meet(begin(head1), end(head1), begin(head2), end(head2));
         }
     }
 
@@ -420,7 +430,7 @@ namespace ek {
     const ListNode<T>* meet(const ListNode<T>* head1,
                             ListNode<T>* head2) noexcept
     {
-        // FIXME: implement this
+        return detail::node
     }
 
     template<typename T>
