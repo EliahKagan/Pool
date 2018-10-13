@@ -147,6 +147,7 @@ namespace ek {
         template<typename T>
         constexpr ListNode<T>*
         node(const typename ListNode<T>::iterator& p) noexcept
+            // FIXME: Why am I not taking the iterator by value?
         {
             return p.pos_;
         }
