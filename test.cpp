@@ -10,27 +10,13 @@
 #include <string_view>
 #include <tuple>
 #include <utility>
-#include "Pool.h"
 #include "ListNode.h"
+#include "NoDefault.h"
+#include "Pool.h"
 
 namespace {
     using namespace std::literals;
-    using ek::Pool, ek::ListNode;
-
-    template<typename T>
-    class NoDefault {
-    public:
-        explicit NoDefault(const T& item) : item_{item} { }
-        explicit NoDefault(T&& item) noexcept : item_{std::move(item)} { }
-
-        operator const T&() const & noexcept { return item_; }
-        operator T&() & noexcept { return item_; }
-        operator const T&&() const && noexcept { return std::move(item_); }
-        operator T&&() && noexcept { return std::move(item_); }
-
-    private:
-        T item_;
-    };
+    using ek::ListNode, ek::NoDefault, ek::Pool;
 
     template<typename... Ts>
     bool acyclic(const ListNode<Ts>* const... heads)
@@ -433,6 +419,9 @@ int main()
     std::cout << std::boolalpha;
 
     run_all_tests();
+
+    NoDefault<std::string> s {"foo"};
+    std::cout << s << '\n';
 
     std::cout << std::flush; // for convenience when debugging
 }
