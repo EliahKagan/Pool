@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
+#include <functional>
 #include <initializer_list>
 #include <iterator>
 #include <ostream>
@@ -516,6 +517,45 @@ namespace ek {
                       ListNode<T>* const head2, const F f)
     {
         return equal(detail::be_const(head1), detail::be_const(head2), f);
+    }
+
+    template<typename T, typename F>
+    std::pair<ListNode<T>*, ListNode<T>*> split(ListNode<T>* head, F f)
+    {
+        ListNode<T>* true_head {};
+        ListNode<T>* false_head {};
+        auto true_destp = &true_head, false_destp = &false_head;
+
+        for (; head; head = head->next) {
+            auto& destp = (f(head->key) ? true_destp : false_destp);
+            *destp = head;
+            destp = &head->next;
+        }
+
+        *true_destp = *false_destp = nullptr;
+        return {true_head, false_head};
+    }
+
+    template<typename T, typename F>
+    ListNode<T>* merge(ListNode<T>* head1, ListNode<T>* head2, F f)
+    {
+        ListNode<T>* ret {};
+        auto destp = &ret;
+
+        for (; head1 && head2; destp = &(*destp)->next) {
+            auto& src = f(head2->key, head1->key) ? head2 : head1;
+            *destp = src;
+            src = src->next;
+        }
+
+        *destp = (head1 ? head1 : head2);
+        return ret;
+    }
+
+    template<typename T>
+    ListNode<T>* merge(ListNode<T>* head1, ListNode<T>* head2)
+    {
+        return merge(head1, head2, std::less{});
     }
 }
 

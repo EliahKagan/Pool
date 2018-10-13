@@ -8,6 +8,7 @@
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <tuple>
 #include <utility>
 #include "Pool.h"
 #include "ListNode.h"
@@ -369,6 +370,42 @@ namespace {
         test(hs3, hv3);
     }
 
+    void test_split_merge()
+    {
+        constexpr auto by3 = [](const auto x) { return x % 3 == 0; };
+
+        Pool<ListNode<int>> pi;
+
+        auto h0 = make_list(pi, {});
+
+        auto [h0t, h0f] = split(h0, by3);
+        std::cout << '\n' << h0t << '\n' << h0f << '\n';
+        h0 = merge(h0t, h0f);
+        std::cout << h0 << '\n';
+
+        auto h1 = make_list(pi, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+
+        auto [h1t, h1f] = split(h1, by3);
+        std::cout << '\n' << h1t << '\n' << h1f << '\n';
+        h1 = merge(h1t, h1f);
+        std::cout << h1 << '\n';
+
+        std::tie(h1t, h1f) = split(h1, [](const auto x) { return x == 0; });
+        std::cout << '\n' << h1t << '\n' << h1f << '\n';
+        h1 = merge(h1t, h1f);
+        std::cout << h1 << '\n';
+
+        std::tie(h1t, h1f) = split(h1, [](const auto x) { return x == 7; });
+        std::cout << '\n' << h1t << '\n' << h1f << '\n';
+        h1 = merge(h1t, h1f);
+        std::cout << h1 << '\n';
+
+        std::tie(h1t, h1f) = split(h1, [](const auto x) { return x == 10; });
+        std::cout << '\n' << h1t << '\n' << h1f << '\n';
+        h1 = merge(h1t, h1f);
+        std::cout << h1 << '\n';
+    }
+
     void run_all_tests()
     {
         test_int();
@@ -385,6 +422,8 @@ namespace {
         test_find();
         test_equal();
         test_equal_custom();
+
+        test_split_merge();
     }
 }
 
