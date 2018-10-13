@@ -156,7 +156,7 @@ namespace {
         auto head1 = make_list(pool, "foo"sv, "bar"sv, "baz"sv);
         auto head2 = make_list(pool, "quux"sv, "foobar"sv);
         concat(head1, head2);
-        for (const auto text : head1) std::cout << text << '\n';
+        for (auto text : head1) std::cout << text << '\n';
     }
 
     void test_cycle()

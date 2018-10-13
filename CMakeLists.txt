@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(pooltest test.cpp ListNode.cpp ListNode.h Pool.cpp Pool.h)
 
 if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything -Wno-c++98-compat -Wno-padded")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic-errors -Weverything -Wno-c++98-compat -Wno-padded")
 endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
