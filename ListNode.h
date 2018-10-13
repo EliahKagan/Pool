@@ -413,6 +413,7 @@ namespace ek {
         }
     }
 
+#if false
     namespace detail {
         template<typename N1, typename N2>
         auto call_meet(N1* head1, N2* head2) noexcept
@@ -422,31 +423,32 @@ namespace ek {
     }
 
     template<typename T>
-    const ListNode<T>* meet(const ListNode<T>* head1,
-                            const ListNode<T>* head2) noexcept
+    const ListNode<T>* meet_node(const ListNode<T>* head1,
+                                 const ListNode<T>* head2) noexcept
     {
         // FIXME: implement this
     }
 
     template<typename T>
-    const ListNode<T>* meet(const ListNode<T>* head1,
-                            ListNode<T>* head2) noexcept
+    ListNode<T>* meet_node(const ListNode<T>* head1,
+                           ListNode<T>* head2) noexcept
     {
         //return detail::node
     }
 
     template<typename T>
-    const ListNode<T>* meet(ListNode<T>* head1,
-                            const ListNode<T>* head2) noexcept
+    ListNode<T>* meet_node(ListNode<T>* head1,
+                           const ListNode<T>* head2) noexcept
     {
         // FIXME: implement this
     }
 
     template<typename T>
-    ListNode<T>* meet(ListNode<T>* head1, ListNode<T>* head2) noexcept
+    ListNode<T>* meet_node(ListNode<T>* head1, ListNode<T>* head2) noexcept
     {
         // FIXME: implement this
     }
+#endif
 
     template<typename T>
     std::vector<T> vec(const ListNode<T>* const head)
