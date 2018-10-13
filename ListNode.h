@@ -359,6 +359,24 @@ namespace ek {
         return has_cycle(cbegin(head), cend(head));
     }
 
+    template<typename I>
+    I meet(const I first, const I last) noexcept
+    {
+        // FIXME: implement this
+    }
+
+    template<typename T>
+    const ListNode<T>* meet(const ListNode<T>* head1, const ListNode<T>* head2)
+    {
+        // FIXME: implement this
+    }
+
+    template<typename T>
+    ListNode<T>* meet(ListNode<T>* head1, ListNode<T>* head2)
+    {
+        // FIXME: implement this
+    }
+
     template<typename T>
     std::vector<T> vec(const ListNode<T>* const head)
     {
