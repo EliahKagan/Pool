@@ -347,7 +347,7 @@ namespace ek {
     }
 
     template<typename I>
-    bool has_cycle(I first, const I last) noexcept
+    bool has_cycle(const I first, const I last) noexcept
     {
         return detail::has_cycle_helper(first, last,
                 typename std::iterator_traits<I>::iterator_category{});
@@ -368,6 +368,7 @@ namespace ek {
     template<typename T, typename U>
     inline typename ListNode<T>::const_iterator
     find(const ListNode<T>* const head, const U& key)
+        noexcept(noexcept(head->key == key))
     {
         return std::find(cbegin(head), cend(head), key);
     }
@@ -375,6 +376,7 @@ namespace ek {
     template<typename T, typename U>
     inline typename ListNode<T>::iterator
     find(ListNode<T>* const head, const U& key)
+        noexcept(noexcept(head->key == key))
     {
         return std::find(begin(head), end(head), key);
     }
@@ -382,6 +384,7 @@ namespace ek {
     template<typename T, typename F>
     inline typename ListNode<T>::const_iterator
     find_if(const ListNode<T>* const head, const F f)
+        noexcept(noexcept(f(head->key)))
     {
         return std::find_if(cbegin(head), cend(head), f);
     }
@@ -389,6 +392,7 @@ namespace ek {
     template<typename T, typename F>
     inline typename ListNode<T>::iterator
     find_if(ListNode<T>* const head, const F f)
+        noexcept(noexcept(f(head->key)))
     {
         return std::find_if(begin(head), end(head), f);
     }
@@ -396,6 +400,7 @@ namespace ek {
     template<typename T, typename F>
     inline typename ListNode<T>::const_iterator
     find_if_not(const ListNode<T>* const head, const F f)
+        noexcept(noexcept(f(head->key)))
     {
         return std::find_if_not(cbegin(head), cend(head), f);
     }
@@ -403,24 +408,28 @@ namespace ek {
     template<typename T, typename F>
     inline typename ListNode<T>::iterator
     find_if_not(ListNode<T>* const head, const F f)
+        noexcept(noexcept(f(head->key)))
     {
         return std::find_if_not(begin(head), end(head), f);
     }
 
     template<typename T, typename U>
     inline ListNode<T>* find_node(ListNode<T>* const head, const U& key)
+        noexcept(noexcept(find(head, key)))
     {
         return detail::node<T>(find(head, key));
     }
 
     template<typename T, typename F>
     inline ListNode<T>* find_node_if(ListNode<T>* const head, const F f)
+        noexcept(noexcept(find_if(head, f)))
     {
         return detail::node<T>(find_if(head, f));
     }
 
     template<typename T, typename F>
     inline ListNode<T>* find_node_if_not(ListNode<T>* const head, const F f)
+        noexcept(noexcept(find_if_not(head, f)))
     {
         return detail::node<T>(find_if_not(head, f));
     }
@@ -444,14 +453,16 @@ namespace ek {
 
     template<typename T, typename U>
     inline bool equal(const ListNode<T>* const head1,
-                      const ListNode<U>* const head2) noexcept
+                      const ListNode<U>* const head2)
+        noexcept(noexcept(head1->key == head2->key))
     {
         return std::equal(cbegin(head1), cend(head1),
                           cbegin(head2), cend(head2));
     }
 
     template<typename T>
-    bool equal(const ListNode<T>* head1, const ListNode<T>* head2) noexcept
+    bool equal(const ListNode<T>* head1, const ListNode<T>* head2)
+        noexcept(noexcept(head1->key == head2->key))
     {
         // When the key types are the same, the lists could share nodes. In such
         // cases, this algorithm is likely faster than the one using std::equal.
@@ -489,6 +500,7 @@ namespace ek {
     template<typename T, typename U, typename F>
     inline bool equal(const ListNode<T>* const head1,
                       const ListNode<U>* const head2, const F f)
+        noexcept(noexcept(f(head1->key, head2->key)))
     {
         return std::equal(cbegin(head1), cend(head1),
                           cbegin(head2), cend(head2), f);
@@ -498,12 +510,15 @@ namespace ek {
     template<typename T, typename U, typename F>
     inline bool equal(ListNode<T>* const head1,
                       ListNode<U>* const head2, const F f)
+        noexcept(noexcept(
+                equal(detail::be_const(head1), detail::be_const(head2), f)))
     {
         return equal(detail::be_const(head1), detail::be_const(head2), f);
     }
 
     template<typename T, typename F>
     bool equal(const ListNode<T>* head1, const ListNode<T>* head2, F f)
+        noexcept(noexcept(f(head1->key, head2->key)))
     {
         // When the key types are the same, the lists could share nodes. In such
         // cases, this algorithm is likely faster than the one using std::equal.
@@ -513,15 +528,18 @@ namespace ek {
         return true;
     }
 
+    // Prevents std::equal from being called inadvertently.
     template<typename T, typename F>
     inline bool equal(ListNode<T>* const head1,
                       ListNode<T>* const head2, const F f)
+        noexcept(noexcept(
+                equal(detail::be_const(head1), detail::be_const(head2), f)))
     {
         return equal(detail::be_const(head1), detail::be_const(head2), f);
     }
 
     template<typename T>
-    ListNode<T>* reverse(ListNode<T>* head)
+    ListNode<T>* reverse(ListNode<T>* head) noexcept
     {
         ListNode<T>* acc {};
 
@@ -537,6 +555,7 @@ namespace ek {
 
     template<typename T, typename F>
     std::pair<ListNode<T>*, ListNode<T>*> split(ListNode<T>* head, F f)
+        noexcept(noexcept(f(head->key)))
     {
         ListNode<T>* true_head {};
         ListNode<T>* false_head {};
@@ -554,6 +573,7 @@ namespace ek {
 
     template<typename T, typename F>
     ListNode<T>* merge(ListNode<T>* head1, ListNode<T>* head2, F f)
+        noexcept(noexcept(f(head2->key, head1->key)))
     {
         ListNode<T>* ret {};
         auto destp = &ret;
@@ -570,6 +590,7 @@ namespace ek {
 
     template<typename T>
     ListNode<T>* merge(ListNode<T>* head1, ListNode<T>* head2)
+        noexcept(noexcept(merge(head1, head2, std::less{})))
     {
         return merge(head1, head2, std::less{});
     }
