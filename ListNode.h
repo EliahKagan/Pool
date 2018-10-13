@@ -413,7 +413,6 @@ namespace ek {
         }
     }
 
-#if false
     namespace detail {
         template<typename N1, typename N2>
         auto call_meet(N1* head1, N2* head2) noexcept
@@ -422,6 +421,36 @@ namespace ek {
         }
     }
 
+    template<typename T>
+    typename ListNode<T>::const_iterator
+    meet(const ListNode<T>* const head1,
+         const ListNode<T>* const head2) noexcept
+    {
+        return detail::call_meet(head1, head2);
+    }
+
+    template<typename T>
+    typename ListNode<T>::iterator
+    meet(const ListNode<T>* const head1, ListNode<T>* const head2) noexcept
+    {
+        return detail::call_meet(head1, head2);
+    }
+
+    template<typename T>
+    typename ListNode<T>::iterator
+    meet(ListNode<T>* const head1, const ListNode<T>* const head2) noexcept
+    {
+        return detail::call_meet(head1, head2);
+    }
+
+    template<typename T>
+    typename ListNode<T>::iterator
+    meet(ListNode<T>* const head1, ListNode<T>* const head2) noexcept
+    {
+        return detail::call_meet(head1, head2);
+    }
+
+#if false
     template<typename T>
     const ListNode<T>* meet_node(const ListNode<T>* head1,
                                  const ListNode<T>* head2) noexcept
