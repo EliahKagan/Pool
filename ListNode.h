@@ -392,10 +392,11 @@ namespace ek {
         I1 meet_helper(const I1 first1, const I1 last1,
                        const I2 first2, const I2 last2) noexcept
         {
-            return meet_helper(first1, last1,
-                               std::iterator_traits<I1>::iterator_category{},
-                               first2, last2,
-                               std::iterator_traits<I2>::iterator_category{});
+            return meet_helper(
+                    first1, last1,
+                    typename std::iterator_traits<I1>::iterator_category{},
+                    first2, last2,
+                    typename std::iterator_traits<I2>::iterator_category{});
         }
     }
 
@@ -430,7 +431,7 @@ namespace ek {
     const ListNode<T>* meet(const ListNode<T>* head1,
                             ListNode<T>* head2) noexcept
     {
-        return detail::node
+        //return detail::node
     }
 
     template<typename T>
