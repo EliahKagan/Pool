@@ -344,6 +344,44 @@ namespace ek {
 
             return false;
         }
+
+        template<typename I1, typename I2>
+        void crop_front(I1& first1, const I1 last1,
+                        I2& first2, const I2 last2) noexcept
+        {
+            const auto delta = std::distance(first1, last1)
+                                - std::distance(first2, last2);
+
+            if (delta < 0)
+                std::advance(first1, -delta);
+            else
+                std::advance(first2, delta);
+        }
+
+        template<typename I1, typename I2>
+        I1 meet_helper(I1 first1, const I1 last1, std::forward_iterator_tag,
+                       I2 first2, const I2 last2, std::forward_iterator_tag)
+            noexcept
+        {
+            crop_front(first1, last1, first2, last2);
+
+            while (first1 != first2 && first1 != last1) {
+                ++first1;
+                ++first2;
+            }
+
+            return first1;
+        }
+
+        template<typename I1, typename I2>
+        I1 meet_helper(const I1 first1, const I1 last1,
+                       const I2 first2, const I2 last2) noexcept
+        {
+            return meet_helper(first1, last1,
+                               std::iterator_traits<I1>::iterator_category{},
+                               first2, last2,
+                               std::iterator_traits<I2>::iterator_category{});
+        }
     }
 
     template<typename I>
@@ -359,33 +397,41 @@ namespace ek {
         return has_cycle(cbegin(head), cend(head));
     }
 
-    template<typename I, typename J>
-    I meet(const I first1, const I last1,
-           const J first2, const J last2) noexcept
+    template<typename I1, typename I2>
+    I1 meet(const I1 first1, const I1 last1,
+            const I2 first2, const I2 last2) noexcept
+    {
+        if constexpr (std::is_convertible_v<I2, I1>
+                      && !std::is_convertible_v<I2, I1>) {
+            detail::meet_helper(first2, last2, first1, last1);
+        } else {
+            detail::meet_helper(first1, last1, first2, last2);
+        }
+    }
+
+    template<typename T>
+    const ListNode<T>* meet(const ListNode<T>* head1,
+                            const ListNode<T>* head2) noexcept
     {
         // FIXME: implement this
     }
 
     template<typename T>
-    const ListNode<T>* meet(const ListNode<T>* head1, const ListNode<T>* head2)
+    const ListNode<T>* meet(const ListNode<T>* head1,
+                            ListNode<T>* head2) noexcept
     {
         // FIXME: implement this
     }
 
     template<typename T>
-    const ListNode<T>* meet(const ListNode<T>* head1, ListNode<T>* head2)
+    const ListNode<T>* meet(ListNode<T>* head1,
+                            const ListNode<T>* head2) noexcept
     {
         // FIXME: implement this
     }
 
     template<typename T>
-    const ListNode<T>* meet(ListNode<T>* head1, const ListNode<T>* head2)
-    {
-        // FIXME: implement this
-    }
-
-    template<typename T>
-    ListNode<T>* meet(ListNode<T>* head1, ListNode<T>* head2)
+    ListNode<T>* meet(ListNode<T>* head1, ListNode<T>* head2) noexcept
     {
         // FIXME: implement this
     }
