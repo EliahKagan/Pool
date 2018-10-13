@@ -359,6 +359,24 @@ namespace {
         test(hs3, hv3);
     }
 
+    void test_reverse()
+    {
+        Pool<ListNode<std::string>> pool;
+        auto head = make_list(pool);
+        std::cout << '\n' << reverse(head) << '\n';
+
+        head = make_list(pool, "first"s);
+        std::cout << reverse(head) << '\n';
+
+        concat(head, make_list(pool, "second"s));
+        head = reverse(head);
+        std::cout << head << '\n';
+
+        head = reverse(head);
+        concat(head, make_list(pool, "third"s, "fourth"s, "fifth"s));
+        std::cout << reverse(head) << '\n';
+    }
+
     void test_split_merge()
     {
         constexpr auto by3 = [](const auto x) { return x % 3 == 0; };
@@ -405,7 +423,14 @@ namespace {
 
         auto [h2t, h2f] = split(h2, sizenot3);
         std::cout << '\n' << h2t << '\n' << h2f << '\n';
-        h2 = merge (h2t, h2f, std::less<std::string_view>{});
+        h2 = merge(h2t, h2f, std::less<std::string_view>{});
+        std::cout << h2 << '\n';
+
+        h2 = reverse(h2);
+
+        std::tie(h2t, h2f) = split(h2, sizenot3);
+        std::cout << '\n' << h2t << '\n' << h2f << '\n';
+        h2 = merge(h2t, h2f, std::greater<std::string_view>{});
         std::cout << h2 << '\n';
     }
 
@@ -426,6 +451,7 @@ namespace {
         test_equal();
         test_equal_custom();
 
+        test_reverse();
         test_split_merge();
     }
 }

@@ -519,6 +519,21 @@ namespace ek {
         return equal(detail::be_const(head1), detail::be_const(head2), f);
     }
 
+    template<typename T>
+    ListNode<T>* reverse(ListNode<T>* head)
+    {
+        ListNode<T>* acc {};
+
+        while (head) {
+            const auto next = head->next;
+            head->next = acc;
+            acc = head;
+            head = next;
+        }
+
+        return acc;
+    }
+
     template<typename T, typename F>
     std::pair<ListNode<T>*, ListNode<T>*> split(ListNode<T>* head, F f)
     {
