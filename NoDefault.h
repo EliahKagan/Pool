@@ -1,7 +1,10 @@
 #ifndef HAVE_POOL_NODEFAULT_H_
 #define HAVE_POOL_NODEFAULT_H_
 
+#include <cstddef>
+#include <iterator>
 #include <ostream>
+#include <string_view>
 
 namespace ek {
     template<typename T>
@@ -27,6 +30,21 @@ namespace ek {
     std::ostream& operator<<(std::ostream& out, const NoDefault<T>& nod)
     {
         return out << static_cast<const T&>(nod);
+    }
+
+    template<typename T>
+    auto size(const NoDefault<T>& nod)
+    {
+        using std::size;
+        return size(static_cast<const T&>(nod));
+    }
+}
+
+namespace ek::literals {
+    inline NoDefault<std::string_view> operator""_nsv(const char* const start,
+                                                      const std::size_t count)
+    {
+        return NoDefault{std::string_view{start, count}};
     }
 }
 

@@ -1,6 +1,10 @@
+#include "ListNode.h"
+#include "NoDefault.h"
+#include "Pool.h"
+
 #include <bitset>
 #include <cassert>
-#include <vector>
+#include <functional>
 #include <iostream>
 #include <iterator>
 #include <memory>
@@ -10,12 +14,11 @@
 #include <string_view>
 #include <tuple>
 #include <utility>
-#include "ListNode.h"
-#include "NoDefault.h"
-#include "Pool.h"
+#include <vector>
 
 namespace {
     using namespace std::literals;
+    using namespace ek::literals;
     using ek::ListNode, ek::NoDefault, ek::Pool;
 
     template<typename... Ts>
@@ -359,7 +362,6 @@ namespace {
     void test_split_merge()
     {
         constexpr auto by3 = [](const auto x) { return x % 3 == 0; };
-
         Pool<ListNode<int>> pi;
 
         auto h0 = make_list(pi, {});
@@ -390,6 +392,17 @@ namespace {
         std::cout << '\n' << h1t << '\n' << h1f << '\n';
         h1 = merge(h1t, h1f);
         std::cout << h1 << '\n';
+
+        constexpr auto sizenot3 = [](const auto& s) { return size(s) != 3u; };
+        Pool<ListNode<NoDefault<std::string_view>>> psv;
+
+        auto h2 = make_list(psv, "aardvark"_nsv, "bat"_nsv, "boa"_nsv,
+                                 "cat"_nsv, "catfish"_nsv, "dog"_nsv);
+
+        auto [h2t, h2f] = split(h2, sizenot3);
+        std::cout << '\n' << h2t << '\n' << h2f << '\n';
+        h2 = merge (h2t, h2f, std::less<std::string_view>{});
+        std::cout << h2 << '\n';
     }
 
     void run_all_tests()
@@ -419,9 +432,6 @@ int main()
     std::cout << std::boolalpha;
 
     run_all_tests();
-
-    NoDefault<std::string> s {"foo"};
-    std::cout << s << '\n';
 
     std::cout << std::flush; // for convenience when debugging
 }
