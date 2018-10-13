@@ -359,14 +359,27 @@ namespace ek {
         return has_cycle(cbegin(head), cend(head));
     }
 
-    template<typename I>
-    I meet(const I first, const I last) noexcept
+    template<typename I, typename J>
+    I meet(const I first1, const I last1,
+           const J first2, const J last2) noexcept
     {
         // FIXME: implement this
     }
 
     template<typename T>
     const ListNode<T>* meet(const ListNode<T>* head1, const ListNode<T>* head2)
+    {
+        // FIXME: implement this
+    }
+
+    template<typename T>
+    const ListNode<T>* meet(const ListNode<T>* head1, ListNode<T>* head2)
+    {
+        // FIXME: implement this
+    }
+
+    template<typename T>
+    const ListNode<T>* meet(ListNode<T>* head1, const ListNode<T>* head2)
     {
         // FIXME: implement this
     }
