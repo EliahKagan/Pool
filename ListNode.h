@@ -494,6 +494,7 @@ namespace ek {
                           cbegin(head2), cend(head2), f);
     }
 
+    // Prevents std::equal from being called inadvertently.
     template<typename T, typename U, typename F>
     inline bool equal(ListNode<T>* const head1,
                       ListNode<U>* const head2, const F f)
