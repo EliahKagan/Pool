@@ -434,6 +434,14 @@ namespace {
         std::cout << h2 << '\n';
     }
 
+    void test_drop()
+    {
+        Pool<ListNode<std::string_view>> pool;
+        auto head = make_list(pool,
+                              "foo"sv, "bar"sv, "baz"sv, "quux"sv, "foobar"sv);
+        std::cout << '\n' << head << '\n' << drop_min(head) << '\n';
+    }
+
     void run_all_tests()
     {
         test_int();
@@ -453,6 +461,7 @@ namespace {
 
         test_reverse();
         test_split_merge();
+        test_drop();
     }
 }
 

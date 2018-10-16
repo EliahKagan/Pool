@@ -8,6 +8,7 @@
 #include <initializer_list>
 #include <iterator>
 #include <ostream>
+#include <stdexcept>
 #include <type_traits>
 #include <utility>
 #include <vector>
@@ -713,6 +714,26 @@ namespace ek {
         noexcept(noexcept(merge(head1, head2, std::less{})))
     {
         return merge(head1, head2, std::less{});
+    }
+
+    template<typename T, typename F>
+    ListNode<T>* drop_min(ListNode<T>* head, F f)
+    {
+        if (!head)
+            throw std::invalid_argument{"empty list has no minimal element"};
+
+        auto bestp = &head;
+        for (auto curp = &head->next; *curp; curp = &(*curp)->next)
+            if (f((*curp)->key, (*bestp)->key)) bestp = curp;
+
+        *bestp = (*bestp)->next;
+        return head;
+    }
+
+    template<typename T>
+    inline ListNode<T>* drop_min(ListNode<T>* const head)
+    {
+        return drop_min(head, std::less{});
     }
 }
 
