@@ -448,6 +448,25 @@ namespace {
         catch (const std::invalid_argument& e) {
             std::cerr << "error: " << e.what() << '\n';
         }
+
+        Pool<ListNode<NoDefault<std::string_view>>> pool2;
+
+        auto head2 = make_list(pool2, "foo"_nsv, "bar"_nsv, "baz"_nsv,
+                                      "quux"_nsv, "foobar"_nsv);
+
+        try {
+            for (std::cout << '\n'; ; ) {
+                std::cout << head2 << '\n';
+
+                head2 = drop_max(head2, [](std::string_view lhs,
+                                           std::string_view rhs) {
+                    return size(lhs) < size(rhs);
+                });
+            }
+        }
+        catch (const std::invalid_argument& e) {
+            std::cerr << "error: " << e.what() << '\n';
+        }
     }
 
     void run_all_tests()
