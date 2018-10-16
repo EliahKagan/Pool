@@ -735,6 +735,20 @@ namespace ek {
     {
         return drop_min(head, std::less{});
     }
+
+    template<typename T, typename F>
+    ListNode<T>* drop_max(ListNode<T>* const head, F f)
+    {
+        return drop_min(head, [f](const auto& x, const auto& y) {
+            return f(y, x);
+        });
+    }
+
+    template<typename T>
+    ListNode<T>* drop_max(ListNode<T>* const head)
+    {
+        return drop_min(head, std::greater{});
+    }
 }
 
 #endif // ! HAVE_POOL_LISTNODE_H_
