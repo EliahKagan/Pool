@@ -437,9 +437,13 @@ namespace {
     void test_drop()
     {
         Pool<ListNode<std::string_view>> pool;
+
         auto head = make_list(pool,
                               "foo"sv, "bar"sv, "baz"sv, "quux"sv, "foobar"sv);
-        std::cout << '\n' << head << '\n' << drop_min(head) << '\n';
+
+        std::cout << '\n';
+        for (; head; head = drop_min(head)) std::cout << head << '\n';
+        std::cout << head << '\n';
     }
 
     void run_all_tests()
