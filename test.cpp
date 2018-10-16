@@ -441,9 +441,13 @@ namespace {
         auto head = make_list(pool,
                               "foo"sv, "bar"sv, "baz"sv, "quux"sv, "foobar"sv);
 
-        std::cout << '\n';
-        for (; head; head = drop_min(head)) std::cout << head << '\n';
-        std::cout << head << '\n';
+        try {
+            for (std::cout << '\n'; ; head = drop_min(head))
+                std::cout << head << '\n';
+        }
+        catch (const std::invalid_argument& e) {
+            std::cerr << "error: " << e.what() << '\n';
+        }
     }
 
     void run_all_tests()
