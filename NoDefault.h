@@ -1,3 +1,5 @@
+// A wrapper class that denies default construction.
+
 #ifndef HAVE_POOL_NODEFAULT_H_
 #define HAVE_POOL_NODEFAULT_H_
 

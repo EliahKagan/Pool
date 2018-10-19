@@ -1,3 +1,5 @@
+// Implementation of tests of ListNode (and Pool).
+
 #include "ListNode.h"
 #include "NoDefault.h"
 #include "Pool.h"
@@ -99,6 +101,9 @@ namespace {
         auto head4 = make_list(pool, std::vector{k, j, i, h});
 
         assert(acyclic(head1, head2, head3, head4));
+
+        for (const auto head : {head1, head2, head3, head4})
+            std::cout << head << '\n';
     }
 
     void test_bitset_listnode()

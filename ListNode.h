@@ -1,3 +1,5 @@
+// A singly linked list node and associated helper functions and algorithms.
+
 #ifndef HAVE_POOL_LISTNODE_H_
 #define HAVE_POOL_LISTNODE_H_
 
