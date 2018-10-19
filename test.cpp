@@ -443,8 +443,11 @@ namespace {
         concat(h1, tail);
         concat(h2, tail);
         const auto* h1a = h1;
+        const auto* h2a = h2;
         std::cout << '\n' << h1 << '\n' << h2 << '\n';
-        std::cout << meet_node(h1a, h2) << '\n';
+        std::cout << meet_node(h1a, h2) << "  " << meet_node(h2, h1a) << '\n';
+        std::cout << meet_node(h1, h2a) << "  " << meet_node(h2a, h1) << '\n';
+        // FIXME: make it work with two pointers to const nodes
     }
 
     void test_drop()

@@ -370,9 +370,9 @@ namespace ek {
                                 - std::distance(first2, last2);
 
             if (delta < 0)
-                std::advance(first1, -delta);
+                std::advance(first2, -delta);   // [first2, last2) is longer
             else
-                std::advance(first2, delta);
+                std::advance(first1, delta);    // [first1, last1) is longer
         }
 
         template<typename I1, typename I2>
