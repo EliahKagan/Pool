@@ -434,6 +434,19 @@ namespace {
         std::cout << h2 << '\n';
     }
 
+    void test_meet()
+    {
+        Pool<ListNode<int>> pool;
+        auto tail = make_list(pool, 100, 200, 300, 400, 500, 600, 700, 800);
+        auto h1 = make_list(pool, 10, 20, 30, 40, 50, 60, 70);
+        auto h2 = make_list(pool, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
+        concat(h1, tail);
+        concat(h2, tail);
+        const auto* h1a = h1;
+        std::cout << '\n' << h1 << '\n' << h2 << '\n';
+        std::cout << meet_node(h1a, h2) << '\n';
+    }
+
     void test_drop()
     {
         Pool<ListNode<std::string_view>> pool;
@@ -488,6 +501,7 @@ namespace {
 
         test_reverse();
         test_split_merge();
+        test_meet();
         test_drop();
     }
 }
