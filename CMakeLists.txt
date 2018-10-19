@@ -7,8 +7,9 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(pooltest
-    test.cpp
+    main.cpp
     ListNode.cpp ListNode.h
+    ListNode-test.cpp ListNode-test.h
     NoDefault.cpp NoDefault.h
     P.cpp P.h
     Pool.cpp Pool.h

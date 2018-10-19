@@ -1,5 +1,7 @@
 // Implementation of tests of ListNode (and Pool).
 
+#include "ListNode-test.h"
+
 #include "ListNode.h"
 #include "NoDefault.h"
 #include "P.h"
@@ -540,38 +542,28 @@ namespace {
             std::cerr << "error: " << e.what() << '\n';
         }
     }
-
-    void run_all_tests()
-    {
-        test_int();
-        test_int_listnode();
-        test_int_uniqueptr_listnode();
-        test_int_nodefault_listnode();
-        test_bitset_listnode();
-        test_string_pair_listnode();
-
-        test_print();
-        test_splice();
-        test_cycle();
-        test_copy();
-        test_find();
-        test_equal();
-        test_equal_custom();
-
-        test_reverse();
-        test_split_merge();
-        test_meet();
-        test_meet_structural();
-        test_drop();
-    }
 }
 
-int main()
+void run_listnode_tests()
 {
-    std::ios_base::sync_with_stdio(false);
-    std::cout << std::boolalpha;
+    test_int();
+    test_int_listnode();
+    test_int_uniqueptr_listnode();
+    test_int_nodefault_listnode();
+    test_bitset_listnode();
+    test_string_pair_listnode();
 
-    run_all_tests();
+    test_print();
+    test_splice();
+    test_cycle();
+    test_copy();
+    test_find();
+    test_equal();
+    test_equal_custom();
 
-    std::cout << std::flush; // for convenience when debugging
+    test_reverse();
+    test_split_merge();
+    test_meet();
+    test_meet_structural();
+    test_drop();
 }
