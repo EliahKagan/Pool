@@ -48,6 +48,10 @@ namespace ek {
                              std::string_view suffix = "}",
                              std::string_view separator = ", ") noexcept;
 
+        P(const P&) = delete;
+        P& operator=(const P&) = delete;
+        ~P() = default;
+
     private:
         std::string_view prefix_;
         std::string_view suffix_;
