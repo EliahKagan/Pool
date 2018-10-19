@@ -14,6 +14,8 @@ add_executable(pooltest
     Pool.cpp Pool.h
 )
 
+add_test(test pooltest) # runs the whole program as a test
+
 if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic-errors -Weverything -Wno-c++98-compat -Wno-c++98-compat-bind-to-temporary-copy -Wno-padded")
 endif()
