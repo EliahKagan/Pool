@@ -146,9 +146,9 @@ namespace ek {
         }
 
     private:
-        friend constexpr ListNode<T>* detail::node<T>(const iterator&) noexcept;
-
         ListNode<T>* pos_;
+
+        friend constexpr ListNode<T>* detail::node<T>(const iterator&) noexcept;
     };
 
     namespace detail {
