@@ -36,7 +36,7 @@ namespace ek {
     class P;
 
     template<typename C>
-    std::ostream& operator<<(std::ostream& out, const P<C>&& printer);
+    std::ostream& operator<<(std::ostream& out, P<C> printer);
 
     template<typename C>
     class P {
@@ -59,7 +59,7 @@ namespace ek {
         detail::First<C> first_;
         detail::Last<C> last_;
 
-        friend std::ostream& operator<< <C>(std::ostream&, const P<C>&&);
+        friend std::ostream& operator<< <C>(std::ostream&, P<C>);
     };
 
     template<typename C>
@@ -72,7 +72,7 @@ namespace ek {
     }
 
     template<typename C>
-    std::ostream& operator<<(std::ostream& out, const P<C>&& printer)
+    std::ostream& operator<<(std::ostream& out, const P<C> printer)
     {
         out << printer.prefix_;
 
