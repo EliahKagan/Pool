@@ -66,6 +66,10 @@ namespace {
 
         assert(acyclic(head0, head1, head2, head3, head4, head5, head6, head7,
                        head8));
+
+        for (const auto head : {head0, head1, head2, head3, head4, head5,
+                                head6, head7, head8})
+            std::cout << head << '\n';
     }
 
     void test_int_uniqueptr_listnode()
