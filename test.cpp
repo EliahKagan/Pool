@@ -443,18 +443,38 @@ namespace {
         auto tail = make_list(pool, 100, 200, 300, 400, 500, 600, 700, 800);
         auto h1 = make_list(pool, 10, 20, 30, 40, 50, 60, 70);
         auto h2 = make_list(pool, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
+        const auto* h1a = h1;
+        const auto* h2a = h2;
+
+        // Non-overlapping lists:
+        std::cout << '\n' << h1 << '\n' << h2 << '\n';
+        std::cout << meet_node(h1, h2) << sp << meet_node(h1a, h2a) << sp
+                  << meet_node(h1, h2a) << sp << meet_node(h1a, h2) << sp
+                  << meet_node(h2, h1) << sp << meet_node(h2a, h1a) << sp
+                  << meet_node(h2, h1a) << sp << meet_node(h2a, h1) << '\n';
 
         concat(h1, tail);
         concat(h2, tail);
 
-        const auto* h1a = h1;
-        const auto* h2a = h2;
-
-        std::cout << '\n' << h1 << '\n' << h2 << '\n';
+        // Two separate prefixes that converge into a non-empty shared tail:
+        std::cout << h1 << '\n' << h2 << '\n';
         std::cout << meet_node(h1, h2) << sp << meet_node(h2, h1) << '\n';
         std::cout << meet_node(h1a, h2) << sp << meet_node(h2, h1a) << '\n';
         std::cout << meet_node(h1, h2a) << sp << meet_node(h2a, h1) << '\n';
         std::cout << meet_node(h1a, h2a) << sp << meet_node(h2a, h1a) << '\n';
+
+        // The same list, twice (i.e., empty prefix):
+        std::cout << meet_node(h1, h1) << '\n' << meet_node(h1a, h1a) << '\n';
+        std::cout << meet_node(h1, h1a) << '\n' << meet_node(h1a, h1) << '\n';
+
+        constexpr ListNode<int>* e {};
+        constexpr const ListNode<int>* ce {};
+
+        // Non-overlapping lists because one or both is empty:
+        std::cout << meet_node(e, e) << sp << meet_node(ce,ce) << sp
+                  << meet_node(e, e) << sp << meet_node(ce, e) << sp
+                  << meet_node(e, h2) << sp << meet_node(h2, e) << sp
+                  << meet_node(ce, h2) << sp << meet_node(h2, ce) << '\n';
     }
 
     void test_drop()
