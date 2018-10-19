@@ -486,6 +486,23 @@ namespace {
                   << meet_node(ce, h2) << sp << meet_node(h2, ce) << '\n';
     }
 
+    void test_meet_structural()
+    {
+        Pool<ListNode<char>> pool;
+
+        auto h1 = make_list(pool, "foobar"sv);
+        auto h2 = make_list(pool, h1);
+        std::cout << '\n' << equal(h1, h2) << ' ' << meet_node(h1, h2) << ' ';
+
+        auto tail = make_list(pool, "bazquux"sv);
+        concat(h1, tail);
+        concat(h2, tail);
+
+        auto suffix = meet_node(h1, h2);
+        assert(suffix == tail);
+        std::cout << std::string(cbegin(suffix), cend(suffix)) << '\n';
+    }
+
     void test_drop()
     {
         Pool<ListNode<std::string_view>> pool;
@@ -541,6 +558,7 @@ namespace {
         test_reverse();
         test_split_merge();
         test_meet();
+        test_meet_structural();
         test_drop();
     }
 }
