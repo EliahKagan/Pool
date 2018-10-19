@@ -436,18 +436,25 @@ namespace {
 
     void test_meet()
     {
+        constexpr auto sp = "   ";
+
         Pool<ListNode<int>> pool;
+
         auto tail = make_list(pool, 100, 200, 300, 400, 500, 600, 700, 800);
         auto h1 = make_list(pool, 10, 20, 30, 40, 50, 60, 70);
         auto h2 = make_list(pool, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
+
         concat(h1, tail);
         concat(h2, tail);
+
         const auto* h1a = h1;
         const auto* h2a = h2;
+
         std::cout << '\n' << h1 << '\n' << h2 << '\n';
-        std::cout << meet_node(h1a, h2) << "  " << meet_node(h2, h1a) << '\n';
-        std::cout << meet_node(h1, h2a) << "  " << meet_node(h2a, h1) << '\n';
-        // FIXME: make it work with two pointers to const nodes
+        std::cout << meet_node(h1, h2) << sp << meet_node(h2, h1) << '\n';
+        std::cout << meet_node(h1a, h2) << sp << meet_node(h2, h1a) << '\n';
+        std::cout << meet_node(h1, h2a) << sp << meet_node(h2a, h1) << '\n';
+        std::cout << meet_node(h1a, h2a) << sp << meet_node(h2a, h1a) << '\n';
     }
 
     void test_drop()

@@ -41,6 +41,10 @@ namespace ek {
     };
 
     template<typename T>
+    const ListNode<T>* meet_node(const ListNode<T>* head1,
+                                 const ListNode<T>* head2) noexcept;
+
+    template<typename T>
     class ListNode<T>::const_iterator {
     public:
         using difference_type = std::ptrdiff_t;
@@ -84,6 +88,9 @@ namespace ek {
 
     private:
         const ListNode<T>* pos_;
+
+        friend const ListNode<T>* meet_node<T>(const ListNode<T>*,
+                                               const ListNode<T>*) noexcept;
     };
 
     namespace detail {
@@ -407,7 +414,7 @@ namespace ek {
               const I2 first2, const I2 last2) noexcept
     {
         if constexpr (std::is_convertible_v<I2, I1>
-                      && !std::is_convertible_v<I1, I2>) {
+                        && !std::is_convertible_v<I1, I2>) {
             return detail::meet_helper(first2, last2, first1, last1);
         } else {
             return detail::meet_helper(first1, last1, first2, last2);
@@ -451,14 +458,12 @@ namespace ek {
         return detail::call_meet(head1, head2);
     }
 
-#if false
     template<typename T>
     const ListNode<T>* meet_node(const ListNode<T>* head1,
                                  const ListNode<T>* head2) noexcept
     {
-        // FIXME: implement this
+        return meet(head1, head2).pos_;
     }
-#endif
 
     template<typename T>
     ListNode<T>* meet_node(const ListNode<T>* head1,
