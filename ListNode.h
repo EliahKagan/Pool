@@ -458,27 +458,27 @@ namespace ek {
     {
         // FIXME: implement this
     }
+#endif
 
     template<typename T>
     ListNode<T>* meet_node(const ListNode<T>* head1,
                            ListNode<T>* head2) noexcept
     {
-        //return detail::node
+        return detail::node(meet(head1, head2));
     }
 
     template<typename T>
     ListNode<T>* meet_node(ListNode<T>* head1,
                            const ListNode<T>* head2) noexcept
     {
-        // FIXME: implement this
+        return detail::node(meet(head1, head2));
     }
 
     template<typename T>
     ListNode<T>* meet_node(ListNode<T>* head1, ListNode<T>* head2) noexcept
     {
-        // FIXME: implement this
+        return detail::node(meet(head1, head2));
     }
-#endif
 
     template<typename T>
     std::vector<T> vec(const ListNode<T>* const head)
