@@ -66,6 +66,7 @@ namespace {
         auto head7 = make_list(pool, 3333, 4444);
 
         std::vector b {2, 3, 5, 7, 11, 13, 17, 19, 23};
+        std::cout << P{b} << "   " << make_list(pool, b) << '\n';
         auto head8 = make_list(pool, a);
 
         assert(acyclic(head0, head1, head2, head3, head4, head5, head6, head7,
