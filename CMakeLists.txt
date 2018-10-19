@@ -13,6 +13,8 @@ add_executable(pooltest
     NoDefault.cpp NoDefault.h
     P.cpp P.h
     Pool.cpp Pool.h
+    TreeNode.cpp TreeNode.h
+    TreeNode-test.cpp TreeNode-test.h
 )
 
 add_test(test pooltest) # runs the whole program as a test

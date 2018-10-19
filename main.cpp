@@ -1,5 +1,15 @@
 #include "ListNode-test.h"
+#include "TreeNode-test.h"
 #include <iostream>
+
+namespace {
+    void hr()
+    {
+        std::cout << "\n\n";
+        for (auto i = 100; i != 0; --i) std::cout << '=';
+        std::cout << "\n\n\n";
+    }
+}
 
 int main()
 {
@@ -7,6 +17,8 @@ int main()
     std::cout << std::boolalpha;
 
     run_listnode_tests();
+    hr();
+    run_treenode_tests();
 
     std::cout << std::flush; // for convenience when debugging
 }
