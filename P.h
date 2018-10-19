@@ -49,7 +49,9 @@ namespace ek {
                              std::string_view separator = ", ") noexcept;
 
         P(const P&) = delete;
+        P(P&&) = delete;
         P& operator=(const P&) = delete;
+        P& operator=(P&&) = delete;
         ~P() = default;
 
     private:
