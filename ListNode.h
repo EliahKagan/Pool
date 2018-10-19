@@ -14,6 +14,7 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
+#include "P.h"
 #include "Pool.h"
 
 namespace ek {
@@ -240,17 +241,10 @@ namespace ek {
     }
 
     template<typename T>
-    std::ostream& operator<<(std::ostream& out, const ListNode<T>* const head)
+    inline std::ostream& operator<<(std::ostream& out,
+                                    const ListNode<T>* const head)
     {
-        out << '[';
-
-        auto sep = "";
-        for (const auto& x : head) {
-            out << sep << x;
-            sep = ", ";
-        }
-
-        return out << ']';
+        return out << P{head, "[", "]"};
     }
 
     template<typename T, typename I>
