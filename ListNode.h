@@ -97,8 +97,7 @@ namespace ek {
 
     namespace detail {
         template<typename T>
-        constexpr ListNode<T>*
-        node(const typename ListNode<T>::iterator&) noexcept;
+        constexpr ListNode<T>* node(typename ListNode<T>::iterator) noexcept;
     }
 
     template<typename T>
@@ -150,14 +149,13 @@ namespace ek {
     private:
         ListNode<T>* pos_;
 
-        friend constexpr ListNode<T>* detail::node<T>(const iterator&) noexcept;
+        friend constexpr ListNode<T>* detail::node<T>(iterator) noexcept;
     };
 
     namespace detail {
         template<typename T>
         constexpr ListNode<T>*
-        node(const typename ListNode<T>::iterator& p) noexcept
-            // FIXME: Why am I not taking the iterator by value?
+        node(const typename ListNode<T>::iterator p) noexcept
         {
             return p.pos_;
         }
