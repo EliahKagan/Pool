@@ -403,14 +403,14 @@ namespace ek {
     }
 
     template<typename I1, typename I2>
-    I1 meet(const I1 first1, const I1 last1,
-            const I2 first2, const I2 last2) noexcept
+    auto meet(const I1 first1, const I1 last1,
+              const I2 first2, const I2 last2) noexcept
     {
         if constexpr (std::is_convertible_v<I2, I1>
-                      && !std::is_convertible_v<I2, I1>) {
-            detail::meet_helper(first2, last2, first1, last1);
+                      && !std::is_convertible_v<I1, I2>) {
+            return detail::meet_helper(first2, last2, first1, last1);
         } else {
-            detail::meet_helper(first1, last1, first2, last2);
+            return detail::meet_helper(first1, last1, first2, last2);
         }
     }
 
