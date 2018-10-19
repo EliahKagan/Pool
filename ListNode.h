@@ -464,20 +464,20 @@ namespace ek {
     ListNode<T>* meet_node(const ListNode<T>* head1,
                            ListNode<T>* head2) noexcept
     {
-        return detail::node(meet(head1, head2));
+        return detail::node<T>(meet(head1, head2));
     }
 
     template<typename T>
     ListNode<T>* meet_node(ListNode<T>* head1,
                            const ListNode<T>* head2) noexcept
     {
-        return detail::node(meet(head1, head2));
+        return detail::node<T>(meet(head1, head2));
     }
 
     template<typename T>
     ListNode<T>* meet_node(ListNode<T>* head1, ListNode<T>* head2) noexcept
     {
-        return detail::node(meet(head1, head2));
+        return detail::node<T>(meet(head1, head2));
     }
 
     template<typename T>
