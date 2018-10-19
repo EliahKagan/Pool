@@ -2,6 +2,7 @@
 
 #include "ListNode.h"
 #include "NoDefault.h"
+#include "P.h"
 #include "Pool.h"
 
 #include <bitset>
@@ -21,7 +22,7 @@
 namespace {
     using namespace std::literals;
     using namespace ek::literals;
-    using ek::ListNode, ek::NoDefault, ek::Pool;
+    using ek::ListNode, ek::NoDefault, ek::P, ek::Pool;
 
     template<typename... Ts>
     bool acyclic(const ListNode<Ts>* const... heads)
@@ -51,6 +52,7 @@ namespace {
         auto head0 = make_list(pool, ineg1, i0, 1, i2, 3, i4, 5, i6, 7, i8, 9,
                                      i10, 11, i12);
         auto a = vec(head0);
+        std::cout << P{a} << '\n';
 
         auto head1 = make_list(pool, {10, 20, 30, 40, 50});
         auto head2 = make_list(pool, {});

@@ -10,6 +10,7 @@ add_executable(pooltest
     test.cpp
     ListNode.cpp ListNode.h
     NoDefault.cpp NoDefault.h
+    P.cpp P.h
     Pool.cpp Pool.h
 )
 
