@@ -24,7 +24,13 @@ namespace {
         print_preorder_rec(root);
         print_inorder_rec(root);
         print_postorder_rec(root);
+
         std::cout << '\n';
+
+        preorder_iter(root, [](auto& x) { --x; });
+        inorder_iter(root, [](auto& x) { x -= 2; });
+        postorder_iter(root, [](auto& x) { x -= 4; });
+
         print_preorder_iter(root);
         print_inorder_iter(root);
         print_postorder_iter(root);
