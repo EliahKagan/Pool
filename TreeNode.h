@@ -36,7 +36,26 @@ namespace ek {
     };
 
     namespace detail {
-        inline constexpr auto noop = [](const auto&...) noexcept { };
+        template<typename P, typename FPre, typename FIn, typename FPost>
+        void dfs_node_rec(const P root, FPre f_pre, FIn f_in, FPost f_post)
+        {
+            static_assert(std::is_convertible_v<decltype(root->left), P>);
+            static_assert(std::is_convertible_v<decltype(root->right), P>);
+
+            if (!root) return;
+
+            f_pre(root);
+            dfs_node_rec(P{root->left}, f_pre, f_in, f_post);
+            f_in(root);
+            dfs_node_rec(P{root->right}, f_pre, f_in, f_post);
+            f_post(root);
+        }
+
+        template<typename P, typename FPre, typename FIn, typename FPost>
+        void dfs_node_iter(const P root, FPre f_pre, FIn f_in, FPost f_post)
+        {
+
+        }
 
         template<typename F>
         class OfKey {
@@ -56,26 +75,20 @@ namespace ek {
         };
 
         template<typename P, typename FPre, typename FIn, typename FPost>
-        void dfs_node_rec(const P root, FPre f_pre, FIn f_in, FPost f_post)
-        {
-            static_assert(std::is_convertible_v<decltype(root->left), P>);
-            static_assert(std::is_convertible_v<decltype(root->right), P>);
-
-            if (!root) return;
-
-            f_pre(root);
-            dfs_node_rec(P{root->left}, f_pre, f_in, f_post);
-            f_in(root);
-            dfs_node_rec(P{root->right}, f_pre, f_in, f_post);
-            f_post(root);
-        }
-
-        template<typename P, typename FPre, typename FIn, typename FPost>
         inline void dfs_rec(const P root, const FPre f_pre,
                             const FIn f_in, const FPost f_post)
         {
             dfs_node_rec(root, OfKey{f_pre}, OfKey{f_in}, OfKey{f_post});
         }
+
+        template<typename P, typename FPre, typename FIn, typename FPost>
+        inline void dfs_iter(const P root, const FPre f_pre,
+                            const FIn f_in, const FPost f_post)
+        {
+            dfs_node_iter(root, OfKey{f_pre}, OfKey{f_in}, OfKey{f_post});
+        }
+
+        inline constexpr auto noop = [](const auto&...) noexcept { };
     }
 
     template<typename T, typename F>
@@ -112,6 +125,42 @@ namespace ek {
     inline void postorder_rec(TreeNode<T>* const root, const F f)
     {
         detail::dfs_rec(root, detail::noop, detail::noop, f);
+    }
+
+    template<typename T, typename F>
+    inline void preorder_iter(const TreeNode<T>* const root, const F f)
+    {
+        detail::dfs_iter(root, f, detail::noop, detail::noop);
+    }
+
+    template<typename T, typename F>
+    inline void preorder_iter(TreeNode<T>* const root, const F f)
+    {
+        detail::dfs_iter(root, f, detail::noop, detail::noop);
+    }
+
+    template<typename T, typename F>
+    inline void inorder_iter(const TreeNode<T>* const root, const F f)
+    {
+        detail::dfs_iter(root, detail::noop, f, detail::noop);
+    }
+
+    template<typename T, typename F>
+    inline void inorder_iter(TreeNode<T>* const root, const F f)
+    {
+        detail::dfs_iter(root, detail::noop, f, detail::noop);
+    }
+
+    template<typename T, typename F>
+    inline void postorder_iter(const TreeNode<T>* const root, const F f)
+    {
+        detail::dfs_iter(root, detail::noop, detail::noop, f);
+    }
+
+    template<typename T, typename F>
+    inline void postorder_iter(TreeNode<T>* const root, const F f)
+    {
+        detail::dfs_iter(root, detail::noop, detail::noop, f);
     }
 
     // TODO: {pre,in,post}order_rec_iter (like continuation-passing style)
