@@ -56,22 +56,25 @@ namespace ek {
         template<typename P, typename FPre, typename FIn, typename FPost>
         void dfs_node_iter(P root, FPre f_pre, FIn f_in, FPost f_post)
         {
-            P last_pop {};
+            P post {};
 
             for (std::stack<P> nodes; root || !empty(nodes); ) {
-                if (root) {
-                    // We can still go left, so do that.
+                // Go left all the way. Run the preorder handler on each node.
+                for (; root; root = root->left) {
                     f_pre(root);
                     nodes.push(root);
-                    root = root->left;
                 }
-                else if (const auto cur = nodes.top(); cur->right != last_pop) {
+
+                const auto cur = nodes.top();
+
+                if (!cur->right || cur->right != post) {
+                    // We have not been right of here. Run the inorder handler.
                     f_in(cur);
-                    root = cur->right;
                 } else {
+                    // This is explored. Run the postorder handler and retreat.
+                    post = cur;
+                    f_post(post);
                     nodes.pop();
-                    f_post(cur);
-                    last_pop = cur;
                 }
             }
         }
