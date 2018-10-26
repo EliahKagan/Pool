@@ -5,6 +5,8 @@
 
 #include <functional>
 #include <iostream>
+#include <iterator>
+#include <stack>
 #include <string_view>
 #include <type_traits>
 #include <utility>
@@ -54,7 +56,30 @@ namespace ek {
         template<typename P, typename FPre, typename FIn, typename FPost>
         void dfs_node_iter(const P root, FPre f_pre, FIn f_in, FPost f_post)
         {
+            std::stack<P> nodes;
+            P last_retreated {};
 
+            while (root || !empty(nodes)) {
+                // Go all the way left.
+                for (; root; root = root->left) {
+                    f_pre(root);
+                    nodes.push_back(root);
+                }
+
+                const auto right = nodes.top()->right;
+
+                // If we cannot go right, retreat.
+                if (!right) {
+                    last_retreated = nodes.top();
+                    nodes.pop();
+                    f_post(last_retreated);
+                    continue;
+                }
+
+
+            }
+
+            //
         }
 
         template<typename F>
