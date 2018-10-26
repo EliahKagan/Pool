@@ -3,6 +3,9 @@
 #ifndef HAVE_POOL_TREENODE_H_
 #define HAVE_POOL_TREENODE_H_
 
+#include <functional>
+#include <iostream>
+#include <string_view>
 #include <type_traits>
 #include <utility>
 #include "Pool.h"
@@ -33,6 +36,38 @@ namespace ek {
 
     namespace detail {
         inline constexpr auto noop = [](const auto&...) noexcept { };
+
+        class Printer {
+        public:
+            explicit constexpr
+            Printer(std::ostream& out = std::cout,
+                    std::string_view prefix = "(",
+                    std::string_view suffix = ")",
+                    std::string_view separator = ", ") noexcept;
+
+            template<typename T>
+            void operator()(const T& x);
+
+        private:
+            std::ostream& out_;
+            std::string_view prefix_;
+            std::string_view suffix_;
+            std::string_view separator_;
+        };
+
+        constexpr Printer::Printer(std::ostream& out,
+                                   const std::string_view prefix,
+                                   const std::string_view suffix,
+                                   const std::string_view separator) noexcept
+            : out_{out}, prefix_{prefix}, suffix_{suffix}, separator_{separator}
+        {
+        }
+
+        template<typename T>
+        inline void Printer::operator()(const T& x)
+        {
+            out_ << x;
+        }
 
         template<typename F>
         class OfKey {
@@ -106,6 +141,9 @@ namespace ek {
     {
         detail::dfs_rec(root, detail::noop, detail::noop, f);
     }
+
+    //template<typename T>
+
 }
 
 #endif // ! HAVE_POOL_TREENODE_H_
