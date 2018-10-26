@@ -70,8 +70,14 @@ namespace ek {
                 if (!cur->right || cur->right != post) {
                     // We have not been right of here. Run the inorder handler.
                     f_in(cur);
+                }
+
+                if (cur->right && cur->right != post) {
+                    // We haven't gone right of here and we can, so do it.
+                    root = cur->right;
                 } else {
-                    // This is explored. Run the postorder handler and retreat.
+                    // There is nothing more to explore from this position.
+                    // Run the postorder handler here, and retreat.
                     post = cur;
                     f_post(post);
                     nodes.pop();
