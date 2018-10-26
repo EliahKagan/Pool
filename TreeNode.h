@@ -54,7 +54,7 @@ namespace ek {
         }
 
         template<typename P, typename FPre, typename FIn, typename FPost>
-        void dfs_node_iter(const P root, FPre f_pre, FIn f_in, FPost f_post)
+        void dfs_node_iter(P root, FPre f_pre, FIn f_in, FPost f_post)
         {
             std::stack<P> nodes;
             P last_retreated {};
@@ -63,23 +63,23 @@ namespace ek {
                 // Go all the way left.
                 for (; root; root = root->left) {
                     f_pre(root);
-                    nodes.push_back(root);
+                    nodes.push(root);
                 }
 
-                const auto right = nodes.top()->right;
+                const auto cur = nodes.top();
+                f_in(cur);
 
-                // If we cannot go right, retreat.
-                if (!right) {
-                    last_retreated = nodes.top();
-                    nodes.pop();
-                    f_post(last_retreated);
+                // Go right from here by one, if we can and haven't already.
+                if (const auto right = cur->right;
+                        right && right != last_retreated) {
+                    root = right;
                     continue;
                 }
 
-
+                nodes.pop();
+                f_post(cur);
+                last_retreated = cur;
             }
-
-            //
         }
 
         template<typename F>
@@ -209,6 +209,27 @@ namespace ek {
     {
         RaiiPrinter print;
         postorder_rec(root, std::ref(print));
+    }
+
+    template<typename T>
+    void print_preorder_iter(const TreeNode<T>* const root)
+    {
+        RaiiPrinter print;
+        preorder_iter(root, std::ref(print));
+    }
+
+    template<typename T>
+    void print_inorder_iter(const TreeNode<T>* const root)
+    {
+        RaiiPrinter print;
+        inorder_iter(root, std::ref(print));
+    }
+
+    template<typename T>
+    void print_postorder_iter(const TreeNode<T>* const root)
+    {
+        RaiiPrinter print;
+        postorder_iter(root, std::ref(print));
     }
 }
 

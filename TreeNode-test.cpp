@@ -24,6 +24,10 @@ namespace {
         print_preorder_rec(root);
         print_inorder_rec(root);
         print_postorder_rec(root);
+        std::cout << '\n';
+        print_preorder_iter(root);
+        print_inorder_iter(root);
+        print_postorder_iter(root);
     }
 }
 
