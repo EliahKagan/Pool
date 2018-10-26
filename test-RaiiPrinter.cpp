@@ -15,9 +15,14 @@ namespace {
         ek::RaiiPrinter print {std::cout, ", ", "((", "))\n"};
         print("foo");
         print(42);
-        print(bar);
-        print("baz"s);
-        print("quux"sv);
+
+        ek::RaiiPrinter print2 {std::move(print)};
+        print2(bar);
+        print2("baz"s);
+
+        ek::RaiiPrinter print3 {std::move(print)};
+        print3 = std::move(print2);
+        print3("quux"sv);
     }
 
     void run_simple_test()
