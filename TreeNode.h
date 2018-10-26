@@ -9,6 +9,7 @@
 #include <type_traits>
 #include <utility>
 #include "Pool.h"
+#include "RaiiPrinter.h"
 
 namespace ek {
     template<typename T>
@@ -45,7 +46,10 @@ namespace ek {
 
             template<typename P>
             constexpr decltype(auto) operator()(const P node)
-                noexcept(noexcept(f_(node->key))) { return f_(node->key); }
+                noexcept(noexcept(std::declval<OfKey>().f_(node->key)))
+                {
+                    return f_(node->key);
+                }
 
         private:
             F f_;
@@ -110,8 +114,26 @@ namespace ek {
         detail::dfs_rec(root, detail::noop, detail::noop, f);
     }
 
-    //template<typename T>
+    template<typename T>
+    void print_preorder_rec(const TreeNode<T>* const root)
+    {
+        RaiiPrinter print;
+        preorder_rec(root, std::ref(print));
+    }
 
+    template<typename T>
+    void print_inorder_rec(const TreeNode<T>* const root)
+    {
+        RaiiPrinter print;
+        inorder_rec(root, std::ref(print));
+    }
+
+    template<typename T>
+    void print_postorder_rec(const TreeNode<T>* const root)
+    {
+        RaiiPrinter print;
+        postorder_rec(root, std::ref(print));
+    }
 }
 
 #endif // ! HAVE_POOL_TREENODE_H_

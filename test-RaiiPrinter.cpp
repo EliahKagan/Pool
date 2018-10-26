@@ -43,7 +43,7 @@ namespace {
             print(bar);
             print("baz"s);
             throw std::runtime_error{"meaningless exception for testing"};
-            print("quux"sv);
+            //print("quux"sv);
         }
         catch (const std::runtime_error& e) {
             std::cout << "Got exception: " << e.what() << '\n';

@@ -16,6 +16,10 @@ namespace {
 
         auto root = p(10, p(20, p(40), p(50)),
                           p(30, p(60), p(70)));
+
+        print_preorder_rec(root);
+        print_inorder_rec(root);
+        print_postorder_rec(root);
     }
 }
 
