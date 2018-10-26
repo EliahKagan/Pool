@@ -56,37 +56,23 @@ namespace ek {
         template<typename P, typename FPre, typename FIn, typename FPost>
         void dfs_node_iter(P root, FPre f_pre, FIn f_in, FPost f_post)
         {
-            P last_retreated {};
+            P last_pop {};
 
             for (std::stack<P> nodes; root || !empty(nodes); ) {
-                // Go all the way left.
-                for (; root; root = root->left) {
+                if (root) {
+                    // We can still go left, so do that.
                     f_pre(root);
                     nodes.push(root);
+                    root = root->left;
                 }
-
-                const auto cur = nodes.top();
-
-                if (const auto right = cur->right; right != last_retreated) {
+                else if (const auto cur = nodes.top(); cur->right != last_pop) {
                     f_in(cur);
-                    root = right;
-                    continue;
+                    root = cur->right;
+                } else {
+                    nodes.pop();
+                    f_post(cur);
+                    last_pop = cur;
                 }
-
-#if false
-                f_in(cur);
-
-                // Go right from here by one, if we can and haven't already.
-                if (const auto right = cur->right;
-                        right && right != last_retreated) {
-                    root = right;
-                    continue;
-                }
-#endif
-
-                nodes.pop();
-                f_post(cur);
-                last_retreated = cur;
             }
         }
 
