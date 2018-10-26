@@ -18,8 +18,8 @@ add_executable(pooltest
     TreeNode-test.cpp TreeNode-test.h
 )
 
-add_executable(RaiiPrinter-test
-    RaiiPrinter-test.cpp
+add_executable(test-RaiiPrinter
+    test-RaiiPrinter.cpp
     RaiiPrinter.cpp RaiiPrinter.h
 )
 
