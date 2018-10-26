@@ -118,7 +118,11 @@ namespace {
 
         std::cout << '\n';
 
+        constexpr const TreeNode<char>* s0 {};
 
+        print_preorder_iter(s0);
+        print_inorder_iter(s0);
+        print_postorder_iter(s0);
     }
 }
 
