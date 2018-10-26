@@ -13,10 +13,17 @@ add_executable(pooltest
     NoDefault.cpp NoDefault.h
     P.cpp P.h
     Pool.cpp Pool.h
+    RaiiPrinter.cpp RaiiPrinter.h
     TreeNode.cpp TreeNode.h
     TreeNode-test.cpp TreeNode-test.h
 )
 
+add_executable(RaiiPrinter-test
+    RaiiPrinter-test.cpp
+    RaiiPrinter.cpp RaiiPrinter.h
+)
+
+add_test(RaiiPrinter-test RaiiPrinter-test)
 add_test(test pooltest) # runs the whole program as a test
 
 if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
