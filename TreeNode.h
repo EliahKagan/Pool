@@ -56,10 +56,9 @@ namespace ek {
         template<typename P, typename FPre, typename FIn, typename FPost>
         void dfs_node_iter(P root, FPre f_pre, FIn f_in, FPost f_post)
         {
-            std::stack<P> nodes;
             P last_retreated {};
 
-            while (root || !empty(nodes)) {
+            for (std::stack<P> nodes; root || !empty(nodes); ) {
                 // Go all the way left.
                 for (; root; root = root->left) {
                     f_pre(root);
