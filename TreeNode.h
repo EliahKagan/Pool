@@ -54,8 +54,8 @@ namespace ek {
         template<typename P, typename FPre, typename FIn, typename FPost>
         void dfs_node_rec(const P root, FPre f_pre, FIn f_in, FPost f_post)
         {
-            static_assert(std::is_convertible_v<decltype(root->left)>, P);
-            static_assert(std::is_convertible_v<decltype(root->right)>, P);
+            static_assert(std::is_convertible_v<decltype(root->left), P>);
+            static_assert(std::is_convertible_v<decltype(root->right), P>);
 
             if (!root) return;
 

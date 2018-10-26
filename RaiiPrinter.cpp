@@ -58,14 +58,6 @@ namespace ek {
         return *this;
     }
 
-    template<typename T>
-    void RaiiPrinter::operator()(const T& x)
-    {
-        if (suppressed_) throw BadRaiiPrinterCall{};
-        *outp_ << real_separator_ << x;
-        real_separator_ = separator_;
-    }
-
     void RaiiPrinter::close() noexcept
     {
         // If we already printed a closer or were moved from, don't print again.

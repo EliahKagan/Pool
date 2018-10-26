@@ -41,6 +41,14 @@ namespace ek {
         int uncaught_exceptions_;
     };
 
+    template<typename T>
+    void RaiiPrinter::operator()(const T& x)
+    {
+        if (suppressed_) throw BadRaiiPrinterCall{};
+        *outp_ << real_separator_ << x;
+        real_separator_ = separator_;
+    }
+
     inline RaiiPrinter::~RaiiPrinter()
     {
         close();
