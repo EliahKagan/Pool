@@ -18,8 +18,8 @@ namespace {
                           p(30, p(60), p(70)));
 
         preorder_rec(root, [](auto& x) { ++x; });
-        preorder_rec(root, [](auto& x) { x += 2; });
-        preorder_rec(root, [](auto& x) { x += 4; });
+        inorder_rec(root, [](auto& x) { x += 2; });
+        postorder_rec(root, [](auto& x) { x += 4; });
 
         print_preorder_rec(root);
         print_inorder_rec(root);
