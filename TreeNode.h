@@ -46,7 +46,7 @@ namespace ek {
 
             template<typename P>
             constexpr decltype(auto) operator()(const P node)
-                noexcept(noexcept(std::declval<OfKey>().f_(node->key)))
+                noexcept(noexcept(std::declval<F&>()(node->key)))
                 {
                     return f_(node->key);
                 }
