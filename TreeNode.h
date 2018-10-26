@@ -66,6 +66,14 @@ namespace ek {
                 }
 
                 const auto cur = nodes.top();
+
+                if (const auto right = cur->right; right != last_retreated) {
+                    f_in(cur);
+                    root = right;
+                    continue;
+                }
+
+#if false
                 f_in(cur);
 
                 // Go right from here by one, if we can and haven't already.
@@ -74,6 +82,7 @@ namespace ek {
                     root = right;
                     continue;
                 }
+#endif
 
                 nodes.pop();
                 f_post(cur);
