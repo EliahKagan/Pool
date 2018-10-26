@@ -10,7 +10,7 @@
 namespace {
     using ek::Pool, ek::TreeNode;
 
-    void test_int_treenode()
+    void test_dfs_traversals()
     {
         Pool<TreeNode<int>> p;
 
@@ -63,10 +63,14 @@ namespace {
         print_preorder_iter(s);
         print_inorder_iter(s);
         print_postorder_iter(s);
+
+        std::cout << '\n';
+
+
     }
 }
 
 void run_treenode_tests()
 {
-    test_int_treenode();
+    test_dfs_traversals();
 }
