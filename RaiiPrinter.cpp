@@ -12,6 +12,8 @@ namespace ek {
     {
     }
 
+    BadRaiiPrinterCall::~BadRaiiPrinterCall() = default;
+
     RaiiPrinter::RaiiPrinter(std::ostream& out,
                              const std::string_view separator,
                              const std::string_view prefix,

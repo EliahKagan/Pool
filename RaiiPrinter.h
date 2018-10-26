@@ -12,6 +12,9 @@ namespace ek {
     class BadRaiiPrinterCall : public std::logic_error {
     public:
         BadRaiiPrinterCall();
+
+        // The destructor is default out of line to avoid "weak vtables."
+        ~BadRaiiPrinterCall() override;
     };
 
     class RaiiPrinter {
