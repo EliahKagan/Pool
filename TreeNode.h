@@ -114,7 +114,7 @@ namespace ek {
         detail::dfs_rec(root, detail::noop, detail::noop, f);
     }
 
-    // TODO: {pre,in,post}order_reciter (like continuation-passing style)
+    // TODO: {pre,in,post}order_rec_iter (like continuation-passing style)
 
     template<typename T>
     void print_preorder_rec(const TreeNode<T>* const root)
