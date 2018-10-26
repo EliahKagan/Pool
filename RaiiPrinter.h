@@ -13,7 +13,7 @@ namespace ek {
     public:
         BadRaiiPrinterCall();
 
-        // The destructor is default out of line to avoid "weak vtables."
+        // The destructor is defaulted out of line to avoid "weak vtables."
         ~BadRaiiPrinterCall() override;
     };
 
