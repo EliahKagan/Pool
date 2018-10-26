@@ -22,7 +22,7 @@ namespace ek {
         explicit RaiiPrinter(std::ostream& out = std::cout,
                              std::string_view separator = ", ",
                              std::string_view prefix = "(",
-                             std::string_view suffix = ")") noexcept;
+                             std::string_view suffix = ")\n") noexcept;
 
         RaiiPrinter(const RaiiPrinter&) = delete;
         RaiiPrinter(RaiiPrinter&& other) noexcept;
