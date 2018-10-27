@@ -8,10 +8,12 @@
 #include <iterator>
 #include <stack>
 #include <string_view>
+#include <tuple>
 #include <type_traits>
 #include <utility>
 #include "Pool.h"
 #include "RaiiPrinter.h"
+#include "util.h"
 
 namespace ek {
     template<typename T>
@@ -88,7 +90,37 @@ namespace ek {
         template<typename P, typename FPre, typename FIn, typename FPost>
         void dfs_node_rec_iter(P root, FPre f_pre, FIn f_in, FPost f_post)
         {
-            // FIXME: implement this
+            enum class Action {go_left, go_right, retreat};
+
+            std::stack<std::tuple<P, Action>> frames;
+            if (root) frames.emplace(root, Action::go_left);
+
+            while (!empty(frames)) {
+                auto& [node, action] = frames.top();
+
+                switch (action) {
+                case Action::go_left:
+                    f_pre(node);
+                    action = Action::go_right;
+                    if (node->left)
+                        frames.emplace(node->left, Action::go_left);
+                    continue;
+
+                case Action::go_right:
+                    f_in(node);
+                    action = Action::retreat;
+                    if (node->right)
+                        frames.emplace(node->right, Action::go_right);
+                    continue;
+
+                case Action::retreat:
+                    f_post(node);
+                    frames.pop();
+                    continue;
+                }
+
+                NOT_REACHED();
+            }
         }
 
         template<typename F>
