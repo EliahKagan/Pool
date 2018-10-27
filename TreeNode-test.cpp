@@ -37,6 +37,16 @@ namespace {
 
         std::cout << '\n';
 
+        preorder_rec_iter(r, [](auto& x) { ++x; });
+        inorder_rec_iter(r, [](auto& x) { x += 2; });
+        postorder_rec_iter(r, [](auto& x) { x += 4; });
+
+        print_preorder_rec_iter(r);
+        print_inorder_rec_iter(r);
+        print_postorder_rec_iter(r);
+
+        std::cout << '\n';
+
         auto r2 = p(1, nullptr,
                        p(2, nullptr,
                             p(3, nullptr,
@@ -63,6 +73,16 @@ namespace {
 
         std::cout << '\n';
 
+        preorder_rec_iter(r2, [](auto& x) { x *= 2; });
+        inorder_rec_iter(r2, [](auto& x) { x *= 2; });
+        postorder_rec_iter(r2, [](auto& x) { x *= 2; });
+
+        print_preorder_rec_iter(r2);
+        print_inorder_rec_iter(r2);
+        print_postorder_rec_iter(r2);
+
+        std::cout << '\n';
+
         auto r3 = p(1, p(2, p(3, p(4, p(5),
                                       nullptr),
                               nullptr),
@@ -86,6 +106,16 @@ namespace {
         print_preorder_iter(r3);
         print_inorder_iter(r3);
         print_postorder_iter(r3);
+
+        std::cout << '\n';
+
+        preorder_rec_iter(r3, [](auto& x) { x *= 2; });
+        inorder_rec_iter(r3, [](auto& x) { x *= 2; });
+        postorder_rec_iter(r3, [](auto& x) { x *= 2; });
+
+        print_preorder_rec_iter(r3);
+        print_inorder_rec_iter(r3);
+        print_postorder_rec_iter(r3);
 
         std::cout << '\n';
 
@@ -118,11 +148,29 @@ namespace {
 
         std::cout << '\n';
 
+        preorder_rec_iter(s, [](auto& x) { x -= 24; });
+        inorder_rec_iter(s, [](auto& x) { x -= 6; });
+        postorder_rec_iter(s, [](auto& x) { x -= 2; });
+
+        print_preorder_rec_iter(s);
+        print_inorder_rec_iter(s);
+        print_postorder_rec_iter(s);
+
+        std::cout << '\n';
+
         constexpr const TreeNode<char>* s0 {};
+
+        print_preorder_rec(s0);
+        print_inorder_rec(s0);
+        print_postorder_rec(s0);
 
         print_preorder_iter(s0);
         print_inorder_iter(s0);
         print_postorder_iter(s0);
+
+        print_preorder_rec_iter(s0);
+        print_inorder_rec_iter(s0);
+        print_postorder_rec_iter(s0);
     }
 }
 
