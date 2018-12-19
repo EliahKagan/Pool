@@ -6,8 +6,9 @@ enable_testing()
 
 set(CMAKE_CXX_STANDARD 17)
 
-if (MSVC)
-    add_compile_options(/permissive-)
+if(MSVC)
+    string(REGEX REPLACE /W[123] /W4 CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+    add_compile_options(/permissive- /Za)
 else()
     add_compile_options(-pedantic-errors)
 endif()
@@ -20,10 +21,7 @@ if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
         -Wno-padded
     )
 elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
-    add_compile_options(
-        -Wall
-        -Wextra
-    )
+    add_compile_options(-Wall -Wextra)
 endif()
 
 add_executable(pooltest
