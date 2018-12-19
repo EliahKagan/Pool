@@ -28,7 +28,7 @@ if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     )
 elseif(MSVC)
     # cl but not clang-cl accepts /Za to disable Microsoft extensions.
-    add_compile_options(/Za)
+    add_compile_options(/Za /analyze)
 else()
     # Enable most warnings.
     add_compile_options(-Wall -Wextra)
