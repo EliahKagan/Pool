@@ -6,33 +6,24 @@ enable_testing()
 
 set(CMAKE_CXX_STANDARD 17)
 
-if(MSVC)
+if (MSVC)
     add_compile_options(/permissive-)
-
-    if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-        add_compile_options(
-            -Weverything
-            -Wno-c++98-compat
-            -Wno-c++98-compat-bind-to-temporary-copy
-            -Wno-padded
-        )
-    endif()
 else()
     add_compile_options(-pedantic-errors)
+endif()
 
-    if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-        add_compile_options(
-            -Weverything
-            -Wno-c++98-compat
-            -Wno-c++98-compat-bind-to-temporary-copy
-            -Wno-padded
-        )
-    else()
-        add_compile_options(
-            -Wall
-            -Wextra
-        )
-    endif()
+if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+    add_compile_options(
+        -Weverything
+        -Wno-c++98-compat
+        -Wno-c++98-compat-bind-to-temporary-copy
+        -Wno-padded
+    )
+elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+    add_compile_options(
+        -Wall
+        -Wextra
+    )
 endif()
 
 add_executable(pooltest
@@ -55,10 +46,6 @@ add_executable(test-RaiiPrinter
 
 add_test(RaiiPrinter-test RaiiPrinter-test)
 add_test(test pooltest) # runs the whole program as a test
-
-#if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic-errors -Weverything -Wno-c++98-compat -Wno-c++98-compat-bind-to-temporary-copy -Wno-padded")
-#endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
