@@ -1,5 +1,5 @@
-#include "ListNode-test.h"
-#include "TreeNode-test.h"
+#include "ListNode-test.hpp"
+#include "TreeNode-test.hpp"
 #include <iostream>
 
 namespace {

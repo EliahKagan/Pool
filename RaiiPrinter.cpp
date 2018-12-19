@@ -1,7 +1,7 @@
 // A function object that uses RAII to print an enclosed, delimited sequence of
 // items, one per call - implementation file.
 
-#include "RaiiPrinter.h"
+#include "RaiiPrinter.hpp"
 
 #include <exception>
 

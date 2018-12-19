@@ -1,11 +1,11 @@
 // Implementation of tests of ListNode (and Pool).
 
-#include "ListNode-test.h"
+#include "ListNode-test.hpp"
 
-#include "ListNode.h"
-#include "NoDefault.h"
-#include "P.h"
-#include "Pool.h"
+#include "ListNode.hpp"
+#include "NoDefault.hpp"
+#include "P.hpp"
+#include "Pool.hpp"
 
 #include <bitset>
 #include <cassert>

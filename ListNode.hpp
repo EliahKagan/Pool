@@ -14,8 +14,8 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
-#include "P.h"
-#include "Pool.h"
+#include "P.hpp"
+#include "Pool.hpp"
 
 namespace ek {
     template<typename T>

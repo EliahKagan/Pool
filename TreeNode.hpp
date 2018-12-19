@@ -11,9 +11,9 @@
 #include <tuple>
 #include <type_traits>
 #include <utility>
-#include "Pool.h"
-#include "RaiiPrinter.h"
-#include "util.h"
+#include "Pool.hpp"
+#include "RaiiPrinter.hpp"
+#include "util.hpp"
 
 namespace ek {
     template<typename T>

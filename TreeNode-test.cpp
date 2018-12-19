@@ -1,9 +1,9 @@
 // Implementation of tests of TreeNode (and Pool).
 
-#include "TreeNode-test.h"
+#include "TreeNode-test.hpp"
 
-#include "Pool.h"
-#include "TreeNode.h"
+#include "Pool.hpp"
+#include "TreeNode.hpp"
 
 #include <iostream>
 

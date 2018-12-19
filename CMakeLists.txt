@@ -46,20 +46,20 @@ endif()
 
 add_executable(pooltest
     main.cpp
-    ListNode.cpp ListNode.h
-    ListNode-test.cpp ListNode-test.h
-    NoDefault.cpp NoDefault.h
-    P.cpp P.h
-    Pool.cpp Pool.h
-    RaiiPrinter.cpp RaiiPrinter.h
-    TreeNode.cpp TreeNode.h
-    TreeNode-test.cpp TreeNode-test.h
-    util.h
+    ListNode.cpp ListNode.hpp
+    ListNode-test.cpp ListNode-test.hpp
+    NoDefault.cpp NoDefault.hpp
+    P.cpp P.hpp
+    Pool.cpp Pool.hpp
+    RaiiPrinter.cpp RaiiPrinter.hpp
+    TreeNode.cpp TreeNode.hpp
+    TreeNode-test.cpp TreeNode-test.hpp
+    util.hpp
 )
 
 add_executable(test-RaiiPrinter
     test-RaiiPrinter.cpp
-    RaiiPrinter.cpp RaiiPrinter.h
+    RaiiPrinter.cpp RaiiPrinter.hpp
 )
 
 add_executable(test-cfuncs test-cfuncs.c)

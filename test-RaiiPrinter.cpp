@@ -1,4 +1,4 @@
-#include "RaiiPrinter.h"
+#include "RaiiPrinter.hpp"
 
 #include <iostream>
 #include <stdexcept>
