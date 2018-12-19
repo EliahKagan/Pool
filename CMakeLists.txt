@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
-cmake_policy(SET CMP0054 NEW) # Don't expand unquoted variable names in if().
+cmake_minimum_required(VERSION 3.0.0)
 project(Pool VERSION 0.1.0)
 
 include(CTest)
@@ -18,10 +17,7 @@ else()
     add_compile_options(-pedantic-errors)
 endif()
 
-if(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
-    # cl but not clang-cl accepts /Za to disable Microsoft extensions.
-    add_compile_options(/Za)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     # Clang accepts -Weverything with both clang/clang++ and clang-cl.
     # We will keep all but a few of the warnings that -Weverything enables.
     add_compile_options(
@@ -30,8 +26,11 @@ elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
         -Wno-c++98-compat-bind-to-temporary-copy
         -Wno-padded
     )
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
-    # GCC doesn't accept -Weverything, but we still want most GCC warnings.
+elseif(MSVC)
+    # cl but not clang-cl accepts /Za to disable Microsoft extensions.
+    add_compile_options(/Za)
+else()
+    # Enable most warnings.
     add_compile_options(-Wall -Wextra)
 endif()
 
