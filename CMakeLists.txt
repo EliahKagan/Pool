@@ -4,6 +4,9 @@ project(Pool VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
+set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_C_STANDARD 90)
+set(CMAKE_C_STANDARD_REQUIRE ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -59,7 +62,10 @@ add_executable(test-RaiiPrinter
     RaiiPrinter.cpp RaiiPrinter.h
 )
 
+add_executable(test-cfuncs test-cfuncs.c)
+
 add_test(test-RaiiPrinter test-RaiiPrinter)
+add_test(test-cfuncs test-cfuncs)
 add_test(test pooltest) # runs the whole program as a test
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

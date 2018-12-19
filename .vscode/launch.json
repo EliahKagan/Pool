@@ -63,7 +63,7 @@
             "args": [],
             "cwd": "${workspaceFolder}",
             "terminal": "external"
-        }
+        },
 
         {
             "name": "(gdb) Launch [David] - test-RaiiPrinter",
@@ -121,6 +121,67 @@
             "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/build/test-RaiiPrinter",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "terminal": "external"
+        },
+
+        {
+            "name": "(gdb) Launch [David] - test-cfuncs",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test-cfuncs.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Launch [Eliah] - test-cfuncs",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test-cfuncs.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:\\msys64\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(Windows) Launch - test-cfuncs",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test-cfuncs.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true
+        },
+        {
+            "name": "(lldb) Launch - test-cfuncs",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test-cfuncs",
             "args": [],
             "cwd": "${workspaceFolder}",
             "terminal": "external"
