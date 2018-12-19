@@ -1,7 +1,7 @@
 // Temporarily wraps a container by its iterators and makes it printable.
 
-#ifndef HAVE_POOL_P_H_
-#define HAVE_POOL_P_H_
+#ifndef HAVE_POOL_P_HPP_
+#define HAVE_POOL_P_HPP_
 
 #include <algorithm>
 #include <iterator>
@@ -88,4 +88,4 @@ namespace ek {
     }
 }
 
-#endif // ! HAVE_POOL_P_H_
+#endif // ! HAVE_POOL_P_HPP_

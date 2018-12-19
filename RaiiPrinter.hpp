@@ -1,8 +1,8 @@
 // A function object that uses RAII to print an enclosed, delimited sequence of
 // items, one per call.
 
-#ifndef HAVE_POOL_RAIIPRINTER_H_
-#define HAVE_POOL_RAIIPRINTER_H_
+#ifndef HAVE_POOL_RAIIPRINTER_HPP_
+#define HAVE_POOL_RAIIPRINTER_HPP_
 
 #include <iostream>
 #include <stdexcept>
@@ -61,4 +61,4 @@ namespace ek {
     }
 }
 
-#endif // ! HAVE_POOL_RAIIPRINTER_H_
+#endif // ! HAVE_POOL_RAIIPRINTER_HPP_

@@ -1,7 +1,7 @@
 // A binary tree node and associated helper functions and algorithms.
 
-#ifndef HAVE_POOL_TREENODE_H_
-#define HAVE_POOL_TREENODE_H_
+#ifndef HAVE_POOL_TREENODE_HPP_
+#define HAVE_POOL_TREENODE_HPP_
 
 #include <functional>
 #include <iostream>
@@ -338,4 +338,4 @@ namespace ek {
     // TODO: provide preorder, inorder, postorder, and levelorder iterators
 }
 
-#endif // ! HAVE_POOL_TREENODE_H_
+#endif // ! HAVE_POOL_TREENODE_HPP_

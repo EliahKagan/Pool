@@ -1,8 +1,8 @@
 // A trivial expanding object pool.
 // Does not contract or reuse unreachable objects.
 
-#ifndef HAVE_POOL_POOL_H_
-#define HAVE_POOL_POOL_H_
+#ifndef HAVE_POOL_POOL_HPP_
+#define HAVE_POOL_POOL_HPP_
 
 #include <deque>
 #include <utility>
@@ -22,4 +22,4 @@ namespace ek {
     };
 }
 
-#endif // ! HAVE_POOL_POOL_H_
+#endif // ! HAVE_POOL_POOL_HPP_

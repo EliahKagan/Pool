@@ -1,7 +1,7 @@
 // Small general utilities.
 
-#ifndef HAVE_POOL_UTIL_H_
-#define HAVE_POOL_UTIL_H_
+#ifndef HAVE_POOL_UTIL_HPP_
+#define HAVE_POOL_UTIL_HPP_
 
 // Use this to mark places a compiler might wrongly think are possible to reach.
 #if defined(_MSC_VER)
@@ -13,4 +13,4 @@
 #define NOT_REACHED() assert(false)
 #endif
 
-#endif // ! HAVE_POOL_UTIL_H_
+#endif // ! HAVE_POOL_UTIL_HPP_

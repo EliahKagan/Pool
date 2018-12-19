@@ -1,7 +1,7 @@
 // A wrapper class that denies default construction.
 
-#ifndef HAVE_POOL_NODEFAULT_H_
-#define HAVE_POOL_NODEFAULT_H_
+#ifndef HAVE_POOL_NODEFAULT_HPP_
+#define HAVE_POOL_NODEFAULT_HPP_
 
 #include <cstddef>
 #include <iterator>
@@ -43,4 +43,4 @@ namespace ek::literals {
     }
 }
 
-#endif // ! HAVE_POOL_NODEFAULT_H_
+#endif // ! HAVE_POOL_NODEFAULT_HPP_

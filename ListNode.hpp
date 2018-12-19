@@ -1,7 +1,7 @@
 // A singly linked list node and associated helper functions and algorithms.
 
-#ifndef HAVE_POOL_LISTNODE_H_
-#define HAVE_POOL_LISTNODE_H_
+#ifndef HAVE_POOL_LISTNODE_HPP_
+#define HAVE_POOL_LISTNODE_HPP_
 
 #include <algorithm>
 #include <cassert>
@@ -750,4 +750,4 @@ namespace ek {
     }
 }
 
-#endif // ! HAVE_POOL_LISTNODE_H_
+#endif // ! HAVE_POOL_LISTNODE_HPP_
