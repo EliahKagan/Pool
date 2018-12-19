@@ -46,6 +46,7 @@ endif()
 
 add_executable(pooltest
     main.cpp
+    array.c array.h
     ListNode.cpp ListNode.hpp
     ListNode-test.cpp ListNode-test.hpp
     NoDefault.cpp NoDefault.hpp
@@ -62,7 +63,10 @@ add_executable(test-RaiiPrinter
     RaiiPrinter.cpp RaiiPrinter.hpp
 )
 
-add_executable(test-cfuncs test-cfuncs.c)
+add_executable(test-cfuncs
+    test-cfuncs.c
+    array.c array.h
+)
 
 add_test(test-RaiiPrinter test-RaiiPrinter)
 add_test(test-cfuncs test-cfuncs)
