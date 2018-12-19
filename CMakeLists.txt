@@ -7,8 +7,10 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 17)
 
 if(MSVC)
-    # cl and clang-cl accept /permissive- for stricter conformance.
+    # cl and clang-cl accept /W4 (but -Weverything will override in clang-cl).
     string(REGEX REPLACE /W[123] /W4 CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+
+    # cl and clang-cl accept /permissive- for stricter conformance.
     add_compile_options(/permissive-)
 else()
     # gcc/g++ and clang/clang++ require comparably strict conformance to
@@ -27,9 +29,11 @@ if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
         -Wno-padded
     )
 elseif(MSVC)
-    # cl but not clang-cl accept /Za to reject Microsoft extensions and
-    # /analyze to perform static analysis (with the default rules).
-    add_compile_options(/Za /analyze)
+    # cl but not clang-cl accepts /Za to reject Microsoft extensions.
+    add_compile_options(/Za)
+
+    # cl but not clang-cl accepts /analyze for static analysis (default rules).
+    add_compile_options(/analyze)
 else()
     # Enable most warnings.
     add_compile_options(-Wall -Wextra)
