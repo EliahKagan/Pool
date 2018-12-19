@@ -335,7 +335,7 @@ namespace ek {
         postorder_rec_iter(root, std::ref(print));
     }
 
-    // TODO: implement preorder, inorder, postorder, and levelorder iterators
+    // TODO: provide preorder, inorder, postorder, and levelorder iterators
 }
 
 #endif // ! HAVE_POOL_TREENODE_H_
