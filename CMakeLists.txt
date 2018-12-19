@@ -27,7 +27,8 @@ if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
         -Wno-padded
     )
 elseif(MSVC)
-    # cl but not clang-cl accept MSVC flags to reject extensions and analyze.
+    # cl but not clang-cl accept /Za to reject Microsoft extensions and
+    # /analyze to perform static analysis (with the default rules).
     add_compile_options(/Za /analyze)
 else()
     # Enable most warnings.
