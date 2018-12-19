@@ -13,6 +13,9 @@ namespace ek {
     public:
         BadRaiiPrinterCall();
 
+        BadRaiiPrinterCall(const BadRaiiPrinterCall&) = default;
+        BadRaiiPrinterCall& operator=(const BadRaiiPrinterCall&) = default;
+
         // The destructor is defaulted out-of-line to avoid "weak vtables."
         ~BadRaiiPrinterCall() override;
     };
