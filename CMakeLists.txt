@@ -53,7 +53,7 @@ add_executable(test-RaiiPrinter
     RaiiPrinter.cpp RaiiPrinter.h
 )
 
-add_test(RaiiPrinter-test RaiiPrinter-test)
+add_test(test-RaiiPrinter test-RaiiPrinter)
 add_test(test pooltest) # runs the whole program as a test
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
