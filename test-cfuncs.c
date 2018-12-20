@@ -81,13 +81,14 @@ static void test_array(void)
                 array_min_byreduce(a1, n1), array_max_byreduce(a1, n1),
                 array_sum_byreduce(a1, n1), array_product_byreduce(a1, n1));
 
-    printf("%d %d %d\n", array_count(a1, n1, 10), array_count(a1, n1, 3),
-                         array_count(a1, n1, -2));
+    check(3, "counts", array_count(a1, n1, 10), array_count(a1, n1, 3),
+                       array_count(a1, n1, -2),
+            0, 1, 2);
 
-    printf("%d %d %d %d %d %d\n",
-            array_find(a1, n1, -2), array_rfind(a1, n1, -2),
-            array_find(a1, n1, 12), array_rfind(a1, n1, 12),
-            array_find(a1, n1, 7), array_rfind(a1, n1, 7));
+    check(6, "indices", array_find(a1, n1, -2), array_rfind(a1, n1, -2),
+                        array_find(a1, n1, 12), array_rfind(a1, n1, 12),
+                        array_find(a1, n1, 7), array_rfind(a1, n1, 7),
+            2, 10, 8, 8, 0, 0);
 
     putchar('\n');
 

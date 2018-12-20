@@ -17,34 +17,49 @@ void check_folds(const struct fold_results *const resp,
     if (sum != resp->sum || product != resp->product) exit(EXIT_FAILURE);
 }
 
+static void fill_buffer(int *buffer, int count, va_list ap)
+{
+    for (assert(count > 0); count > 0; --count) *buffer++ = va_arg(ap, int);
+}
+
+static int find_mismatch(const int *const buffer, const int count, va_list ap)
+{
+    int mismatch = 0;
+    assert(count > 0);
+    while (mismatch < count && va_arg(ap, int) == buffer[mismatch]) ++mismatch;
+    return mismatch;
+}
+
+static void print_label(const char *const label)
+{
+    assert(label);
+    printf("%s:", label);
+}
+
+static void print_buffer(const int *buffer, int count)
+{
+    for (assert(count > 0); count > 0; --count) printf(" %d", *buffer++);
+}
+
 void check(const int count, const char *const label, ...)
 {
-    int *values = NULL;
+    int *buffer = NULL;
     va_list ap;
-    int i = 0;
+    int mismatch = 0;
 
-    assert(count > 0);
-    assert(label);
+    buffer = xcalloc((size_t)count, sizeof *buffer);
 
-    values = xcalloc((size_t)count, sizeof *values);
-    printf("%s:", label);
     va_start(ap, label);
-
-    for (i = 0; i < count; ++i) {
-        const int x = va_arg(ap, int);
-        printf(" %d", x);
-        values[i] = x;
-    }
-
-    putchar('\n');
-
-    i = 0;
-    while (i < count && va_arg(ap, int) == values[i]) ++i;
-    printf(" - %s\n", (i == count ? "match" : "mismatch"));
-
+    fill_buffer(buffer, count, ap);
+    mismatch = find_mismatch(buffer, count, ap);
     va_end(ap);
-    free(values);
-    values = NULL;
 
-    if (i != count) exit(EXIT_FAILURE);
+    print_label(label);
+    print_buffer(buffer, count);
+    printf(" (%s)\n", (mismatch == count ? "match" : "mismatch"));
+
+    free(buffer);
+    buffer = NULL;
+
+    if (mismatch != count) exit(EXIT_FAILURE);
 }
