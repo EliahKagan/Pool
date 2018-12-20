@@ -3,6 +3,7 @@
 
 #include "array.h"
 #include "check.h"
+#include "list_node.h"
 
 static void increment(int *const elemp)
 {
@@ -95,9 +96,66 @@ static void test_array(void)
     test_array_foreach(a1, n1);
 }
 
+static void test_list_foreach(struct list_node *const head)
+{
+    enum { acc_start = 100 };
+    int acc = acc_start, delta = 2;
+    const int n = list_length(head);
+    if (n != list_length_byfold(head)) exit(EXIT_FAILURE);
+    s_acc = 0;
+
+    list_foreach(head, increase_s_acc);
+    list_print(head);
+    list_print_alt(head);
+    list_foreach_mut(head, increment);
+    list_print(head);
+    list_print_alt(head);
+    list_foreach(head, decrease_s_acc);
+    printf("%d\n", s_acc);
+    if (s_acc != -n) exit(EXIT_FAILURE);
+    putchar('\n');
+
+    list_foreach_r(head, increase_acc, &acc);
+    list_print(head);
+    list_print_alt(head);
+    list_foreach_mut_r(head, increase_by, &delta);
+    list_print(head);
+    list_print_alt(head);
+    list_foreach_r(head, decrease_acc, &acc);
+    printf("%d\n", acc);
+    if (acc != acc_start - n * delta) exit(EXIT_FAILURE);
+    putchar('\n');
+}
+
 static void test_list(void)
 {
+    struct fold_results r1 = {-9, 44, 66, -164229120};
 
+    struct list_node *h1 = list_create(11,
+                            4, 3, -2, 8, -9, 15, 44, -6, 12, -1, -2);
+
+    check_folds(&r1, list_min(h1), list_max(h1),
+                     list_sum(h1), list_product(h1));
+
+    check_folds(&r1, list_min_byfold(h1), list_max_byfold(h1),
+                     list_sum_byfold(h1), list_product_byfold(h1));
+
+    check_folds(&r1,
+                list_min_byreduce(h1), list_max_byreduce(h1),
+                list_sum_byreduce(h1), list_product_byreduce(h1));
+
+    check(3, "counts", list_count(h1, 10), list_count(h1, 3),
+                       list_count(h1, -2),
+            0, 1, 2);
+
+    check(6, "indices", list_find(h1, -2), list_rfind(h1, -2),
+                        list_find(h1, 12), list_rfind(h1, 12),
+                        list_find(h1, 7), list_rfind(h1, 7),
+            2, 10, 8, 8, 0, 0);
+
+    putchar('\n');
+
+    test_list_foreach(h1);
 }
 
 int main(void)

@@ -4,6 +4,7 @@
 #include <limits.h>
 #include <stdio.h>
 
+#include "actions.h"
 #include "predicates.h"
 
 int array_min(const int *a, int n)
@@ -137,13 +138,6 @@ void array_foreach_mut_r(int *a, int n, const MutatorEx f, void *const aux)
     for (assert(n >= 0); n-- > 0; ++a) f(a, aux);
 }
 
-static void print_element(const int x, void *const sepp)
-{
-    const char **const my_sepp = (const char **)sepp;
-    printf("%s%d", *my_sepp, x);
-    *my_sepp = ", ";
-}
-
 void array_print(const int *a, int n)
 {
     const char *sep = "";
@@ -152,11 +146,6 @@ void array_print(const int *a, int n)
     putchar('{');
     array_foreach_r(a, n, print_element, &sep);
     puts("}");
-}
-
-static void print_alt_nonfirst_element(const int x)
-{
-    printf(", %d", x);
 }
 
 static void print_alt_all_elements(const int *const a, const int n)

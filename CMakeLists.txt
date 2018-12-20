@@ -46,6 +46,7 @@ endif()
 
 add_executable(pooltest
     main.cpp
+    actions.c actions.h
     array.c array.h
     check.c check.h
     function-types.c function-types.h
@@ -69,6 +70,7 @@ add_executable(test-RaiiPrinter
 
 add_executable(test-cfuncs
     test-cfuncs.c
+    actions.c actions.h
     array.c array.h
     check.c check.h
     function-types.c function-types.h
