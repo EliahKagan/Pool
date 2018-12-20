@@ -2,6 +2,7 @@
 
 #include <assert.h>
 #include <limits.h>
+#include <stdio.h>
 
 #include "predicates.h"
 
@@ -114,4 +115,45 @@ int array_count(const int *a, int n, const int x)
     int acc = 0;
     for (assert(n >= 0); n-- > 0; ++a) acc += *a == x;
     return acc;
+}
+
+void array_foreach(const int *a, int n, const Consumer f)
+{
+    for (assert(n >= 0); n-- > 0; ++a) f(*a);
+}
+
+void array_foreach_r(const int *a, int n, const ConsumerEx f, void *const aux)
+{
+    for (assert(n >= 0); n-- > 0; ++a) f(*a, aux);
+}
+
+void array_foreach_mut(int *a, int n, const Mutator f)
+{
+    for (assert(n >= 0); n-- > 0; ++a) f(a);
+}
+
+void array_foreach_mut_r(int *a, int n, const MutatorEx f, void *const aux)
+{
+    for (assert(n >= 0); n-- > 0; ++a) f(a, aux);
+}
+
+static void array_print_elements(const int *a, int n)
+{
+    if (n <= 0) return;
+
+    printf("%d", *a);
+    while (--n > 0) printf(", %d", *++a);
+}
+
+void array_print(const int *const a, const int n)
+{
+    assert(n >= 0);
+    putchar('{');
+    array_print_elements(a, n);
+    putchar('}');
+}
+
+void array_print_alt(const int *a, int n)
+{
+
 }

@@ -29,4 +29,17 @@ int array_find(const int *a, int n, int x);
 int array_rfind(const int *a, int n, int x);
 int array_count(const int *a, int n, int x);
 
+typedef void (*Consumer)(int);
+typedef void (*ConsumerEx)(int, void*);
+typedef void (*Mutator)(int*);
+typedef void (*MutatorEx)(int*, void*);
+
+void array_foreach(const int *a, int n, Consumer f);
+void array_foreach_r(const int *a, int n, ConsumerEx f, void *aux);
+void array_foreach_mut(int *a, int n, Mutator f);
+void array_foreach_mut_r(int *a, int n, MutatorEx f, void *aux);
+
+void array_print(const int *a, int n);
+void array_print_alt(const int *a, int n);
+
 #endif /* ! HAVE_POOL_ARRAY_H_ */
