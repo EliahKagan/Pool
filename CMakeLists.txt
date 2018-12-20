@@ -48,6 +48,8 @@ add_executable(pooltest
     main.cpp
     array.c array.h
     check.c check.h
+    function-types.c function-types.h
+    list_node.c list_node.h
     ListNode.cpp ListNode.hpp
     ListNode-test.cpp ListNode-test.hpp
     NoDefault.cpp NoDefault.hpp
@@ -69,6 +71,8 @@ add_executable(test-cfuncs
     test-cfuncs.c
     array.c array.h
     check.c check.h
+    function-types.c function-types.h
+    list_node.c list_node.h
     predicates.c predicates.h
     util.c util.h
 )

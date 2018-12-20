@@ -1,14 +1,14 @@
 #ifndef HAVE_POOL_ARRAY_H_
 #define HAVE_POOL_ARRAY_H_
 
+#include "function-types.h"
+
 #define LENGTH_OF(a) (sizeof (a) / sizeof ((a)[0]))
 
 int array_min(const int *a, int n);
 int array_max(const int *a, int n);
 int array_sum(const int *a, int n);
 int array_product(const int *a, int n);
-
-typedef int (*BinaryOp)(int, int);
 
 int array_fold(const int *a, int n, BinaryOp f, int acc);
 int array_reduce(const int *a, int n, BinaryOp f);
@@ -28,11 +28,6 @@ enum { array_npos = -1 };
 int array_find(const int *a, int n, int x);
 int array_rfind(const int *a, int n, int x);
 int array_count(const int *a, int n, int x);
-
-typedef void (*Consumer)(int);
-typedef void (*ConsumerEx)(int, void*);
-typedef void (*Mutator)(int*);
-typedef void (*MutatorEx)(int*, void*);
 
 void array_foreach(const int *a, int n, Consumer f);
 void array_foreach_r(const int *a, int n, ConsumerEx f, void *aux);
