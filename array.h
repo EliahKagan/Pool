@@ -23,4 +23,10 @@ int array_max_byreduce(const int *a, int n);
 int array_sum_byreduce(const int *a, int n);
 int array_product_byreduce(const int *a, int n);
 
+enum { array_npos = -1 };
+
+int array_find(const int *a, int n, int x);
+int array_rfind(const int *a, int n, int x);
+int array_count(const int *a, int n, int x);
+
 #endif /* ! HAVE_POOL_ARRAY_H_ */

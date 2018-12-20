@@ -90,3 +90,28 @@ int array_product_byreduce(const int *const a, const int n)
 {
     return array_reduce(a, n, mul);
 }
+
+int array_find(const int *const a, const int n, const int x)
+{
+    int i = 0;
+    for (assert(n >= 0); i < n; ++i)
+        if (a[i] == x) return i;
+
+    return array_npos;
+}
+
+int array_rfind(const int *const a, int n, const int x)
+{
+    assert(n >= 0);
+    assert(array_npos == -1); /* could be _Static_assert in C99 and later */
+
+    while (--n != array_npos && a[n] != x) { }
+    return n;
+}
+
+int array_count(const int *a, int n, const int x)
+{
+    int acc = 0;
+    for (assert(n >= 0); n-- > 0; ++a) acc += *a == x;
+    return acc;
+}

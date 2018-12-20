@@ -32,5 +32,9 @@ int main(void)
             array_sum_byreduce(a1, LENGTH_OF(a1)),
             array_product_byreduce(a1, LENGTH_OF(a1)));
 
+    printf("%d %d %d\n", array_count(a1, LENGTH_OF(a1), 10),
+                         array_count(a1, LENGTH_OF(a1), 3),
+                         array_count(a1, LENGTH_OF(a1), -2));
+
     return EXIT_SUCCESS;
 }
