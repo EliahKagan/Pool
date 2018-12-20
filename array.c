@@ -137,23 +137,39 @@ void array_foreach_mut_r(int *a, int n, const MutatorEx f, void *const aux)
     for (assert(n >= 0); n-- > 0; ++a) f(a, aux);
 }
 
-static void array_print_elements(const int *a, int n)
+static void print_element(const int x, void *const sepp)
 {
-    if (n <= 0) return;
-
-    printf("%d", *a);
-    while (--n > 0) printf(", %d", *++a);
+    const char **const my_sepp = sepp;
+    printf("%s%d", *my_sepp, x);
+    *my_sepp = ", ";
 }
 
-void array_print(const int *const a, const int n)
+void array_print(const int *a, int n)
+{
+    const char *sep = "";
+    assert(n >= 0);
+
+    putchar('{');
+    array_foreach_r(a, n, print_element, &sep);
+    puts("}");
+}
+
+static void print_alt_nonfirst_element(const int x)
+{
+    printf(", %d", x);
+}
+
+static void print_alt_all_elements(const int *const a, const int n)
+{
+    printf("%d", *a);
+    array_foreach(a + 1, n - 1, print_alt_nonfirst_element);
+}
+
+void array_print_alt(const int *const a, const int n)
 {
     assert(n >= 0);
+
     putchar('{');
-    array_print_elements(a, n);
-    putchar('}');
-}
-
-void array_print_alt(const int *a, int n)
-{
-
+    if (n > 0) print_alt_all_elements(a, n);
+    puts("}");
 }

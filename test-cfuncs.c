@@ -45,15 +45,38 @@ static void decrease_s_acc(const int x)
     s_acc -= x;
 }
 
+static void test_foreach(int *const a, const int n)
+{
+    enum { acc_start = 100 };
+    int acc = acc_start, delta = 2;
+
+    array_foreach(a, n, increase_s_acc);
+    array_print(a, n);
+    array_print_alt(a, n);
+    array_foreach_mut(a, n, increment);
+    array_print(a, n);
+    array_print_alt(a, n);
+    array_foreach(a, n, decrease_s_acc);
+    printf("%d\n", s_acc);
+    if (s_acc != -n) exit(EXIT_FAILURE);
+    putchar('\n');
+
+    array_foreach_r(a, n, increase_acc, &acc);
+    array_print(a, n);
+    array_print_alt(a, n);
+    array_foreach_mut_r(a, n, increase_by, &delta);
+    array_print(a, n);
+    array_print_alt(a, n);
+    array_foreach_r(a, n, decrease_acc, &acc);
+    printf("%d\n", acc);
+    if (acc != acc_start - n * delta) exit(EXIT_FAILURE);
+    putchar('\n');
+}
+
 static void test1(void)
 {
     int a1[] = {4, 3, -2, 8, -9, 15, 44, -6, 12, -1, -2};
     enum { n1 = LENGTH_OF(a1) };
-
-    /* TODO: Maybe give the foreach tests their own function. */
-    enum { acc_start = 100 };
-    int acc = acc_start;
-    int delta = 2;
 
     a1check(array_min(a1, n1), array_max(a1, n1),
             array_sum(a1, n1), array_product(a1, n1));
@@ -72,17 +95,9 @@ static void test1(void)
             array_find(a1, n1, 12), array_rfind(a1, n1, 12),
             array_find(a1, n1, 7), array_rfind(a1, n1, 7));
 
-    array_foreach(a1, n1, increase_s_acc);
-    array_foreach_mut(a1, n1, increment);
-    array_foreach(a1, n1, decrease_s_acc);
-    printf("%d\n", s_acc);
-    if (s_acc != -n1) exit(EXIT_FAILURE);
+    putchar('\n');
 
-    array_foreach_r(a1, n1, increase_acc, &acc);
-    array_foreach_mut_r(a1, n1, increase_by, &delta);
-    array_foreach_r(a1, n1, decrease_acc, &acc);
-    printf("%d\n", acc);
-    if (acc != acc_start - n1 * delta) exit(EXIT_FAILURE);
+    test_foreach(a1, n1);
 }
 
 int main(void)
