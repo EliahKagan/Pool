@@ -3,6 +3,8 @@
 #include <assert.h>
 #include <limits.h>
 
+#include "predicates.h"
+
 int array_min(const int *a, int n)
 {
     int acc = INT_MAX;
@@ -47,26 +49,6 @@ int array_reduce(const int *const a, const int n, const BinaryOp f)
 {
     assert(n > 0);
     return array_fold(a + 1, n - 1, f, *a);
-}
-
-static int min(const int x, const int y)
-{
-    return y < x ? y : x;
-}
-
-static int max(const int x, const int y)
-{
-    return y > x ? y : x;
-}
-
-static int add(const int x, const int y)
-{
-    return x + y;
-}
-
-static int mul(const int x, const int y)
-{
-    return x * y;
 }
 
 int array_min_byfold(const int *const a, const int n)
