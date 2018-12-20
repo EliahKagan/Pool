@@ -13,7 +13,7 @@
 #include <utility>
 #include "Pool.hpp"
 #include "RaiiPrinter.hpp"
-#include "util.hpp"
+#include "util.h"
 
 namespace ek {
     template<typename T>

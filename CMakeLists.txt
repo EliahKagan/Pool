@@ -57,7 +57,7 @@ add_executable(pooltest
     RaiiPrinter.cpp RaiiPrinter.hpp
     TreeNode.cpp TreeNode.hpp
     TreeNode-test.cpp TreeNode-test.hpp
-    util.hpp
+    util.c util.h
 )
 
 add_executable(test-RaiiPrinter
@@ -70,6 +70,7 @@ add_executable(test-cfuncs
     array.c array.h
     check.c check.h
     predicates.c predicates.h
+    util.c util.h
 )
 
 add_test(test-RaiiPrinter test-RaiiPrinter)
