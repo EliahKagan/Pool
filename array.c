@@ -139,7 +139,7 @@ void array_foreach_mut_r(int *a, int n, const MutatorEx f, void *const aux)
 
 static void print_element(const int x, void *const sepp)
 {
-    const char **const my_sepp = sepp;
+    const char **const my_sepp = (const char **)sepp;
     printf("%s%d", *my_sepp, x);
     *my_sepp = ", ";
 }

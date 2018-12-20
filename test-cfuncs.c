@@ -2,16 +2,7 @@
 #include <stdlib.h>
 
 #include "array.h"
-
-static void a1check(const int a1min, const int a1max,
-                    const int a1sum, const int a1product)
-{
-    printf("min=%d max=%d sum=%d product=%d\n",
-           a1min, a1max, a1sum, a1product);
-
-    if (a1min != -9 || a1max != 44 || a1sum != 66 || a1product != -164229120)
-        exit(EXIT_FAILURE);
-}
+#include "check.h"
 
 static void increment(int *const elemp)
 {
@@ -45,10 +36,11 @@ static void decrease_s_acc(const int x)
     s_acc -= x;
 }
 
-static void test_foreach(int *const a, const int n)
+static void test_array_foreach(int *const a, const int n)
 {
     enum { acc_start = 100 };
     int acc = acc_start, delta = 2;
+    s_acc = 0;
 
     array_foreach(a, n, increase_s_acc);
     array_print(a, n);
@@ -73,19 +65,21 @@ static void test_foreach(int *const a, const int n)
     putchar('\n');
 }
 
-static void test1(void)
+static void test_array(void)
 {
+    struct fold_results r1 = {-9, 44, 66, -164229120};
     int a1[] = {4, 3, -2, 8, -9, 15, 44, -6, 12, -1, -2};
     enum { n1 = LENGTH_OF(a1) };
 
-    a1check(array_min(a1, n1), array_max(a1, n1),
-            array_sum(a1, n1), array_product(a1, n1));
+    check_folds(&r1, array_min(a1, n1), array_max(a1, n1),
+                     array_sum(a1, n1), array_product(a1, n1));
 
-    a1check(array_min_byfold(a1, n1), array_max_byfold(a1, n1),
-            array_sum_byfold(a1, n1), array_product_byfold(a1, n1));
+    check_folds(&r1, array_min_byfold(a1, n1), array_max_byfold(a1, n1),
+                     array_sum_byfold(a1, n1), array_product_byfold(a1, n1));
 
-    a1check(array_min_byreduce(a1, n1), array_max_byreduce(a1, n1),
-            array_sum_byreduce(a1, n1), array_product_byreduce(a1, n1));
+    check_folds(&r1,
+                array_min_byreduce(a1, n1), array_max_byreduce(a1, n1),
+                array_sum_byreduce(a1, n1), array_product_byreduce(a1, n1));
 
     printf("%d %d %d\n", array_count(a1, n1, 10), array_count(a1, n1, 3),
                          array_count(a1, n1, -2));
@@ -97,11 +91,17 @@ static void test1(void)
 
     putchar('\n');
 
-    test_foreach(a1, n1);
+    test_array_foreach(a1, n1);
+}
+
+static void test_list(void)
+{
+
 }
 
 int main(void)
 {
-    test1();
+    test_array();
+    test_list();
     return EXIT_SUCCESS;
 }

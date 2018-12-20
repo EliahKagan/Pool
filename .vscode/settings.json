@@ -80,6 +80,7 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "xxatomic": "cpp",
-        "xthread": "cpp"
+        "xthread": "cpp",
+        "check.h": "c"
     }
 }
