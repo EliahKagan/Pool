@@ -86,9 +86,9 @@ static void test_array(void)
                        array_count(a1, n1, -2),
             0, 1, 2);
 
-    check(6, "indices", array_find(a1, n1, -2), array_rfind(a1, n1, -2),
-                        array_find(a1, n1, 12), array_rfind(a1, n1, 12),
-                        array_find(a1, n1, 7), array_rfind(a1, n1, 7),
+    check(6, "indices", array_index(a1, n1, -2), array_rindex(a1, n1, -2),
+                        array_index(a1, n1, 12), array_rindex(a1, n1, 12),
+                        array_index(a1, n1, 7), array_rindex(a1, n1, 7),
             2, 10, 8, 8, 0, 0);
 
     putchar('\n');
@@ -148,9 +148,9 @@ static void test_list(void)
                        list_count(h1, -2),
             0, 1, 2);
 
-    check(6, "indices", list_find(h1, -2), list_rfind(h1, -2),
-                        list_find(h1, 12), list_rfind(h1, 12),
-                        list_find(h1, 7), list_rfind(h1, 7),
+    check(6, "indices", list_index(h1, -2), list_rindex(h1, -2),
+                        list_index(h1, 12), list_rindex(h1, 12),
+                        list_index(h1, 7), list_rindex(h1, 7),
             2, 10, 8, 8, 0, 0);
 
     putchar('\n');

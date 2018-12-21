@@ -144,7 +144,7 @@ int list_product_byreduce(const struct list_node *const head)
     return list_reduce(head, mul);
 }
 
-int list_find(const struct list_node *head, const int x)
+int list_index(const struct list_node *head, const int x)
 {
     int i = 0;
     for (; head && head->key != x; head = head->next) ++i;

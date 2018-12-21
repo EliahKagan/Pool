@@ -93,7 +93,7 @@ int array_product_byreduce(const int *const a, const int n)
     return array_reduce(a, n, mul);
 }
 
-int array_find(const int *const a, const int n, const int x)
+int array_index(const int *const a, const int n, const int x)
 {
     int i = 0;
     for (assert(n >= 0); i < n; ++i)
@@ -102,7 +102,7 @@ int array_find(const int *const a, const int n, const int x)
     return array_npos;
 }
 
-int array_rfind(const int *const a, int n, const int x)
+int array_rindex(const int *const a, int n, const int x)
 {
     assert(n >= 0);
     assert(array_npos == -1); /* could be _Static_assert in C99 and later */
