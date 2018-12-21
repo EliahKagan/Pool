@@ -140,9 +140,8 @@ static void test_list(void)
     check_folds(&r1, list_min_byfold(h1), list_max_byfold(h1),
                      list_sum_byfold(h1), list_product_byfold(h1));
 
-    check_folds(&r1,
-                list_min_byreduce(h1), list_max_byreduce(h1),
-                list_sum_byreduce(h1), list_product_byreduce(h1));
+    check_folds(&r1, list_min_byreduce(h1), list_max_byreduce(h1),
+                     list_sum_byreduce(h1), list_product_byreduce(h1));
 
     check(3, "counts", list_count(h1, 10), list_count(h1, 3),
                        list_count(h1, -2),
