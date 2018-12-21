@@ -13,7 +13,7 @@ void check_folds(const struct fold_results *resp,
 void check(int count, const char *label, ...);
 
 #ifdef __cplusplus
-}
+} /* ! extern "C" */
 #endif
 
 #endif /* ! HAVE_POOL_CHECK_H_ */

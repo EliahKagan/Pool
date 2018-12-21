@@ -22,7 +22,7 @@ extern "C" {
 void *xcalloc(size_t count, size_t size);
 
 #ifdef __cplusplus
-}
+} /* ! extern "C" */
 #endif
 
 #endif /* ! HAVE_POOL_UTIL_H_ */

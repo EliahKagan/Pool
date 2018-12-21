@@ -52,7 +52,7 @@ void list_print(const struct list_node *head);
 void list_print_alt(const struct list_node *head);
 
 #ifdef __cplusplus
-}
+} /* ! extern "C" */
 #endif
 
 #endif /* ! HAVE_POOL_LIST_NODE_H_ */

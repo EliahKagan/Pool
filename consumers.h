@@ -24,7 +24,7 @@ void reset_s_acc(void);
 int read_s_acc(void);
 
 #ifdef __cplusplus
-}
+} /* ! extern "C" */
 #endif
 
 #endif /* ! HAVE_POOL_CONSUMERS_H_ */

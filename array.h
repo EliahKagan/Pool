@@ -42,7 +42,7 @@ void array_print(const int *a, int n);
 void array_print_alt(const int *a, int n);
 
 #ifdef __cplusplus
-}
+} /* ! extern "C" */
 #endif
 
 #endif /* ! HAVE_POOL_ARRAY_H_ */

@@ -1,3 +1,5 @@
+/* Test code for  */
+
 #ifndef HAVE_POOL_TEST_CFUNCS_H_
 #define HAVE_POOL_TEST_CFUNCS_H_
 
@@ -10,9 +12,7 @@
 #include "list_node.h"
 #include "mutators.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+/* Note: Compiling as extern "C" in C++ is intentionally not done. */
 
 static void test_array_foreach(int *const a, const int n)
 {
@@ -134,8 +134,6 @@ static void test_list(void)
     test_list_foreach(h1);
 }
 
-#ifdef __cplusplus
-}
-#endif /* ! extern "C" */
+/* Note: Compiling as extern "C" in C++ is intentionally not done. */
 
 #endif /* ! HAVE_POOL_TEST_CFUNCS_H_ */

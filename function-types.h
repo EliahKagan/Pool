@@ -13,7 +13,7 @@ typedef void (*Mutator)(int*);
 typedef void (*MutatorEx)(int*, void*);
 
 #ifdef __cplusplus
-}
+} /* ! extern "C" */
 #endif
 
 #endif /* ! HAVE_POOL_FUNCTION_TYPES_H_ */
