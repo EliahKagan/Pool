@@ -60,6 +60,7 @@ add_executable(pooltest
     P.cpp P.hpp
     Pool.cpp Pool.hpp
     RaiiPrinter.cpp RaiiPrinter.hpp
+    test-cfuncs.cpp test-cfuncs.h test-cfuncs.hpp
     TreeNode.cpp TreeNode.hpp
     TreeNode-test.cpp TreeNode-test.hpp
     util.c util.h

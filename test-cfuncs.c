@@ -1,3 +1,5 @@
+/* Test C functions for arrays and linked lists, from C - entry point. */
+
 #include "test-cfuncs.h"
 
 #include <stdio.h>

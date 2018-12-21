@@ -1,4 +1,4 @@
-/* Test code for  */
+/* Test C functions for arrays and linked lists, from C or C++. */
 
 #ifndef HAVE_POOL_TEST_CFUNCS_H_
 #define HAVE_POOL_TEST_CFUNCS_H_

@@ -1,4 +1,5 @@
 #include "ListNode-test.hpp"
+#include "test-cfuncs.hpp"
 #include "TreeNode-test.hpp"
 #include <iostream>
 
@@ -15,7 +16,8 @@ int main()
 {
     std::cout << std::boolalpha;
 
-    //run_c_listnode_tests()
+    run_cfuncs_tests();
+    hr();
     run_listnode_tests();
     hr();
     run_treenode_tests();
