@@ -1,5 +1,5 @@
-#ifndef HAVE_POOL_PREDICATES_H_
-#define HAVE_POOL_PREDICATES_H_
+#ifndef HAVE_POOL_BINARY_OPS_H_
+#define HAVE_POOL_BINARY_OPS_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,4 +14,4 @@ int mul(int x, int y);
 }
 #endif
 
-#endif /* ! HAVE_POOL_PREDICATES_H_ */
+#endif /* ! HAVE_POOL_BINARY_OPS_H_ */

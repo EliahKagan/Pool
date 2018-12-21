@@ -13,9 +13,9 @@ namespace {
 
 int main()
 {
-    std::ios_base::sync_with_stdio(false);
     std::cout << std::boolalpha;
 
+    //run_c_listnode_tests()
     run_listnode_tests();
     hr();
     run_treenode_tests();

@@ -48,15 +48,17 @@ add_executable(pooltest
     main.cpp
     actions.c actions.h
     array.c array.h
+    binary-ops.c binary-ops.h
     check.c check.h
+    consumers.c consumers.h
     function-types.c function-types.h
     list_node.c list_node.h
+    mutators.c mutators.h
     ListNode.cpp ListNode.hpp
     ListNode-test.cpp ListNode-test.hpp
     NoDefault.cpp NoDefault.hpp
     P.cpp P.hpp
     Pool.cpp Pool.hpp
-    predicates.c predicates.h
     RaiiPrinter.cpp RaiiPrinter.hpp
     TreeNode.cpp TreeNode.hpp
     TreeNode-test.cpp TreeNode-test.hpp
@@ -69,13 +71,15 @@ add_executable(test-RaiiPrinter
 )
 
 add_executable(test-cfuncs
-    test-cfuncs.c
+    test-cfuncs.c test-cfuncs.h
     actions.c actions.h
     array.c array.h
+    binary-ops.c binary-ops.h
     check.c check.h
+    consumers.c consumers.h
     function-types.c function-types.h
     list_node.c list_node.h
-    predicates.c predicates.h
+    mutators.c mutators.h
     util.c util.h
 )
 

@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 #include "actions.h"
-#include "predicates.h"
+#include "binary-ops.h"
 
 int array_min(const int *a, int n)
 {

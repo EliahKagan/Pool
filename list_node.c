@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #include "actions.h"
-#include "predicates.h"
+#include "binary-ops.h"
 #include "util.h"
 
 struct list_node *list_create(int n, ...)
