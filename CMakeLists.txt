@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(MSVC)
     # cl and clang-cl accept /W4 (but -Weverything will override in clang-cl).
+    string(REGEX REPLACE /W[123] /W4 CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
     string(REGEX REPLACE /W[123] /W4 CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 
     # cl and clang-cl accept /permissive- for stricter conformance.
