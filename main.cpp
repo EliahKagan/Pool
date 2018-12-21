@@ -1,7 +1,8 @@
+#include <iostream>
+
 #include "ListNode-test.hpp"
 #include "test-cfuncs.hpp"
 #include "TreeNode-test.hpp"
-#include <iostream>
 
 namespace {
     void hr()
