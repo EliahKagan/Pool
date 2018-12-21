@@ -161,6 +161,7 @@ static void test_list(void)
 int main(void)
 {
     test_array();
+    putchar('\n');
     test_list();
     return EXIT_SUCCESS;
 }

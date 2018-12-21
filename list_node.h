@@ -36,6 +36,7 @@ int list_product_byreduce(const struct list_node *head);
 enum { list_npos = -1 };
 
 int list_index(const struct list_node *head, int x);
+int list_rindex(const struct list_node *head, int x);
 int list_count(const struct list_node *head, int x);
 
 void list_foreach(const struct list_node *head, Consumer f);

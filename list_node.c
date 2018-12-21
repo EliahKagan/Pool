@@ -147,8 +147,25 @@ int list_product_byreduce(const struct list_node *const head)
 int list_index(const struct list_node *head, const int x)
 {
     int i = 0;
-    for (; head && head->key != x; head = head->next) ++i;
-    return head ? i : list_npos;
+
+    for (; head; head = head->next) {
+        if (head->key == x) return i;
+        ++i;
+    }
+
+    return list_npos;
+}
+
+int list_rindex(const struct list_node *head, const int x)
+{
+    int last = list_npos, cur = 0;
+
+    for (; head; head = head->next) {
+        if (head->key == x) last = cur;
+        ++cur;
+    }
+
+    return last;
 }
 
 int list_count(const struct list_node *head, const int x)
