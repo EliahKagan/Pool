@@ -3,6 +3,10 @@
 
 #include "function-types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define LENGTH_OF(a) (sizeof (a) / sizeof ((a)[0]))
 
 int array_min(const int *a, int n);
@@ -36,5 +40,9 @@ void array_foreach_mut_r(int *a, int n, MutatorEx f, void *aux);
 
 void array_print(const int *a, int n);
 void array_print_alt(const int *a, int n);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* ! HAVE_POOL_ARRAY_H_ */

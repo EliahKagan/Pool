@@ -3,6 +3,10 @@
 
 #include "function-types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct list_node {
     struct list_node *next;
     int key;
@@ -46,5 +50,9 @@ void list_foreach_mut_r(struct list_node *head, MutatorEx f, void *aux);
 
 void list_print(const struct list_node *head);
 void list_print_alt(const struct list_node *head);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* ! HAVE_POOL_LIST_NODE_H_ */

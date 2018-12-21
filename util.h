@@ -5,6 +5,10 @@
 
 #include <stddef.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Use this to mark places a compiler might wrongly think could be reached. */
 #if defined(_MSC_VER)
 #define NOT_REACHED() __assume(false)
@@ -13,10 +17,6 @@
 #else
 #include <cassert>
 #define NOT_REACHED() assert(false)
-#endif
-
-#ifdef __cplusplus
-extern "C" {
 #endif
 
 void *xcalloc(size_t count, size_t size);
