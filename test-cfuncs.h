@@ -137,8 +137,15 @@ static void test_list(void)
 static void test_list_equality(void)
 {
     struct list_node *h1 = list_create(5, 100, 200, 300, 400, 500);
+    struct list_node *h2 = list_create(5, 100, 200, 300, 400, 500);
+
+    check(1, "equal", list_equal(h1, h2), 1);
     h1 = list_prepend(h1, 3, 10, 20, 30);
     list_print(h1);
+    check(1, "unequal", list_equal(h1, h2), 3); /* FIXME: 0 after testing */
+
+    list_destroy(h2);
+    list_destroy(h1);
 }
 
 /* Note: Compiling as extern "C" in C++ is intentionally not done. */
