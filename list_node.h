@@ -12,6 +12,7 @@ struct list_node {
     int key;
 };
 
+struct list_node *list_prepend(struct list_node *head, int n, ...);
 struct list_node *list_create(int n, ...);
 void list_destroy(struct list_node *head);
 

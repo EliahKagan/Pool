@@ -73,7 +73,7 @@ static void test_array(void)
     test_array_foreach(a1, n1);
 }
 
-static void test_list_foreach(struct list_node *const head)
+static void detail_test_list_foreach(struct list_node *const head)
 {
     enum { acc_start = 100 };
     int acc = acc_start, delta = 2;
@@ -131,7 +131,14 @@ static void test_list(void)
 
     putchar('\n');
 
-    test_list_foreach(h1);
+    detail_test_list_foreach(h1);
+}
+
+static void test_list_equality(void)
+{
+    struct list_node *h1 = list_create(5, 100, 200, 300, 400, 500);
+    h1 = list_prepend(h1, 3, 10, 20, 30);
+    list_print(h1);
 }
 
 /* Note: Compiling as extern "C" in C++ is intentionally not done. */

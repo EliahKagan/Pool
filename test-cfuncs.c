@@ -10,5 +10,7 @@ int main(void)
     test_array();
     putchar('\n');
     test_list();
+    putchar('\n');
+    test_list_equality();
     return EXIT_SUCCESS;
 }

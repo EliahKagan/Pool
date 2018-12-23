@@ -9,4 +9,6 @@ void run_cfuncs_tests() noexcept
     test_list();
     std::cout << '\n';
     test_array();
+    std::cout << '\n';
+    test_list_equality();
 }

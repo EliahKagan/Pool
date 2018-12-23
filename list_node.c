@@ -10,23 +10,44 @@
 #include "binary-ops.h"
 #include "util.h"
 
-struct list_node *list_create(int n, ...)
+static struct list_node *vlist_prepend(struct list_node *const head,
+                                       int n, va_list ap)
 {
     struct list_node sentinel = {NULL, 0}, *cur = &sentinel;
-    va_list ap;
 
-    assert(n >= 0);
-    va_start(ap, n);
-
-    while (n-- > 0) {
+    for (assert(n >= 0); n > 0; --n) {
         cur->next = xcalloc(1, sizeof *cur->next);
         cur = cur->next;
         cur->key = va_arg(ap, int);
     }
 
-    va_end(ap);
     assert(cur->next == NULL);
+    cur->next = head;
     return sentinel.next;
+}
+
+struct list_node *list_prepend(struct list_node *const head, const int n, ...)
+{
+    struct list_node *ret = NULL;
+    va_list ap;
+
+    va_start(ap, n);
+    ret = vlist_prepend(head, n, ap);
+    va_end(ap);
+
+    return ret;
+}
+
+struct list_node *list_create(const int n, ...)
+{
+    struct list_node *ret = NULL;
+    va_list ap;
+
+    va_start(ap, n);
+    ret = vlist_prepend(NULL, n, ap);
+    va_end(ap);
+
+    return ret;
 }
 
 void list_destroy(struct list_node *head)
