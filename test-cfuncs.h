@@ -66,7 +66,7 @@ static void test_array(void)
     check(6, "indices", array_index(a1, n1, -2), array_rindex(a1, n1, -2),
                         array_index(a1, n1, 12), array_rindex(a1, n1, 12),
                         array_index(a1, n1, 7), array_rindex(a1, n1, 7),
-            2, 10, 8, 8, 0, 0);
+            2, 10, 8, 8, -1, -1);
 
     putchar('\n');
 
@@ -127,7 +127,7 @@ static void test_list(void)
     check(6, "indices", list_index(h1, -2), list_rindex(h1, -2),
                         list_index(h1, 12), list_rindex(h1, 12),
                         list_index(h1, 7), list_rindex(h1, 7),
-            2, 10, 8, 8, 0, 0);
+            2, 10, 8, 8, -1, -1);
 
     putchar('\n');
 
@@ -142,7 +142,7 @@ static void test_list_equality(void)
     check(1, "equal", list_equal(h1, h2), 1);
     h1 = list_prepend(h1, 3, 10, 20, 30);
     list_print(h1);
-    check(1, "unequal", list_equal(h1, h2), 3); /* FIXME: 0 after testing */
+    check(1, "unequal", list_equal(h1, h2), 0);
 
     list_destroy(h2);
     list_destroy(h1);
