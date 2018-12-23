@@ -43,6 +43,8 @@ int list_index(const struct list_node *head, int x);
 int list_rindex(const struct list_node *head, int x);
 int list_count(const struct list_node *head, int x);
 
+int list_equal(const struct list_node *head1, const struct list_node *head2);
+
 void list_foreach(const struct list_node *head, Consumer f);
 void list_foreach_r(const struct list_node *head, ConsumerEx f, void *aux);
 void list_foreach_mut(struct list_node *head, Mutator f);

@@ -175,27 +175,37 @@ int list_count(const struct list_node *head, const int x)
     return acc;
 }
 
-void list_foreach(const struct list_node *head, Consumer f)
+int list_equal(const struct list_node *head1, const struct list_node *head2)
+{
+    for (; head1 != head2; head1 = head1->next, head2 = head2->next)
+        if (!head1 || !head2 || head1->key != head2->key) return 0;
+
+    return 1;
+}
+
+void list_foreach(const struct list_node *head, const Consumer f)
 {
     for (; head; head = head->next) f(head->key);
 }
 
-void list_foreach_r(const struct list_node *head, ConsumerEx f, void *aux)
+void list_foreach_r(const struct list_node *head,
+                    const ConsumerEx f, void *const aux)
 {
     for (; head; head = head->next) f(head->key, aux);
 }
 
-void list_foreach_mut(struct list_node *head, Mutator f)
+void list_foreach_mut(struct list_node *head, const Mutator f)
 {
     for (; head; head = head->next) f(&head->key);
 }
 
-void list_foreach_mut_r(struct list_node *head, MutatorEx f, void *aux)
+void list_foreach_mut_r(struct list_node *head,
+                        const MutatorEx f, void *const aux)
 {
     for (; head; head = head->next) f(&head->key, aux);
 }
 
-void list_print(const struct list_node *head)
+void list_print(const struct list_node *const head)
 {
     const char *sep = "";
 
@@ -210,7 +220,7 @@ static void print_alt_all_elements(const struct list_node *const head)
     list_foreach(head->next, print_alt_nonfirst_element);
 }
 
-void list_print_alt(const struct list_node *head)
+void list_print_alt(const struct list_node *const head)
 {
     putchar('[');
     if (head) print_alt_all_elements(head);
