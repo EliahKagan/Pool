@@ -67,11 +67,6 @@ add_executable(pooltest
     util.c util.h
 )
 
-add_executable(test-RaiiPrinter
-    test-RaiiPrinter.cpp
-    RaiiPrinter.cpp RaiiPrinter.hpp
-)
-
 add_executable(test-cfuncs
     test-cfuncs.c test-cfuncs.h
     actions.c actions.h
@@ -85,9 +80,21 @@ add_executable(test-cfuncs
     util.c util.h
 )
 
-add_test(test-RaiiPrinter test-RaiiPrinter)
-add_test(test-cfuncs test-cfuncs)
+add_executable(test-check
+    test-check.cpp
+    check.c check.h
+    util.c util.h
+)
+
+add_executable(test-RaiiPrinter
+    test-RaiiPrinter.cpp
+    RaiiPrinter.cpp RaiiPrinter.hpp
+)
+
 add_test(test pooltest) # runs the whole program as a test
+add_test(test-cfuncs test-cfuncs)
+add_test(test-check test-check)
+add_test(test-RaiiPrinter test-RaiiPrinter)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
