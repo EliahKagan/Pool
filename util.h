@@ -19,6 +19,7 @@ extern "C" {
 #define NOT_REACHED() assert(false)
 #endif
 
+void xatexit(void (*handler)(void));
 void *xcalloc(size_t count, size_t size);
 
 #ifdef __cplusplus
