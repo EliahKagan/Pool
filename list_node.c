@@ -198,8 +198,12 @@ int list_count(const struct list_node *head, const int x)
 
 int list_equal(const struct list_node *head1, const struct list_node *head2)
 {
-    for (; head1 != head2; head1 = head1->next, head2 = head2->next)
+    while (head1 != head2) {
         if (!head1 || !head2 || head1->key != head2->key) return 0;
+
+        head1 = head1->next;
+        head2 = head2->next;
+    }
 
     return 1;
 }
