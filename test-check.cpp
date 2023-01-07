@@ -26,10 +26,10 @@ int main()
 {
     xatexit(on_exit_cleanup);
 
-    check(3, "test 1", 11, 22, 33, 11, 22, 33); // should match
+    check(3, "meta-test-can-pass", 11, 22, 33, 11, 22, 33); // should match
 
     s_failure_expected = true;
-    check(3, "test 1", 11, 22, 33, 11, 22, 34); // should not match
+    check(3, "meta-test-can-fail", 11, 22, 33, 11, 22, 34); // should not match
 
     close_stdout_and_quit(EXIT_FAILURE);
 }
