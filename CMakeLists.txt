@@ -1,3 +1,16 @@
+# Copyright (c) 2018 Eliah Kagan
+#
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+# PERFORMANCE OF THIS SOFTWARE.
+
 cmake_minimum_required(VERSION 3.0.0)
 project(Pool VERSION 0.1.0)
 
@@ -52,7 +65,7 @@ add_executable(pooltest
     binary-ops.c binary-ops.h
     check.c check.h
     consumers.c consumers.h
-    function-types.c function-types.h
+    function-types.h
     list_node.c list_node.h
     mutators.c mutators.h
     ListNode.cpp ListNode.hpp
@@ -74,7 +87,7 @@ add_executable(test-cfuncs
     binary-ops.c binary-ops.h
     check.c check.h
     consumers.c consumers.h
-    function-types.c function-types.h
+    function-types.h
     list_node.c list_node.h
     mutators.c mutators.h
     util.c util.h
