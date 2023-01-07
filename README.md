@@ -35,7 +35,9 @@ collections of some solutions our proposed C++ algorithms and data structures
 exercises in
 [algorithms-suggestions](https://github.com/EliahKagan/algorithms-suggestions).
 
-Running the built executables directly gives more verbose output than running them through `ctest` with no arguments as above. Another way to see the messages sent to standard output is to run:
+Running the built executables directly gives more verbose output than running
+them through `ctest` with no arguments as above. Another way to see the
+messages sent to standard output is to run:
 
 ```sh
 ctest --verbose
