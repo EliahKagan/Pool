@@ -4,7 +4,7 @@
 
 This is one of two partial implementations of the
 [**algorithms-suggestions**](https://github.com/EliahKagan/algorithms-suggestions)
-exercises. The other is [**Search**](https://github.com/EliahKagan/Search).
+exercises. The other is **Search** (not yet released).
 
 This was an experiment in doing some of those exercise ideas solo.
 
