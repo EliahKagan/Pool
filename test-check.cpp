@@ -9,13 +9,13 @@ namespace {
 
     [[noreturn]] void close_stdout_and_quit(const int status)
     {
-        std::fclose(stdout);
+        std::fclose(stdout); // flushes buffer, ensuring output is displayed
         std::_Exit(status);
     }
 }
 
 extern "C" {
-    [[noreturn]] static void on_exit(void)
+    [[noreturn]] static void on_exit_cleanup(void)
     {
         close_stdout_and_quit(s_failure_expected ? EXIT_SUCCESS
                                                  : EXIT_FAILURE);
@@ -24,7 +24,7 @@ extern "C" {
 
 int main()
 {
-    xatexit(on_exit);
+    xatexit(on_exit_cleanup);
 
     check(3, "test 1", 11, 22, 33, 11, 22, 33); // should match
 
