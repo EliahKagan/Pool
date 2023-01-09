@@ -2,11 +2,12 @@
 
 # Pool (algorithms-suggestions)
 
-This is one of two partial implementations of the
+This is one of three partial implementations of the
 [**algorithms-suggestions**](https://github.com/EliahKagan/algorithms-suggestions)
-exercises. The other is [**Search**](https://github.com/EliahKagan/Search).
+exercises. The others are [**Search**](https://github.com/EliahKagan/Search)
+and [**algorithms-python**](https://github.com/EliahKagan/algorithms-python).
 
-This was an experiment in doing some of those exercise ideas solo.
+This was an experiment in doing some of those exercise ideas solo (in C++).
 
 ## License
 
